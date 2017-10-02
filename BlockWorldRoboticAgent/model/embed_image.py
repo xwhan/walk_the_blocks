@@ -52,8 +52,7 @@ class EmbedImage:
 
         # conv + affine + relu
         with tf.variable_scope(scope_name + '_conv3') as scope:
-            kernel = self._variable_with_weight_decay('weights', shape=[4, 4, 32, 32],
-                                                      stddev=0.005, wd=0.0)
+            kernel = self._variable_with_weight_decay('weights', shape=[4, 4, 32, 32], stddev=0.005, wd=0.0)
             conv = tf.nn.conv2d(conv2, kernel, [1, 2, 2, 1], padding='SAME')
             biases = self._variable_on_cpu('biases', [32], tf.constant_initializer(0.0))
             bias = tf.nn.bias_add(conv, biases)

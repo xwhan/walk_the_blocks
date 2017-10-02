@@ -176,7 +176,7 @@ class EmbedTokenSeq:
         TODO move file name above
         """
 
-        tokens = open("../BlockWorldSimulator/Assets/vocab_both").readlines()
+        tokens = open("../../BlockWorldSimulator/Assets/vocab_both").readlines()
         print "Read " + str(len(tokens)) + " many tokens from ../BlockWorldSimulator/Assets/ "
         size = len(vocabulary)
 
