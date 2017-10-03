@@ -9,7 +9,7 @@ from image_cnn import *
 from action_encoder import *
 from seq_encoder import * 
 
-class Context_attention(object):
+class Context_attention(nn.Module):
 	"""docstring for Context_attention"""
 	def __init__(self, image_embed_dim, hidden_dim, action_dim_1, action_dim_2, inter_dim):
 		super(Context_attention, self).__init__()
@@ -30,7 +30,7 @@ class Context_attention(object):
 
 		self.mlp1 = nn.Linear(self.image_embed_dim + self.hidden_dim*2 + self.block_dim + self.direction_dim, self.inter_dim)
 		self.block_layer = nn.Linear(self.inter_dim, n_blocks)
-		self.direction_layer = nn.Linear(self.inter_dim, self.n_directions + 1)
+		self.direction_layer = nn.Linear(self.inter_dim, n_directions + 1)
 
 	def forward(self, image, instruction, action):
 		""" 
@@ -47,15 +47,19 @@ class Context_attention(object):
 		seq_embed = torch.sum(seq_embed, dim=0, keepdim=True)
 
 		action_embed = self.action_encoder(action[0], action[1])
-		state_embed = self.mlp1(torch.cat((img_embed, seq_embed, action_embed), dim=0))
+		state_embed = self.mlp1(torch.cat((img_embed, seq_embed, action_embed), dim=1))
 
 		block_prob = F.softmax(self.block_layer(F.relu(state_embed)))
 		direction_prob = F.softmax(self.direction_layer(F.relu(state_embed)))
 		return (block_prob, direction_prob)
 
 if __name__ == '__main__':
-
-
-
+	model = Context_attention(image_embed_dim=200, hidden_dim=200, action_dim_1=32, action_dim_2=24, inter_dim=120)
+	image = Variable(torch.randn(1,15,120,120))
+	instruction = Variable(torch.LongTensor(1,15).zero_())
+	action = (Variable(torch.LongTensor([[1]])), Variable(torch.LongTensor([[2]])))
+	block_prob, direction_prob = model(image, instruction, action)
+	print block_prob
+	print direction_prob
 
 

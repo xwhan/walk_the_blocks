@@ -14,7 +14,7 @@ class CNN_encoder(nn.Module):
 		self.image_dim = image_dim
 
 		self.conv1 = nn.Conv2d(input_channels, 32, kernel_size=8, stride=4, padding=2)
-		self.conv2 = nn.Conv2d(3	2, 32, kernel_size=8, stride=4, padding=3)
+		self.conv2 = nn.Conv2d(32, 32, kernel_size=8, stride=4, padding=3)
 		self.conv3 = nn.Conv2d(32, 32, kernel_size=4, stride=2, padding=1)
 		self.affine = nn.Linear(512, self.output_size)
 
