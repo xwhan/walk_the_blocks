@@ -24,7 +24,7 @@ class Seq_encoder(nn.Module):
 
 		self.bi_lstm = nn.LSTM(input_size=self.embed_dim, hidden_size=self.output_size, num_layers=1, bidirectional=True)
 
-		self.init_lstm_state = (Variable(torch.FloatTensor(1*2, 1, self.output_size).zero_()), Variable(torch.FloatTensor(1*2, 1, self.output_size).zero_()))
+		self.init_lstm_state = (Variable(torch.FloatTensor(1*2, 1, self.output_size).zero_().cuda()), Variable(torch.FloatTensor(1*2, 1, self.output_size).zero_().cuda()))
 
 	def forward(self, x):
 		"""input: a sequence of word indice (batch_size * num_of_indices)"""

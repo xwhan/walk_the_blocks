@@ -76,12 +76,9 @@ class Inverse_agent(object):
 		return state_code, reward, new_img, is_reset
 
 	def decode_action(self, action_id):
-		if action_id == 80:
-			return (5,20)
-		else:
 			block_id = action_id / self.num_direction
 			direction_id = action_id % self.num_direction
-			return (block_id, direction_id)
+			return (direction_id, block_id)
 
 	def action2msg(self, action_id):
 		if action_id == self.num_actions - 1:
@@ -114,13 +111,13 @@ class Inverse_agent(object):
 		"""
 		img_list = list(img)
 		imgs = np.concatenate(img_list, axis=0)
-		img_input = Variable(torch.from_numpy(imgs).float())
+		img_input = Variable(torch.from_numpy(imgs).float().cuda())
 		img_input = img_input.unsqueeze(0)
-		instruction_input = Variable(torch.from_numpy(np.array(instruction)))
+		instruction_input = Variable(torch.from_numpy(np.array(instruction)).cuda())
 		block = previous_action[1]
 		direction = previous_action[0]
-		block_input = Variable(torch.LongTensor([block])).unsqueeze(0)
-		direction_input = Variable(torch.LongTensor([direction])).unsqueeze(0)
+		block_input = Variable(torch.LongTensor([block]).cuda()).unsqueeze(0)
+		direction_input = Variable(torch.LongTensor([direction]).cuda()).unsqueeze(0)
 		action_input = (block_input, direction_input)
 		return img_input, instruction_input, action_input
 
@@ -134,43 +131,6 @@ class Inverse_agent(object):
 			action_id = np.argmax(action_prob)
 		return action_id
 
-	def train(self):
-
-		for epoch in range(max_epochs):
-			for sample_id in range(1, 1+train_size):
-				state = collections.deque([], 5)
-				init_imgs = self.model.image_encoder.build_init_images()
-				state = collections.deque([],5)
-				for img in init_imgs:
-					state.append(img)
-				_, _, img_state, instruction, trajectory = self.receive_instruction_image()
-				img_state = np.transpose(img_state, (2,0,1))
-				state.append(img_state)
-				previous_action = self.null_previous_action
-				instruction_ids = self.model.seq_encoder.instruction2id(instruction)
-				inputs = self.build_inputs(state, instruction_ids, previous_action)
-
-				traj_index = 0
-
-				while True:
-					action_id = trajectory[traj_index]
-					action_msg = self.action2msg(action_id)
-					# action_prob = self.model(inputs)
-					# action_id = self.sample_policy(action_prob)
-					# state_code, reward, new_env, is_reset = self.interact(action_id)
-					self.connection.send_message(action_msg)
-					(status_code, reward, new_env, is_reset) = self.receive_response()
-					new_env = np.transpose(new_env, (2,0,1))
-					if self.message_protocol_kit.is_reset_message(is_reset):
-						self.connection.send_message("Ok-Reset")
-						break
-
-				return
-
-
 
 if __name__ == '__main__':
 	test = Inverse_agent()
-	start = time.time()
-	test.train()
-	print time.time() - start

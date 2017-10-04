@@ -57,9 +57,9 @@ class Context_attention(nn.Module):
 
 if __name__ == '__main__':
 	model = Context_attention(image_embed_dim=200, hidden_dim=200, action_dim_1=32, action_dim_2=24, inter_dim=120)
-	image = Variable(torch.randn(1,15,120,120))
-	instruction = Variable(torch.LongTensor(1,15).zero_())
-	action = (Variable(torch.LongTensor([[1]])), Variable(torch.LongTensor([[2]])))
+	image = Variable(torch.randn(1,15,120,120).cuda())
+	instruction = Variable(torch.LongTensor(1,15).zero_().cuda())
+	action = (Variable(torch.LongTensor([[1]]).cuda()), Variable(torch.LongTensor([[2]]).cuda()))
 	start = time.time()
 	direction_prob = model(image, instruction, action)
 	end = time.time()
