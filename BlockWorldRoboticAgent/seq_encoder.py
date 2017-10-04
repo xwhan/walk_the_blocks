@@ -28,9 +28,8 @@ class Seq_encoder(nn.Module):
 
 	def forward(self, x):
 		"""input: a sequence of word indice (batch_size * num_of_indices)"""
-		print x
-		x = self.embed_M(x) # batch_size * num_of_indices * embed_dim
-		x = x.permute(1, 0, 2)
+		x = self.embed_M(x) # batch_size * num_of_indices * embed_dim 
+		x = x.unsqueeze(1)
 		rnn_outputs, _ = self.bi_lstm(x, self.init_lstm_state)
 		return rnn_outputs # seq_len * 1 * hidden*2
 

@@ -1,5 +1,6 @@
 #!/usr/bin/python 
 
+import time
 import torch
 import torch.nn as nn
 from torch.autograd import Variable
@@ -29,15 +30,17 @@ class Context_attention(nn.Module):
 		self.attention_weights = nn.Linear(self.image_embed_dim, self.hidden_dim*2) # potentially add more advanced attention mechanism
 
 		self.mlp1 = nn.Linear(self.image_embed_dim + self.hidden_dim*2 + self.block_dim + self.direction_dim, self.inter_dim)
-		self.block_layer = nn.Linear(self.inter_dim, n_blocks)
-		self.direction_layer = nn.Linear(self.inter_dim, n_directions + 1)
+		self.action_layer = nn.Linear(self.inter_dim, n_blocks*n_directions + 1) # add one for stop
 
-	def forward(self, image, instruction, action):
+	def forward(self, inputs):
 		""" 
-		image: tensor (1,15,120,120)
-		instruction: tensor (1,-1)
-		action: tensor tuple ((1,1),(1,1))
+		image: tensor variable (1,15,120,120)
+		instruction: tensor variable (1,-1)
+		action: tensor tuple variable ((1,1),(1,1))
 		"""
+		image = inputs[0]
+		instruction = inputs[1]
+		action = inputs[2]
 		img_embed = self.image_encoder(image) # 1 * image_embed_dim
 		seq_embed = self.seq_encoder(instruction) # seq_len * 1 * 2*hidden
 		seq_embed = seq_embed.squeeze(1) # seq_len * 2hidden
@@ -49,17 +52,17 @@ class Context_attention(nn.Module):
 		action_embed = self.action_encoder(action[0], action[1])
 		state_embed = self.mlp1(torch.cat((img_embed, seq_embed, action_embed), dim=1))
 
-		block_prob = F.softmax(self.block_layer(F.relu(state_embed)))
-		direction_prob = F.softmax(self.direction_layer(F.relu(state_embed)))
-		return (block_prob, direction_prob)
+		action_prob = F.softmax(self.action_layer(F.relu(state_embed)))
+		return action_prob
 
 if __name__ == '__main__':
 	model = Context_attention(image_embed_dim=200, hidden_dim=200, action_dim_1=32, action_dim_2=24, inter_dim=120)
 	image = Variable(torch.randn(1,15,120,120))
 	instruction = Variable(torch.LongTensor(1,15).zero_())
 	action = (Variable(torch.LongTensor([[1]])), Variable(torch.LongTensor([[2]])))
-	block_prob, direction_prob = model(image, instruction, action)
-	print block_prob
-	print direction_prob
+	start = time.time()
+	direction_prob = model(image, instruction, action)
+	end = time.time()
+	print end - start
 
 

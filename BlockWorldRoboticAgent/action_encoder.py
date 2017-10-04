@@ -14,8 +14,8 @@ class Action_encoder(nn.Module):
 		self.block_dim = block_dim
 		self.direction_dim = direction_dim
 
-		self.block_embed = nn.Embedding(self.num_blocks + 1, self.block_dim)
-		self.direction_embed = nn.Embedding(self.num_directions + 2, self.direction_dim) # add one direction for no-op
+		self.block_embed = nn.Embedding(self.num_blocks + 1, self.block_dim) # add 1 for initial previous action 
+		self.direction_embed = nn.Embedding(self.num_directions + 2, self.direction_dim) # add one direction for no-op, also one for STOP
 
 	def forward(self, block, direction):
 		"""input dimention

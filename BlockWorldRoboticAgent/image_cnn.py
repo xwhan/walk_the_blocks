@@ -5,6 +5,8 @@ import torch.nn as nn
 from torch.autograd import Variable
 import torch.nn.functional as F
 
+import numpy as np
+
 class CNN_encoder(nn.Module):
 	"""docstring for CNN_encoder"""
 	def __init__(self, input_channels, output_size, image_dim):
@@ -27,3 +29,6 @@ class CNN_encoder(nn.Module):
 
 	def normalize(self, image):
 		pass
+
+	def build_init_images(self):
+		return [np.zeros((3,120,120))] * 4
