@@ -7,6 +7,7 @@ import logger
 from config import Config
 import collections
 import numpy as np
+import time
 
 from hyperparas import *
 from attention import *
@@ -65,22 +66,44 @@ class Inverse_agent(object):
 		img = self.connection.receive_image()
 		response = self.connection.receive_message()
 		status_code, reward, _, reset_file = self.message_protocol_kit.decode_message(response)
-		return status_code, reward. img, reset_file
+		return status_code, reward, img, reset_file
 
 	def interact(self, action_id):
 		block_id, direction_id = self.decode_action(action_id)
 		action_msg = self.message_protocol_kit.encode_action_from_pair(block_id, direction_id)
 		self.connection.send_message(action_msg)
 		state_code, reward, new_img, is_reset = self.receive_instruction_image
-		return 
+		return state_code, reward, new_img, is_reset
 
 	def decode_action(self, action_id):
 		if action_id == 80:
 			return (5,20)
 		else:
-			block_id = action_id / self.num_block
-			direction_id = action_id % self.num_block
+			block_id = action_id / self.num_direction
+			direction_id = action_id % self.num_direction
 			return (block_id, direction_id)
+
+	def action2msg(self, action_id):
+		if action_id == self.num_actions - 1:
+			return "Stop"
+
+		block_id = action_id / self.num_direction
+		direction_id = action_id % self.num_direction
+
+		if direction_id == 0:
+			direction_id_str = "north"
+		elif direction_id == 1:
+			direction_id_str = "south"
+		elif direction_id == 2:
+			direction_id_str = "east"
+		elif direction_id == 3:
+			direction_id_str = "west"
+		else:
+			direction_id_str = None
+			print "Error. Exiting"
+			exit(0)
+		return str(block_id) + " " + direction_id_str
+
 
 	def build_inputs(self, img, instruction, previous_action):
 		""" 
@@ -101,9 +124,19 @@ class Inverse_agent(object):
 		action_input = (block_input, direction_input)
 		return img_input, instruction_input, action_input
 
-	def train(self):
-		for epoch in range(max_epochs):
+	def sample_policy(self, action_prob, method='random'):
+		action_prob = action_prob.data.numpy().squeeze()
+		print action_prob
+		num_actions = len(action_prob)
+		if method == 'random':
+			action_id = np.random.choice(np.arange(num_actions), p=action_prob)
+		elif method == 'greedy':
+			action_id = np.argmax(action_prob)
+		return action_id
 
+	def train(self):
+
+		for epoch in range(max_epochs):
 			for sample_id in range(1, 1+train_size):
 				state = collections.deque([], 5)
 				init_imgs = self.model.image_encoder.build_init_images()
@@ -116,11 +149,28 @@ class Inverse_agent(object):
 				previous_action = self.null_previous_action
 				instruction_ids = self.model.seq_encoder.instruction2id(instruction)
 				inputs = self.build_inputs(state, instruction_ids, previous_action)
-				action_prob = self.model(inputs)
-				print action_prob
+
+				traj_index = 0
+
+				while True:
+					action_id = trajectory[traj_index]
+					action_msg = self.action2msg(action_id)
+					# action_prob = self.model(inputs)
+					# action_id = self.sample_policy(action_prob)
+					# state_code, reward, new_env, is_reset = self.interact(action_id)
+					self.connection.send_message(action_msg)
+					(status_code, reward, new_env, is_reset) = self.receive_response()
+					new_env = np.transpose(new_env, (2,0,1))
+					if self.message_protocol_kit.is_reset_message(is_reset):
+						self.connection.send_message("Ok-Reset")
+						break
+
 				return
+
 
 
 if __name__ == '__main__':
 	test = Inverse_agent()
+	start = time.time()
 	test.train()
+	print time.time() - start
