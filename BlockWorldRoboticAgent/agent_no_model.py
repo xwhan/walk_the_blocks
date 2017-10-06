@@ -84,10 +84,16 @@ class AgentModelLess:
 
         sum_bisk_metric = 0
 
+        dataset_size = 3
+
         for i in range(0, dataset_size):
             (_, bisk_metric, current_env, instruction, trajectory) = self.receive_instruction_and_image()
+
+            print type(bisk_metric)
+            print bisk_metric
+
             sum_bisk_metric = sum_bisk_metric + bisk_metric
-            logger.Log.info("Bisk Metric " + str(bisk_metric))
+            logger.Log.info("Bisk Metric: " + str(bisk_metric))
             logger.Log.info("Instruction: " + str(instruction))
 
             steps = 0
@@ -106,13 +112,13 @@ class AgentModelLess:
                     raise AssertionError("Unknown agent type. Found " + str(self.agent_type))
 
                 action_str = self.message_protocol_kit.encode_action(action_id)
-                print "Sending Message: " + action_str
+                # print "Sending Message: " + action_str
                 logger.Log.info(action_str + "\n")
                 self.connection.send_message(action_str)
 
                 # receive confirmation on the completion of action
                 (_, reward, _, is_reset) = self.receive_response_and_image()
-                print "Received reward " + str(reward)
+                # print "Received reward " + str(reward)
 
                 # Update and print metric
                 sample_expected_reward += running_gamma * reward
@@ -131,7 +137,12 @@ class AgentModelLess:
                     logger.Log.flush()
                     break
 
+        (_, bisk_metric, current_env, instruction, trajectory) = self.receive_instruction_and_image()
+        print bisk_metric
         avg_bisk_metric = sum_bisk_metric/float(dataset_size)
+        print avg_bisk_metric
+
+
         logger.Log.info("Avg. Bisk Metric " + str(avg_bisk_metric))
         logger.Log.info("Testing finished.")
         logger.Log.flush()

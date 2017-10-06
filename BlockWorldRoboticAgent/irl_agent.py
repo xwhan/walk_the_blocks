@@ -8,6 +8,9 @@ from config import Config
 import collections
 import numpy as np
 import time
+import constants
+from tqdm import tqdm
+import random
 
 from hyperparas import *
 from attention import *
@@ -51,6 +54,8 @@ class Inverse_agent(object):
 		self.message_protocol_kit = mpu.MessageProtocolUtil(self.num_direction, self.num_actions, use_stop)
 
 		self.null_previous_action = (self.num_direction+1, self.num_block) # (5, 20)
+
+		self.gamma = 1.0
 
 		self.model = Context_attention(image_embed_dim=200, hidden_dim=200, action_dim_1=32, action_dim_2=24, inter_dim=120)
 
@@ -122,8 +127,7 @@ class Inverse_agent(object):
 		return img_input, instruction_input, action_input
 
 	def sample_policy(self, action_prob, method='random'):
-		action_prob = action_prob.data.numpy().squeeze()
-		print action_prob
+		action_prob = action_prob.data.cpu().numpy().squeeze()
 		num_actions = len(action_prob)
 		if method == 'random':
 			action_id = np.random.choice(np.arange(num_actions), p=action_prob)
@@ -131,6 +135,70 @@ class Inverse_agent(object):
 			action_id = np.argmax(action_prob)
 		return action_id
 
+	def test(self, saved_model, cuda=True):
+		if cuda:
+			self.model.cuda()
+		self.model.load_state_dict(torch.load(saved_model))
+		print 'Model reloaded'
+
+		config = Config.parse("../BlockWorldSimulator/Assets/config.txt")
+		constants_hyperparam = constants.constants
+		assert config.data_mode == Config.DEV
+		test_size = constants_hyperparam["dev_size"]
+
+		sum_bisk_metric = 0
+		sum_reward = 0
+		sum_steps = 0
+		right_block = 0
+		first_right = 0
+
+		for sample_id in tqdm(range(test_size)):
+			img_state = collections.deque([], 5)
+			init_imgs = self.model.image_encoder.build_init_images()
+			for img in init_imgs:
+				img_state.append(img)
+			(status_code, bisk_metric, img, instruction, trajectory) = self.receive_instruction_image()
+			img = np.transpose(img, (2,0,1))
+			img_state.append(img)
+			previous_action = self.null_previous_action
+			instruction_ids = self.model.seq_encoder.instruction2id(instruction)
+			inputs = self.build_inputs(img_state, instruction_ids, previous_action)
+
+			print "Bisk Metric: " + str(bisk_metric)
+			sum_bisk_metric += bisk_metric
+
+			steps = 0
+			sample_expected_reward = 0
+			running_gamma = 1.0
+
+			while True:
+				# action_prob = self.model(inputs).squeeze()
+				# action_id = self.sample_policy(action_prob)
+				action_id = 80
+				action_msg = self.action2msg(action_id)
+				self.connection.send_message(action_msg)
+				(_, reward, new_img, is_reset) = self.receive_response()
+
+				sample_expected_reward += running_gamma * reward
+				running_gamma *= self.gamma
+				steps += 1
+
+				# new_img = np.transpose(new_img, (2,0,1))
+				# img_state.append(new_img)
+				# previous_action = self.decode_action(action_id)
+				# inputs = self.build_inputs(img_state, instruction_ids, previous_action)
+
+				if self.message_protocol_kit.is_reset_message(is_reset):
+					self.connection.send_message('Ok-Reset')
+					break
+
+		avg_bisk_metric = sum_bisk_metric / float(test_size)
+		print "Avg. Bisk Metric " + str(avg_bisk_metric)
 
 if __name__ == '__main__':
-	test = Inverse_agent()
+	agent = Inverse_agent()
+	agent.model.cuda()
+	agent.test('models/sl_agent.pth')
+
+
+

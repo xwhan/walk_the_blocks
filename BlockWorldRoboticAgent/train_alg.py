@@ -8,15 +8,19 @@ from irl_agent import *
 from recordtype import recordtype
 import time
 from tqdm import tqdm
+import pickle
+import constants
+from config import Config
 
 from tensorboard_logger import configure, log_value
 
 # Define all the training 
 def sl_train(agent, max_epochs, train_size, lr):
 	"""supervised learning with expert moves"""
-	Experience = recordtype('exp',["state", "action", "reward"])
 	parameters = agent.model.parameters()
 	optimizer = torch.optim.Adam(parameters, lr=lr)
+
+	all_demonstrations = []
 	for epoch in range(max_epochs):
 		print 'Epoch %d' % epoch
 		for sample_id in tqdm(range(train_size)):
@@ -39,36 +43,47 @@ def sl_train(agent, max_epochs, train_size, lr):
 				traj_index += 1
 				agent.connection.send_message(action_msg)
 				(status_code, reward, new_img, is_reset) = agent.receive_response()
-				memory.append(Experience(state=inputs, action=action_id, reward=1.0))
+				memory.append(((img_state, instruction_ids, previous_action), action_id, 1.0))
 				new_img = np.transpose(new_img, (2,0,1))
 				img_state.append(new_img)
 				previous_action = agent.decode_action(action_id)
-				inputs = agent.build_inputs(img_state, instruction_ids, previous_action)
+				# inputs = agent.build_inputs(img_state, instruction_ids, previous_action)
 
 				if agent.message_protocol_kit.is_reset_message(is_reset):
 					agent.connection.send_message("Ok-Reset")
 					break
 
-			loss = 0.0
-			np.random.shuffle(memory)
-			episode_len = len(memory)
-			for exp in memory:
-				action_prob = agent.model(exp.state).squeeze()
-				loss += - action_prob[exp.action]
-			loss = loss / episode_len
-			agent.model.zero_grad()
-			loss.backward()
-			torch.nn.utils.clip_grad_norm(parameters, 5.0)
-			optimizer.step()
+			all_demonstrations.append(memory)
+			# loss = 0.0
+			# np.random.shuffle(memory)
+			# episode_len = len(memory)
+			# for exp in memory:
+			# 	action_prob = agent.model(exp[0]).squeeze()
+			# 	loss += - action_prob[exp[1]]
+			# loss = loss / episode_len
+			# agent.model.zero_grad()
+			# loss.backward()
+			# torch.nn.utils.clip_grad_norm(parameters, 5.0)
+			# optimizer.step()
 
+	# save all the demonstrations
+	with open('demonstrations.pkl', 'wb') as output:
+		pickle.dump(all_demonstrations, output, pickle.HIGHEST_PROTOCOL)
+	print 'Demonstration Saved'
 	# save the model
-	torch.save(agent.model.state_dict(), 'models/sl_agent.pth')
-	print 'Model saved'
+	# torch.save(agent.model.state_dict(), 'models/sl_agent.pth')
+	# print 'Model saved'
+
 
 if __name__ == '__main__':
+	constants_hyperparam = constants.constants
+	config = Config.parse("../BlockWorldSimulator/Assets/config.txt")
+	assert config.data_mode == Config.TRAIN
+	dataset_size = constants_hyperparam["train_size"]
+
 	agent = Inverse_agent()
 	agent.model.cuda()
-	sl_train(agent, 2, 11871, 0.001)
+	sl_train(agent, 1, dataset_size, 0.001)
 
 
 

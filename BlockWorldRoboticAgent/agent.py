@@ -147,9 +147,14 @@ class Agent:
         right_block = 0
         first_right = 0
 
+        dataset_size = 1
+
         for i in range(0, dataset_size):
             (status_code, bisk_metric, current_env, instruction, trajectory) = self.receive_instruction_and_image()
             sum_bisk_metric = sum_bisk_metric + bisk_metric
+
+            print type(bisk_metric) 
+            
             logger.Log.info("Bisk Metric " + str(bisk_metric))
             logger.Log.info("Instruction: " + str(instruction))
             text_indices = self.model.text_embedder.convert_text_to_indices(instruction)
