@@ -11,6 +11,7 @@ import time
 import constants
 from tqdm import tqdm
 import random
+import argparse
 
 from hyperparas import *
 from attention import *
@@ -21,17 +22,19 @@ class Inverse_agent(object):
 		logger.Log.open('./log.txt')
 
 		# Connect to simulator
-		if len(sys.argv) < 2:
-			logger.Log.info("IP not given. Using localhost i.e. 0.0.0.0")
-			self.unity_ip = "0.0.0.0"
-		else:
-			self.unity_ip = sys.argv[1]
+		# if len(sys.argv) < 2:
+		# 	logger.Log.info("IP not given. Using localhost i.e. 0.0.0.0")
+		# 	self.unity_ip = "0.0.0.0"
+		# else:
+		# 	self.unity_ip = sys.argv[1]
+		self.unity_ip = "0.0.0.0"
 
-		if len(sys.argv) < 3:
-			logger.Log.info("PORT not given. Using 11000")
-			self.PORT = 11000
-		else:
-			self.PORT = int(sys.argv[2])
+		# if len(sys.argv) < 3:
+		# 	logger.Log.info("PORT not given. Using 11000")
+		# 	self.PORT = 11000
+		# else:
+		# 	self.PORT = int(sys.argv[2])
+		self.PORT = 11000
 
 		# Size of image
 		config = Config.parse("../BlockWorldSimulator/Assets/config.txt")
@@ -135,7 +138,7 @@ class Inverse_agent(object):
 			action_id = np.argmax(action_prob)
 		return action_id
 
-	def test(self, saved_model, cuda=True):
+	def test(self, saved_model, cuda=True, mode='dev'):
 		if cuda:
 			self.model.cuda()
 		self.model.load_state_dict(torch.load(saved_model))
@@ -143,10 +146,16 @@ class Inverse_agent(object):
 
 		config = Config.parse("../BlockWorldSimulator/Assets/config.txt")
 		constants_hyperparam = constants.constants
-		assert config.data_mode == Config.DEV
-		test_size = constants_hyperparam["dev_size"]
+		if mode == 'dev':
+			assert config.data_mode == Config.DEV
+			test_size = constants_hyperparam["dev_size"]
+		elif mode == 'test':
+			assert config.data_mode == Config.TEST 
+			test_size = constants_hyperparam['test_size']
+
 
 		sum_bisk_metric = 0
+		bisk_metrics = []
 		sum_reward = 0
 		sum_steps = 0
 		right_block = 0
@@ -158,6 +167,11 @@ class Inverse_agent(object):
 			for img in init_imgs:
 				img_state.append(img)
 			(status_code, bisk_metric, img, instruction, trajectory) = self.receive_instruction_image()
+
+			gold_block_id = int(trajectory[0] / 4.0)
+			blocks_moved = []
+			first = True
+
 			img = np.transpose(img, (2,0,1))
 			img_state.append(img)
 			previous_action = self.null_previous_action
@@ -172,9 +186,8 @@ class Inverse_agent(object):
 			running_gamma = 1.0
 
 			while True:
-				# action_prob = self.model(inputs).squeeze()
-				# action_id = self.sample_policy(action_prob)
-				action_id = 80
+				action_prob = self.model(inputs).squeeze()
+				action_id = self.sample_policy(action_prob, method='random')
 				action_msg = self.action2msg(action_id)
 				self.connection.send_message(action_msg)
 				(_, reward, new_img, is_reset) = self.receive_response()
@@ -183,10 +196,10 @@ class Inverse_agent(object):
 				running_gamma *= self.gamma
 				steps += 1
 
-				# new_img = np.transpose(new_img, (2,0,1))
-				# img_state.append(new_img)
-				# previous_action = self.decode_action(action_id)
-				# inputs = self.build_inputs(img_state, instruction_ids, previous_action)
+				new_img = np.transpose(new_img, (2,0,1))
+				img_state.append(new_img)
+				previous_action = self.decode_action(action_id)
+				inputs = self.build_inputs(img_state, instruction_ids, previous_action)
 
 				if self.message_protocol_kit.is_reset_message(is_reset):
 					self.connection.send_message('Ok-Reset')
@@ -196,9 +209,14 @@ class Inverse_agent(object):
 		print "Avg. Bisk Metric " + str(avg_bisk_metric)
 
 if __name__ == '__main__':
+	parser = argparse.ArgumentParser(description='Options at test stage')
+	parser.add_argument('-model_path', default='models/rl_agent.pth', help='Path of saved model')
+	parser.add_argument('-mode', default='dev', help='Test or Development')
+	args = parser.parse_args()
+
 	agent = Inverse_agent()
 	agent.model.cuda()
-	agent.test('models/sl_agent.pth')
+	agent.test(args.model_path, mode=args.mode)
 
 
 
