@@ -22,15 +22,15 @@ class Seq_encoder(nn.Module):
 		if pretrain:
 			pass
 
-		self.bi_lstm = nn.LSTM(input_size=self.embed_dim, hidden_size=self.output_size, num_layers=1, bidirectional=True)
+		self.lstm = nn.LSTM(input_size=self.embed_dim, hidden_size=self.output_size, num_layers=1)
 
-		self.init_lstm_state = (Variable(torch.FloatTensor(1*2, 1, self.output_size).zero_().cuda()), Variable(torch.FloatTensor(1*2, 1, self.output_size).zero_().cuda()))
+		self.init_lstm_state = (Variable(torch.FloatTensor(1, 1, self.output_size).zero_().cuda()), Variable(torch.FloatTensor(1, 1, self.output_size).zero_().cuda()))
 
 	def forward(self, x):
 		"""input: a sequence of word indice (batch_size * num_of_indices)"""
 		x = self.embed_M(x) # batch_size * num_of_indices * embed_dim 
 		x = x.unsqueeze(1)
-		rnn_outputs, _ = self.bi_lstm(x, self.init_lstm_state)
+		rnn_outputs, _ = self.lstm(x, self.init_lstm_state)
 		return rnn_outputs # seq_len * 1 * hidden*2
 
 	def build_wordid(self):

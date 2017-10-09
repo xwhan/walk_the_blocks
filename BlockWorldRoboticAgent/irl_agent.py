@@ -60,7 +60,7 @@ class Inverse_agent(object):
 
 		self.gamma = 1.0
 
-		self.model = Context_attention(image_embed_dim=200, hidden_dim=200, action_dim_1=32, action_dim_2=24, inter_dim=120)
+		self.model = Context_attention(image_embed_dim=200, hidden_dim=250, action_dim_1=32, action_dim_2=24, inter_dim=120)
 
 	def receive_instruction_image(self):
 
@@ -152,7 +152,9 @@ class Inverse_agent(object):
 		elif mode == 'test':
 			assert config.data_mode == Config.TEST 
 			test_size = constants_hyperparam['test_size']
-
+		else:
+			assert config.data_mode == Config.TRAIN 
+			test_size = 1000
 
 		sum_bisk_metric = 0
 		bisk_metrics = []
@@ -171,6 +173,7 @@ class Inverse_agent(object):
 			gold_block_id = int(trajectory[0] / 4.0)
 			blocks_moved = []
 			first = True
+			first_right = 0
 
 			img = np.transpose(img, (2,0,1))
 			img_state.append(img)
@@ -178,23 +181,22 @@ class Inverse_agent(object):
 			instruction_ids = self.model.seq_encoder.instruction2id(instruction)
 			inputs = self.build_inputs(img_state, instruction_ids, previous_action)
 
-			print "Bisk Metric: " + str(bisk_metric)
 			sum_bisk_metric += bisk_metric
-
-			steps = 0
-			sample_expected_reward = 0
-			running_gamma = 1.0
+			bisk_metrics.append(bisk_metric)
 
 			while True:
 				action_prob = self.model(inputs).squeeze()
-				action_id = self.sample_policy(action_prob, method='random')
+				action_id = self.sample_policy(action_prob, method='greedy')
+				
+				block_id = action_id / self.num_direction
+				if first:
+					first = False
+					if block_id == gold_block_id:
+						first_right += 1
+
 				action_msg = self.action2msg(action_id)
 				self.connection.send_message(action_msg)
 				(_, reward, new_img, is_reset) = self.receive_response()
-
-				sample_expected_reward += running_gamma * reward
-				running_gamma *= self.gamma
-				steps += 1
 
 				new_img = np.transpose(new_img, (2,0,1))
 				img_state.append(new_img)
@@ -206,7 +208,10 @@ class Inverse_agent(object):
 					break
 
 		avg_bisk_metric = sum_bisk_metric / float(test_size)
+		median_bisk_metric = np.median(bisk_metrics)
 		print "Avg. Bisk Metric " + str(avg_bisk_metric)
+		print "Med. Bisk Metric " + str(median_bisk_metric)
+		print "First Block accuracy  " + str(first_right/float(test_size))
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Options at test stage')
@@ -214,9 +219,11 @@ if __name__ == '__main__':
 	parser.add_argument('-mode', default='dev', help='Test or Development')
 	args = parser.parse_args()
 
+	model_path = 'models/' + args.model_path
+
 	agent = Inverse_agent()
 	agent.model.cuda()
-	agent.test(args.model_path, mode=args.mode)
+	agent.test(model_path, mode=args.mode)
 
 
 

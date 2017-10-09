@@ -18,45 +18,40 @@ from hyperparas import entropy_loss_weight
 from tensorboard_logger import configure, log_value
 
 # Define all the training 
-def sl_train(agent, max_epochs, train_size, lr):
+def build_demonstrations(agent, max_epochs, train_size, lr):
 	"""supervised learning with expert moves"""
-	parameters = agent.model.parameters()
-	optimizer = torch.optim.Adam(parameters, lr=lr)
 
 	all_demonstrations = []
-	for epoch in range(max_epochs):
-		print 'Epoch %d' % epoch
-		for sample_id in tqdm(range(train_size)):
-			img_state = collections.deque([], 5)
-			init_imgs = agent.model.image_encoder.build_init_images()
-			for img in init_imgs:
-				img_state.append(img)
-			_, _, img, instruction, trajectory = agent.receive_instruction_image()
-			img = np.transpose(img, (2,0,1))
+
+	for sample_id in tqdm(range(train_size)):
+		img_state = collections.deque([], 5)
+		init_imgs = agent.model.image_encoder.build_init_images()
+		for img in init_imgs:
 			img_state.append(img)
-			previous_action = agent.null_previous_action
-			instruction_ids = agent.model.seq_encoder.instruction2id(instruction)
-			inputs = agent.build_inputs(img_state, instruction_ids, previous_action)
+		_, _, img, instruction, trajectory = agent.receive_instruction_image()
+		img = np.transpose(img, (2,0,1))
+		img_state.append(img)
+		previous_action = agent.null_previous_action
+		instruction_ids = agent.model.seq_encoder.instruction2id(instruction)
 
-			memory = []
-			traj_index = 0
-			while True:
-				action_id = trajectory[traj_index]
-				action_msg = agent.action2msg(action_id)
-				traj_index += 1
-				agent.connection.send_message(action_msg)
-				(status_code, reward, new_img, is_reset) = agent.receive_response()
-				memory.append(((img_state, instruction_ids, previous_action), action_id, 1.0))
-				new_img = np.transpose(new_img, (2,0,1))
-				img_state.append(new_img)
-				previous_action = agent.decode_action(action_id)
-				# inputs = agent.build_inputs(img_state, instruction_ids, previous_action)
+		memory = []
+		traj_index = 0
+		while True:
+			action_id = trajectory[traj_index]
+			action_msg = agent.action2msg(action_id)
+			traj_index += 1
+			agent.connection.send_message(action_msg)
+			(status_code, reward, new_img, is_reset) = agent.receive_response()
+			memory.append(((img_state, instruction_ids, previous_action), action_id, 1.0))
+			new_img = np.transpose(new_img, (2,0,1))
+			img_state.append(new_img)
+			previous_action = agent.decode_action(action_id)
 
-				if agent.message_protocol_kit.is_reset_message(is_reset):
-					agent.connection.send_message("Ok-Reset")
-					break
+			if agent.message_protocol_kit.is_reset_message(is_reset):
+				agent.connection.send_message("Ok-Reset")
+				break
 
-			all_demonstrations.append(memory)
+		all_demonstrations.append(memory)
 
 	with open('demonstrations.pkl', 'wb') as output:
 		pickle.dump(all_demonstrations, output, pickle.HIGHEST_PROTOCOL)
@@ -85,7 +80,7 @@ def learning_from_demonstrations(agent):
 	parameters = agent.model.parameters()
 	optimizer = torch.optim.Adam(parameters, lr=lr)
 
-	configure("runs/" + 'batch_' +str(batch_size) + 'epochs_' + str(max_epochs) + lr_ + str(lr) + 'entropy_' + str(entropy_loss_weight), flush_secs=2)
+	configure("runs/" + 'batch_' +str(batch_size) + 'epochs_' + str(max_epochs) + 'lr_' + str(lr) + 'entropy_' + str(entropy_loss_weight), flush_secs=2)
 
 	print 'loading demonstrations'
 	all_demonstrations = pickle.load(open('demonstrations.pkl', 'rb'))
@@ -131,17 +126,40 @@ def learning_from_demonstrations(agent):
 			optimizer.step()
 
 	# save the model
-	savepath = 'models/sl_' +  'batch_' +str(batch_size) + 'epochs_' + str(max_epochs) + lr_ + str(lr) + 'entropy_' + str(entropy_loss_weight) + '.pth'
+	savepath = 'models/sl_' +  'batch_' +str(batch_size) + 'epochs_' + str(max_epochs) + 'lr_' + str(lr) + 'entropy_' + str(entropy_loss_weight) + '.pth'
 	torch.save(agent.model.state_dict(), savepath)
 	print 'Model saved'
+
+def advesarial_imitation(agent):
+	parser = argparse.ArgumentParser(description='Supervised Training hyperparameters')
+	parser.add_argument('-max_epochs', type=int, default=1, help='training epochs')
+	parser.add_argument('-lr', type=float, default=0.001, help='learning rate')
+	parser.add_argument('-entropy_weight', type=float, default=0.1, help='weight for entropy loss')
+	args = parser.parse_args()
+
+	constants_hyperparam = constants.constants
+	config = Config.parse("../BlockWorldSimulator/Assets/config.txt")
+	assert config.data_mode == Config.TRAIN
+	dataset_size = constants_hyperparam["train_size"]	
+
+	for sample_id in tqdm(range(dataset_size)):
+		img_state = collections.deque([],5)
+		init_imgs = agent.model.image_encoder.build_init_images()
+		for img in init_imgs:
+			img_state.append(img)
+		(status_code, bisk_metric, img, instruction, trajectory) = agent.receive_instruction_image()
+		img = np.transpose(img, (2,0,1))
+		img_state.append(img)
+		previous_action = agent.null_previous_action
+		instruction_ids = agent.model.seq_encoder.instruction2id(instruction)
+		inputs = agent.build_inputs(img_state, instruction_ids, previous_action)
+
+		
 
 
 if __name__ == '__main__':
 	
-	constants_hyperparam = constants.constants
-	config = Config.parse("../BlockWorldSimulator/Assets/config.txt")
-	assert config.data_mode == Config.TRAIN
-	dataset_size = constants_hyperparam["train_size"]
+
 
 	agent = Inverse_agent()
 	agent.model.cuda()
