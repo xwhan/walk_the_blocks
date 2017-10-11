@@ -12,7 +12,7 @@ from seq_encoder import *
 
 class Context_attention(nn.Module):
 	"""docstring for Context_attention"""
-	def __init__(self, image_embed_dim, hidden_dim, action_dim_1, action_dim_2, inter_dim, attention=False):
+	def __init__(self, image_embed_dim, hidden_dim, action_dim_1, action_dim_2, inter_dim, attention=False, dis=False):
 		super(Context_attention, self).__init__()
 		self.image_embed_dim = image_embed_dim
 		self.hidden_dim = hidden_dim
@@ -20,6 +20,7 @@ class Context_attention(nn.Module):
 		self.direction_dim = action_dim_2
 		self.inter_dim = inter_dim
 		self.attention = attention
+		self.dis = dis
 
 		n_blocks = 20
 		n_directions = 4
@@ -32,7 +33,10 @@ class Context_attention(nn.Module):
 			self.attention_weights = nn.Linear(self.image_embed_dim, self.hidden_dim*2) # potentially add more advanced attention mechanism
 
 		self.mlp1 = nn.Linear(self.image_embed_dim + self.hidden_dim + self.block_dim + self.direction_dim, self.inter_dim)
-		self.action_layer = nn.Linear(self.inter_dim, n_blocks*n_directions + 1) # add one for stop
+		if dis:
+			self.value_layer = nn.Linear(self.inter_dim, n_blocks*n_directions + 1)
+		else:
+			self.action_layer = nn.Linear(self.inter_dim, n_blocks*n_directions + 1) # add one for stop
 
 	def forward(self, inputs):
 		""" 
@@ -58,8 +62,19 @@ class Context_attention(nn.Module):
 		action_embed = self.action_encoder(action[0], action[1])
 		state_embed = self.mlp1(torch.cat((img_embed, seq_embed, action_embed), dim=1))
 
-		action_prob = F.softmax(self.action_layer(F.relu(state_embed)))
-		return action_prob
+		if self.dis:
+			D_values = F.sigmoid(self.value_layer(F.relu(state_embed)))
+			return D_values
+		else:
+			action_prob = F.softmax(self.action_layer(F.relu(state_embed)))
+			return action_prob
+
+	def evaluate_action(self, inputs, action):
+		probs = self(inputs)
+		log_probs = torch.log(probs + 1e-13).squeeze()
+		action_log_prob = log_probs[action]
+		dist_entropy = - (log_probs * probs).sum()
+		return action_log_prob, dist_entropy
 
 if __name__ == '__main__':
 	model = Context_attention(image_embed_dim=200, hidden_dim=200, action_dim_1=32, action_dim_2=24, inter_dim=120)

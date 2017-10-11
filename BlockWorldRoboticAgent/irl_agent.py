@@ -60,7 +60,8 @@ class Inverse_agent(object):
 
 		self.gamma = 1.0
 
-		self.model = Context_attention(image_embed_dim=200, hidden_dim=250, action_dim_1=32, action_dim_2=24, inter_dim=120)
+		self.policy_model = Context_attention(image_embed_dim=200, hidden_dim=250, action_dim_1=32, action_dim_2=24, inter_dim=120)
+		self.critic_model = Context_attention(image_embed_dim=200, hidden_dim=250, action_dim_1=32, action_dim_2=24, inter_dim=120, dis=True)
 
 	def receive_instruction_image(self):
 
@@ -119,13 +120,12 @@ class Inverse_agent(object):
 		"""
 		img_list = list(img)
 		imgs = np.concatenate(img_list, axis=0)
-		img_input = Variable(torch.from_numpy(imgs).float().cuda())
-		img_input = img_input.unsqueeze(0)
+		img_input = Variable(torch.from_numpy(imgs).float().cuda().unsqueeze(0)) # 1*15*120*120
 		instruction_input = Variable(torch.from_numpy(np.array(instruction)).cuda())
 		block = previous_action[1]
 		direction = previous_action[0]
-		block_input = Variable(torch.LongTensor([block]).cuda()).unsqueeze(0)
-		direction_input = Variable(torch.LongTensor([direction]).cuda()).unsqueeze(0)
+		block_input = Variable(torch.LongTensor([block]).cuda().unsqueeze(0))
+		direction_input = Variable(torch.LongTensor([direction]).cuda().unsqueeze(0))
 		action_input = (block_input, direction_input)
 		return img_input, instruction_input, action_input
 
