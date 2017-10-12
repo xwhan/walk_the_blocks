@@ -129,6 +129,9 @@ class Inverse_agent(object):
 		action_input = (block_input, direction_input)
 		return img_input, instruction_input, action_input
 
+	def build_batch_inputs(self, trajectory):
+		pass
+
 	def sample_policy(self, action_prob, method='random'):
 		action_prob = action_prob.data.cpu().numpy().squeeze()
 		num_actions = len(action_prob)

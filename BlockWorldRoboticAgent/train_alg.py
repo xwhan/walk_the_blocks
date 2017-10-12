@@ -71,6 +71,7 @@ def learning_from_demonstrations(agent):
 	parser.add_argument('-max_epochs', type=int, default=1, help='training epochs')
 	parser.add_argument('-lr', type=float, default=0.001, help='learning rate')
 	parser.add_argument('-entropy_weight', type=float, default=0.1, help='weight for entropy loss')
+	parser.add_argument('-replay_memory_size', type=int, default=3200, help='random shuffle')
 
 	args = parser.parse_args()
 	batch_size = args.batch_size
@@ -78,51 +79,70 @@ def learning_from_demonstrations(agent):
 	lr = args.lr
 	entropy_loss_weight = args.entropy_weight
 
-	parameters = agent.model.parameters()
+	parameters = agent.policy_model.parameters()
 	optimizer = torch.optim.Adam(parameters, lr=lr)
 
 	configure("runs/" + 'batch_' +str(batch_size) + 'epochs_' + str(max_epochs) + 'lr_' + str(lr) + 'entropy_' + str(entropy_loss_weight), flush_secs=2)
 
 	f = open('demonstrations.pkl', 'rb')
-	num_experiences = 0
+	num_experiences = 184131
 
+	replay_memory = []
+	replay_memory_size = args.replay_memory_size
 
-	step = 0 # update steps
+	step = 0
 	for epoch in range(max_epochs):
 		print 'Leaning from demonstrations Epoch %d' % epoch
-		print 'shuffle all experinces'
-		np.random.shuffle(all_experince)
+		exp_used = 0 # record how many experience used
+		memory = []
+		# refill the replay memory
+		while exp_used < num_experiences:
+			if num_experiences - exp_used < replay_memory_size:
+				replay_memory_size = num_experiences - exp_used
+			print 'refill the replay memory'
+			while len(replay_memory) < replay_memory_size:
+				if len(memory) == 0:
+					memory = pickle.load(f)
+				exp = memory.pop(0)
+				replay_memory.append(exp)
 
-		for batch_index in tqdm(range(num_batches)):
-			loss = 0.0
-			entropy_loss = 0.0
+			print 'shuffle all experinces in the replay memory'
+			np.random.shuffle(replay_memory)
+			num_batches = (len(replay_memory) - 1) / args.batch_size + 1
+			for batch_index in tqdm(range(num_batches)):
+				loss = 0.0
+				entropy_loss = 0.0
 
-			if batch_index == num_batches - 1:
-				end = num_experiences
-			else:
-				end = batch_size * (batch_index + 1)
+				if batch_index == num_batches - 1:
+					end = len(replay_memory)
+				else:
+					end = batch_size * (batch_index + 1)
 
-			for exp in all_experince[(batch_size*batch_index):end]:
-				state = exp[0]
-				inputs = agent.build_inputs(state[0], state[1], state[2])
-				action_prob = agent.model(inputs).squeeze()
-				prob_entropy_neg = torch.sum(action_prob * torch.log(action_prob + 1e-13)) 
-				entropy_loss += prob_entropy_neg
-				loss += - torch.log(action_prob[exp[1]] + 1e-13)
+				for exp in replay_memory[(batch_size*batch_index):end]:
+					state = exp[0]
+					inputs = agent.build_inputs(state[0], state[1], state[2])
+					action_prob = agent.policy_model(inputs).squeeze()
+					prob_entropy_neg = torch.sum(action_prob * torch.log(action_prob + 1e-13)) 
+					entropy_loss += prob_entropy_neg
+					loss += - torch.log(action_prob[exp[1]] + 1e-13)
 
-			final_loss = loss + entropy_loss_weight * entropy_loss
-			log_value('avg_batch_loss', loss.data.cpu().numpy() / batch_size, step)
-			log_value('avg_batch_entropy_loss', entropy_loss.data.cpu().numpy() / batch_size, step)
-			step += 1
+				final_loss = loss + entropy_loss_weight * entropy_loss
+				log_value('avg_batch_loss', loss.data.cpu().numpy() / batch_size, step)
+				log_value('avg_batch_entropy_loss', entropy_loss.data.cpu().numpy() / batch_size, step)
 
-			agent.model.zero_grad()
-			loss.backward()
-			torch.nn.utils.clip_grad_norm(parameters, 5.0)
-			optimizer.step()
+				optimizer.zero_grad()
+				loss.backward()
+				# torch.nn.utils.clip_grad_norm(parameters, 5.0)
+				optimizer.step()
+				step += 1
+
+			replay_memory = [] # reset the replay memory after use
+			exp_used += replay_memory_size
+
 
 	# save the model
 	savepath = 'models/sl_' +  'batch_' +str(batch_size) + 'epochs_' + str(max_epochs) + 'lr_' + str(lr) + 'entropy_' + str(entropy_loss_weight) + '.pth'
-	torch.save(agent.model.state_dict(), savepath)
+	torch.save(agent.policy_model.state_dict(), savepath)
 	print 'Model saved'
 
 def advesarial_imitation(agent):
@@ -159,6 +179,7 @@ def advesarial_imitation(agent):
 			previous_action = agent.null_previous_action
 			instruction_ids = agent.policy_model.seq_encoder.instruction2id(instruction)
 			inputs = agent.build_inputs(img_state, instruction_ids, previous_action)
+
 			
 			# sample a trajectory from policy network, collect loss
 			sampled_path = []
@@ -222,13 +243,18 @@ def advesarial_imitation(agent):
 				opti_agent.zero_grad()
 				opti_agent.step()
 
+	savepath_1 = 'models/gail_agent_v0.0.pth'
+	savepath_2 = 'models/gail_agent_v0.1.pth'
+	torch.save(agent.policy_model.state_dict(), savepath_1)
+	torch.save(agent.critic_model.state_dict(), savepath_2)
+
 if __name__ == '__main__':
 	agent = Inverse_agent()
 	agent.policy_model.cuda()
-	agent.critic_model.cuda()
+	# agent.critic_model.cuda()
 	# build_demonstrations(agent)
-	# learning_from_demonstrations(agent)
-	advesarial_imitation(agent)
+	learning_from_demonstrations(agent)
+	# advesarial_imitation(agent)
 
 
 
