@@ -19,8 +19,8 @@ class Action_encoder(nn.Module):
 
 	def forward(self, block, direction):
 		"""input dimention
-		block: 1*1 
-		direction: 1*1
+		block: 1*1 -> -1 * 1
+		direction: 1*1 -> -1 * 1
 		"""
 		block_embedding = self.block_embed(block)
 		direction_embedding = self.direction_embed(direction)

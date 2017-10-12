@@ -159,6 +159,7 @@ def advesarial_imitation(agent):
 			previous_action = agent.null_previous_action
 			instruction_ids = agent.policy_model.seq_encoder.instruction2id(instruction)
 			inputs = agent.build_inputs(img_state, instruction_ids, previous_action)
+			state = (img_state, instruction_ids, previous_action)
 			
 			# sample a trajectory from policy network, collect loss
 			sampled_path = []
@@ -167,7 +168,7 @@ def advesarial_imitation(agent):
 				action_prob = agent.policy_model(inputs)
 				action_prob = action_prob.squeeze()
 				action_id = agent.sample_policy(action_prob)
-				sampled_path.append((deepcopy(inputs), action_id))
+				sampled_path.append((deepcopy(state), action_id))
 				action_msg = agent.action2msg(action_id)
 				agent.connection.send_message(action_msg)
 				(_, reward, new_img, is_reset) = agent.receive_response()
@@ -175,6 +176,7 @@ def advesarial_imitation(agent):
 				img_state.append(new_img)
 				previous_action = agent.decode_action(action_id)
 				inputs = agent.build_inputs(img_state, instruction_ids, previous_action)
+				state = (img_state, instruction_ids, previous_action)
 				if agent.message_protocol_kit.is_reset_message(is_reset):
 					agent.connection.send_message('Ok-Reset')
 					break
@@ -185,8 +187,7 @@ def advesarial_imitation(agent):
 			for exp in expert_memory:
 				state = exp[0]
 				action_id = exp[1]
-				inputs = agent.build_inputs(state[0], state[1], state[2])
-				expert_path.append((deepcopy(inputs), action_id))
+				expert_path.append((deepcopy(state), action_id))
 
 			# discriminator update
 			loss_policy = 0.0
@@ -221,6 +222,11 @@ def advesarial_imitation(agent):
 					final_loss += agent_loss - args.entropy_coef * dist_entropy
 				opti_agent.zero_grad()
 				opti_agent.step()
+
+	savepath_1 = 'models/gail_agent_v0.0.pth'
+	savepath_2 = 'models/gail_agent_v0.1.pth'
+	torch.save(agent.policy_model.state_dict(), savepath_1)
+	torch.save(agent.critic_model.state_dict(), savepath_2)
 
 if __name__ == '__main__':
 	agent = Inverse_agent()

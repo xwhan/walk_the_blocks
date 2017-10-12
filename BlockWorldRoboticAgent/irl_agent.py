@@ -129,6 +129,11 @@ class Inverse_agent(object):
 		action_input = (block_input, direction_input)
 		return img_input, instruction_input, action_input
 
+	def build_batch_inputs(self, trajectory):
+		for exp in trajectory:
+			state = exp[0]
+			action_id = exp[1]
+
 	def sample_policy(self, action_prob, method='random'):
 		action_prob = action_prob.data.cpu().numpy().squeeze()
 		num_actions = len(action_prob)
@@ -140,8 +145,8 @@ class Inverse_agent(object):
 
 	def test(self, saved_model, cuda=True, mode='dev'):
 		if cuda:
-			self.model.cuda()
-		self.model.load_state_dict(torch.load(saved_model))
+			self.policy_model.cuda()
+		self.policy_model.load_state_dict(torch.load(saved_model))
 		print 'Model reloaded'
 
 		config = Config.parse("../BlockWorldSimulator/Assets/config.txt")
@@ -165,7 +170,7 @@ class Inverse_agent(object):
 
 		for sample_id in tqdm(range(test_size)):
 			img_state = collections.deque([], 5)
-			init_imgs = self.model.image_encoder.build_init_images()
+			init_imgs = self.policy_model.image_encoder.build_init_images()
 			for img in init_imgs:
 				img_state.append(img)
 			(status_code, bisk_metric, img, instruction, trajectory) = self.receive_instruction_image()
@@ -178,14 +183,14 @@ class Inverse_agent(object):
 			img = np.transpose(img, (2,0,1))
 			img_state.append(img)
 			previous_action = self.null_previous_action
-			instruction_ids = self.model.seq_encoder.instruction2id(instruction)
+			instruction_ids = self.policy_model.seq_encoder.instruction2id(instruction)
 			inputs = self.build_inputs(img_state, instruction_ids, previous_action)
 
 			sum_bisk_metric += bisk_metric
 			bisk_metrics.append(bisk_metric)
 
 			while True:
-				action_prob = self.model(inputs).squeeze()
+				action_prob = self.policy_model(inputs).squeeze()
 				action_id = self.sample_policy(action_prob, method='greedy')
 				
 				block_id = action_id / self.num_direction
@@ -222,7 +227,6 @@ if __name__ == '__main__':
 	model_path = 'models/' + args.model_path
 
 	agent = Inverse_agent()
-	agent.model.cuda()
 	agent.test(model_path, mode=args.mode)
 
 
