@@ -26,16 +26,26 @@ class Seq_encoder(nn.Module):
 
 		self.init_lstm_state = (Variable(torch.FloatTensor(1, 1, self.output_size).zero_().cuda()), Variable(torch.FloatTensor(1, 1, self.output_size).zero_().cuda()))
 
-	def forward(self, x):
+	def forward(self, x, lens):
 		"""input: a sequence of word indice (batch_size * num_of_indices)"""
-		x = self.embed_M(x) # batch_size * num_of_indices * embed_dim 
-		x = x.unsqueeze(1)
-		rnn_outputs, _ = self.lstm(x, self.init_lstm_state)
-		return rnn_outputs # seq_len * 1 * hidden*2
+		x = self.embed_M(x) # batch_size * max_len * embed_dim 
+		x = x.permute(1,0,2)
+		batch_size = x.size()[1]
+		max_len = x.size()[0]
+		init_lstm_state = (Variable(torch.FloatTensor(1, batch_size, self.output_size).zero_().cuda()), Variable(torch.FloatTensor(1, batch_size, self.output_size).zero_().cuda()))
+		rnn_outputs, _ = self.lstm(x, init_lstm_state)
+		mask = np.zeros((max_len, batch_size))
+		for i in range(batch_size):
+			mask[:lens[i],i] = 1
+		mask = Variable(torch.from_numpy(mask).cuda())
+		mask = mask.expand_as(rnn_outputs)
+		run_outputs = mask * rnn_outputs
+		return rnn_outputs # max_len * batch * hidden
 
 	def build_wordid(self):
 		tokens = open('../BlockWorldSimulator/Assets/vocab_both').readlines()
 		word2id = {}
+
 		i = 0
 		for token in tokens:
 			token = token.rstrip()

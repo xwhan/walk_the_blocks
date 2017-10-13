@@ -40,16 +40,17 @@ class Context_attention(nn.Module):
 
 	def forward(self, inputs):
 		""" 
-		image: tensor variable (1,15,120,120)
-		instruction: tensor variable (1,-1)
-		action: tensor tuple variable ((1,1),(1,1))
+		image: tensor variable (1,15,120,120) -> (-1, 15, 120, 120)
+		instruction: tensor variable (1,-1) -> (-1 * max_lens)
+		action: tensor tuple variable ((1,1),(1,1))  -> (-1 * 2)
+		lens: (-1, 1)
 		"""
-		image = inputs[0]
-		instruction = inputs[1]
-		action = inputs[2]
-		img_embed = self.image_encoder(image) # 1 * image_embed_dim
-		seq_embed = self.seq_encoder(instruction) # seq_len * 1 * 2*hidden
-		seq_embed = seq_embed.squeeze(1) # seq_len * 2hidden
+		images = inputs[0]
+		instructions = inputs[1]
+		lens = inputs[2]
+		last_actions = inputs[3]
+		img_embed = self.image_encoder(images) # batch_size * image_embed_dim
+		seq_embed = self.seq_encoder(instructions, lens) # max_len * batch_size * hidden
 
 		if self.attention:
 			img_attention = self.attention_weights(img_embed) # 1 * (2*hidden)
@@ -57,24 +58,26 @@ class Context_attention(nn.Module):
 			seq_embed = torch.t(img_attention_weights) * seq_embed
 			seq_embed = torch.sum(seq_embed, dim=0, keepdim=True)
 		else:
-			seq_embed = torch.mean(seq_embed, dim=0, keepdim=True)
+			seq_embed = torch.mean(seq_embed, dim=0, keepdim=True) # batch_size * hidden
 
-		action_embed = self.action_encoder(action[0], action[1])
-		state_embed = self.mlp1(torch.cat((img_embed, seq_embed, action_embed), dim=1))
+		action_embed = self.action_encoder(last_actions) # batch_size * 56
+		state_embed = self.mlp1(torch.cat((img_embed, seq_embed, action_embed), dim=1)) # batch_size * inter_dim
 
 		if self.dis:
-			D_values = F.sigmoid(self.value_layer(F.relu(state_embed)))
+			D_values = F.sigmoid(self.value_layer(F.relu(state_embed))) # batch_size * num_actions
 			return D_values
 		else:
-			action_prob = F.softmax(self.action_layer(F.relu(state_embed)))
+			action_prob = F.softmax(self.action_layer(F.relu(state_embed))) # batch_size * num_actions
 			return action_prob
 
-	def evaluate_action(self, inputs, action):
+	def evaluate_action(self, inputs, actions):
 		probs = self(inputs)
-		log_probs = torch.log(probs + 1e-13).squeeze()
-		action_log_prob = log_probs[action]
-		dist_entropy = - (log_probs * probs).sum()
-		return action_log_prob, dist_entropy
+		batch_size = probs.size()[0]
+		log_probs = torch.log(probs + 1e-13) # batch * num_actions
+		gather_indices = torch.arange(0, batch_size)*batch_size + actions
+		action_log_probs = log_probs.view(-1).index_select(gather_indices)
+		dist_entropy = - (log_probs * probs).sum(-1).mean()
+		return action_log_probs, dist_entropy
 
 if __name__ == '__main__':
 	model = Context_attention(image_embed_dim=200, hidden_dim=200, action_dim_1=32, action_dim_2=24, inter_dim=120)

@@ -24,7 +24,7 @@ class CNN_encoder(nn.Module):
 		x = F.relu(self.conv1(image))
 		x = F.relu(self.conv2(x))
 		x = F.relu(self.conv3(x))
-		x = self.affine(x.view(1,-1))
+		x = self.affine(x.view(-1,512))
 		return x
 
 	def normalize(self, image):
@@ -32,3 +32,9 @@ class CNN_encoder(nn.Module):
 
 	def build_init_images(self):
 		return [np.zeros((3,120,120))] * 4
+
+if __name__ == '__main__':
+	test_input = Variable(torch.randn(10,15,120,120))
+	encoder = CNN_encoder(15, 200, 120)
+	out = encoder(test_input)
+	print out.size()

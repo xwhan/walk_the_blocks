@@ -129,10 +129,34 @@ class Inverse_agent(object):
 		action_input = (block_input, direction_input)
 		return img_input, instruction_input, action_input
 
-	def build_batch_inputs(self, trajectory):
+	def build_batch_inputs(self, trajectory, max_instruction=83):
+		image_batch = [] # list of 1 * 15 * 120 * 120
+		instruction_batch = [] # list of 1 * max_instruction
+		lens_batch = [] # list of (1,)
+		previous_batch = [] # list of 1 * 2
+		action_batch = [] # list of (1,)
 		for exp in trajectory:
 			state = exp[0]
-			action_id = exp[1]
+			imgs = np.concatenate(list(state[0]), axis=0) # 
+			imgs = np.expand_dims(imgs, dim=0)
+			image_batch.append(imgs)
+			instruction_id = state[1]
+			lens_batch.append(len(instruction_id))
+			instruction_id_padded = np.lib.pad(instruction_id, (0, max_instruction - len(instruction_id)), 'constant', constant_value=(0,0))
+			instruction_id_padded = np.expand_dims(instruction_id_padded, axis=0)
+			instruction_batch.append(instruction_id_padded)
+			action = exp[1]
+			action_batch.append(action)
+			previous_action = state[2]
+			previous_batch.append(np.array(previous_action).reshape(1,2))
+
+		image_batch = Variable(torch.from_numpy(np.concatenate(image_batch, axis=0)).float().cuda())
+		instruction_batch = Variable(torch.LongTensor(np.concatenate(instruction_batch, axis=0)).cuda())
+		lens_batch = np.array(lens_batch).reshape(-1, 1)
+		previous_batch = Variable(torch.LongTensor(np.concatenate(previous_batch, axis=0)).cuda())
+		action_batch = Variable(torch.LongTensor(action_batch).cuda())
+
+		return (image_batch, instruction_batch, lens_batch. previous_batch, action_batch)
 
 	def sample_policy(self, action_prob, method='random'):
 		action_prob = action_prob.data.cpu().numpy().squeeze()
