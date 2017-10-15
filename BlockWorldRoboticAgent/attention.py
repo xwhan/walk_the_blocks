@@ -40,10 +40,10 @@ class Context_attention(nn.Module):
 
 	def forward(self, inputs):
 		""" 
-		image: tensor variable (1,15,120,120) -> (-1, 15, 120, 120)
-		instruction: tensor variable (1,-1) -> (-1 * max_lens)
-		action: tensor tuple variable ((1,1),(1,1))  -> (-1 * 2)
-		lens: (-1, 1)
+		image: variable of float tensor (1,15,120,120) -> (-1, 15, 120, 120)
+		instruction: variable of long tensor -> (-1 * max_lens)
+		action: variable of long tensor ((1,1),(1,1))  -> (-1 * 2)
+		lens: list of lengths
 		"""
 		images = inputs[0]
 		instructions = inputs[1]
@@ -58,9 +58,10 @@ class Context_attention(nn.Module):
 			seq_embed = torch.t(img_attention_weights) * seq_embed
 			seq_embed = torch.sum(seq_embed, dim=0, keepdim=True)
 		else:
-			seq_embed = torch.mean(seq_embed, dim=0, keepdim=True) # batch_size * hidden
+			seq_embed = torch.mean(seq_embed, dim=0) # batch_size * hidden
 
 		action_embed = self.action_encoder(last_actions) # batch_size * 56
+		# print img_embed.size(), seq_embed.size(), action_embed.size()
 		state_embed = self.mlp1(torch.cat((img_embed, seq_embed, action_embed), dim=1)) # batch_size * inter_dim
 
 		if self.dis:
@@ -74,8 +75,8 @@ class Context_attention(nn.Module):
 		probs = self(inputs)
 		batch_size = probs.size()[0]
 		log_probs = torch.log(probs + 1e-13) # batch * num_actions
-		gather_indices = torch.arange(0, batch_size)*batch_size + actions
-		action_log_probs = log_probs.view(-1).index_select(gather_indices)
+		gather_indices = torch.arange(0, batch_size).long().cuda()*batch_size + actions.data
+		action_log_probs = log_probs.view(-1).index_select(0, Variable(gather_indices))
 		dist_entropy = - (log_probs * probs).sum(-1).mean()
 		return action_log_probs, dist_entropy
 

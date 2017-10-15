@@ -124,9 +124,7 @@ class Inverse_agent(object):
 		instruction_input = Variable(torch.from_numpy(np.array(instruction)).cuda())
 		block = previous_action[1]
 		direction = previous_action[0]
-		block_input = Variable(torch.LongTensor([block]).cuda().unsqueeze(0))
-		direction_input = Variable(torch.LongTensor([direction]).cuda().unsqueeze(0))
-		action_input = (block_input, direction_input)
+		action_input = Variable(torch.LongTensor([direction, block]).cuda().unsqueeze(0))
 		return img_input, instruction_input, action_input
 
 	def build_batch_inputs(self, trajectory, max_instruction=83):
@@ -138,11 +136,11 @@ class Inverse_agent(object):
 		for exp in trajectory:
 			state = exp[0]
 			imgs = np.concatenate(list(state[0]), axis=0) # 
-			imgs = np.expand_dims(imgs, dim=0)
+			imgs = np.expand_dims(imgs, axis=0)
 			image_batch.append(imgs)
 			instruction_id = state[1]
 			lens_batch.append(len(instruction_id))
-			instruction_id_padded = np.lib.pad(instruction_id, (0, max_instruction - len(instruction_id)), 'constant', constant_value=(0,0))
+			instruction_id_padded = np.lib.pad(instruction_id, (0, max_instruction - len(instruction_id)), 'constant', constant_values=(0,0))
 			instruction_id_padded = np.expand_dims(instruction_id_padded, axis=0)
 			instruction_batch.append(instruction_id_padded)
 			action = exp[1]
@@ -152,11 +150,11 @@ class Inverse_agent(object):
 
 		image_batch = Variable(torch.from_numpy(np.concatenate(image_batch, axis=0)).float().cuda())
 		instruction_batch = Variable(torch.LongTensor(np.concatenate(instruction_batch, axis=0)).cuda())
-		lens_batch = np.array(lens_batch).reshape(-1, 1)
+		# lens_batch = np.array(lens_batch).reshape(-1, 1)
 		previous_batch = Variable(torch.LongTensor(np.concatenate(previous_batch, axis=0)).cuda())
 		action_batch = Variable(torch.LongTensor(action_batch).cuda())
 
-		return (image_batch, instruction_batch, lens_batch. previous_batch, action_batch)
+		return (image_batch, instruction_batch, lens_batch, previous_batch, action_batch)
 
 	def sample_policy(self, action_prob, method='random'):
 		action_prob = action_prob.data.cpu().numpy().squeeze()
@@ -167,7 +165,7 @@ class Inverse_agent(object):
 			action_id = np.argmax(action_prob)
 		return action_id
 
-	def test(self, saved_model, cuda=True, mode='dev'):
+	def test(self, saved_model, cuda=True, mode='dev', sample_method='greedy'):
 		if cuda:
 			self.policy_model.cuda()
 		self.policy_model.load_state_dict(torch.load(saved_model))
@@ -208,15 +206,17 @@ class Inverse_agent(object):
 			img_state.append(img)
 			previous_action = self.null_previous_action
 			instruction_ids = self.policy_model.seq_encoder.instruction2id(instruction)
-			inputs = self.build_inputs(img_state, instruction_ids, previous_action)
+			state = (img_state, instruction_ids, previous_action)
+			inputs = self.build_batch_inputs([(state, 0)])
 
 			sum_bisk_metric += bisk_metric
 			bisk_metrics.append(bisk_metric)
 
+			action_paths = []
+
 			while True:
 				action_prob = self.policy_model(inputs).squeeze()
-				action_id = self.sample_policy(action_prob, method='greedy')
-				
+				action_id = self.sample_policy(action_prob, method=sample_method)
 				block_id = action_id / self.num_direction
 				if first:
 					first = False
@@ -224,17 +224,21 @@ class Inverse_agent(object):
 						first_right += 1
 
 				action_msg = self.action2msg(action_id)
+				action_paths.append(action_msg)
 				self.connection.send_message(action_msg)
 				(_, reward, new_img, is_reset) = self.receive_response()
 
 				new_img = np.transpose(new_img, (2,0,1))
 				img_state.append(new_img)
 				previous_action = self.decode_action(action_id)
-				inputs = self.build_inputs(img_state, instruction_ids, previous_action)
+				state = (img_state, instruction_ids, previous_action)
+				inputs = self.build_batch_inputs([(state, 0)])
 
 				if self.message_protocol_kit.is_reset_message(is_reset):
 					self.connection.send_message('Ok-Reset')
 					break
+
+			print 'action path:', action_paths
 
 		avg_bisk_metric = sum_bisk_metric / float(test_size)
 		median_bisk_metric = np.median(bisk_metrics)
@@ -246,6 +250,7 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Options at test stage')
 	parser.add_argument('-model_path', default='models/rl_agent.pth', help='Path of saved model')
 	parser.add_argument('-mode', default='dev', help='Test or Development')
+	parser.add_argument('-sample_method', default='greedy')
 	args = parser.parse_args()
 
 	model_path = 'models/' + args.model_path
