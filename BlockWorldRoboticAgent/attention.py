@@ -33,10 +33,12 @@ class Context_attention(nn.Module):
 			self.attention_weights = nn.Linear(self.image_embed_dim, self.hidden_dim*2) # potentially add more advanced attention mechanism
 
 		self.mlp1 = nn.Linear(self.image_embed_dim + self.hidden_dim + self.block_dim + self.direction_dim, self.inter_dim)
+		self.mlp2 = nn.Linear(self.hidden_dim, self.inter_dim)
 		if dis:
 			self.value_layer = nn.Linear(self.inter_dim, n_blocks*n_directions + 1)
 		else:
-			self.action_layer = nn.Linear(self.inter_dim, n_blocks*n_directions + 1) # add one for stop
+			self.block_layer = nn.Linear(self.inter_dim, n_blocks)
+			self.direction_layer = nn.Linear(self.inter_dim, n_directions + 1)
 
 	def forward(self, inputs):
 		""" 
@@ -63,18 +65,20 @@ class Context_attention(nn.Module):
 		action_embed = self.action_encoder(last_actions) # batch_size * 56
 		# print img_embed.size(), seq_embed.size(), action_embed.size()
 		state_embed = self.mlp1(torch.cat((img_embed, seq_embed, action_embed), dim=1)) # batch_size * inter_dim
+		state_embed_nlp = self.mlp2(seq_embed)
 
 		if self.dis:
 			D_values = F.sigmoid(self.value_layer(F.relu(state_embed))) # batch_size * num_actions
 			return D_values
 		else:
-			action_prob = F.softmax(self.action_layer(F.relu(state_embed))) # batch_size * num_actions
-			return action_prob
+			direction_prob = F.softmax(self.direction_layer(F.relu(state_embed))) # batch_size * num_actions
+			block_prob = F.softmax(self.block_layer(F.relu(state_embed_nlp)))
+			return direction_prob, block_prob
 
 	def evaluate_action(self, inputs, actions):
-		probs = self(inputs)
+		probs, _ = self(inputs)
 		batch_size = probs.size()[0]
-		log_probs = torch.log(probs + 1e-13) # batch * num_actions
+		log_probs = torch.log(probs + 1e-8) # batch * num_actions
 		gather_indices = torch.arange(0, batch_size).long().cuda()*batch_size + actions.data
 		action_log_probs = log_probs.view(-1).index_select(0, Variable(gather_indices))
 		dist_entropy = - (log_probs * probs).sum(-1).mean()

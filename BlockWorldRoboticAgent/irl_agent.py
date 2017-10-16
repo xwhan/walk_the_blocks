@@ -12,8 +12,6 @@ import constants
 from tqdm import tqdm
 import random
 import argparse
-
-from hyperparas import *
 from attention import *
 
 class Inverse_agent(object):
@@ -150,7 +148,6 @@ class Inverse_agent(object):
 
 		image_batch = Variable(torch.from_numpy(np.concatenate(image_batch, axis=0)).float().cuda())
 		instruction_batch = Variable(torch.LongTensor(np.concatenate(instruction_batch, axis=0)).cuda())
-		# lens_batch = np.array(lens_batch).reshape(-1, 1)
 		previous_batch = Variable(torch.LongTensor(np.concatenate(previous_batch, axis=0)).cuda())
 		action_batch = Variable(torch.LongTensor(action_batch).cuda())
 
@@ -197,32 +194,40 @@ class Inverse_agent(object):
 				img_state.append(img)
 			(status_code, bisk_metric, img, instruction, trajectory) = self.receive_instruction_image()
 
-			gold_block_id = int(trajectory[0] / 4.0)
+			gold_block_id = trajectory[0] / 4
 			blocks_moved = []
 			first = True
-			first_right = 0
-
+			
 			img = np.transpose(img, (2,0,1))
 			img_state.append(img)
 			previous_action = self.null_previous_action
 			instruction_ids = self.policy_model.seq_encoder.instruction2id(instruction)
 			state = (img_state, instruction_ids, previous_action)
 			inputs = self.build_batch_inputs([(state, 0)])
+			_, block_prob = self.policy_model(inputs)
+
+			block_id_pred = self.sample_policy(block_prob.squeeze(), method='greedy')
+			gold_block_id = trajectory[0] / 4
+
+			if block_id_pred == gold_block_id:
+				first_right += 1
 
 			sum_bisk_metric += bisk_metric
 			bisk_metrics.append(bisk_metric)
 
 			action_paths = []
+			expert_path = []
+
+			for action in trajectory:
+				expert_path.append(self.action2msg(action))
 
 			while True:
-				action_prob = self.policy_model(inputs).squeeze()
-				action_id = self.sample_policy(action_prob, method=sample_method)
-				block_id = action_id / self.num_direction
-				if first:
-					first = False
-					if block_id == gold_block_id:
-						first_right += 1
-
+				direction_prob, _ = self.policy_model(inputs)
+				direction_id = self.sample_policy(direction_prob, method=sample_method)
+				if direction_id == 4:
+					action_id = 80
+				else:
+					action_id = block_id_pred * self.num_direction + direction_id
 				action_msg = self.action2msg(action_id)
 				action_paths.append(action_msg)
 				self.connection.send_message(action_msg)
@@ -239,6 +244,7 @@ class Inverse_agent(object):
 					break
 
 			print 'action path:', action_paths
+			print 'expert path:', expert_path
 
 		avg_bisk_metric = sum_bisk_metric / float(test_size)
 		median_bisk_metric = np.median(bisk_metrics)
