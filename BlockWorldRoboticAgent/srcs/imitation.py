@@ -105,12 +105,12 @@ def learning_from_demonstrations(agent):
 
 				# log_value('avg_batch_loss', batch_loss.data.cpu().numpy() / batch_size, step)
 				try:
-					batch_loss = agent.policy_model.sl_loss((imgs, instructions, lens, previous, blocks, directions), args.batch_size)
+					batch_loss = agent.policy_model.sl_loss((imgs, instructions, lens, previous, blocks, directions))
 					optimizer.zero_grad()
 					batch_loss.backward()
 					optimizer.step()
 					step += 1
-					log_value('avg_batch_loss', batch_loss.data.cpu().numpy() / batch_size, step)
+					log_value('avg_batch_loss', batch_loss.data.cpu().numpy(), step)
 				except Exception as e:
 					print 'something'
 

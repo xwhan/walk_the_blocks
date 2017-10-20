@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
-from irl_agent import *
+from agent import *
 from recordtype import recordtype
 import time
 from tqdm import tqdm
@@ -85,6 +85,7 @@ def advesarial_imitation(agent):
 				for _ in range(len(img_state) - 1):
 					real_img_state.append(img_state[-1] - img_state[_])
 				real_img_state.append(img_state[-1])
+				previous_direction = direction_id
 				state = (real_img_state, instruction_ids, previous_direction)
 				inputs = agent.build_batch_inputs([(state, 0)])
 				if agent.message_protocol_kit.is_reset_message(is_reset):

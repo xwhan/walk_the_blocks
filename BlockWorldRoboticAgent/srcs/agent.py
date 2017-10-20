@@ -29,7 +29,7 @@ class Inverse_agent(object):
 		image_dim = self.config.screen_size
 
 		self.connection = rc.ReliableConnect(self.unity_ip, self.PORT, image_dim)
-		# self.connection.connect()
+		self.connection.connect()
 
 		# Dataset specific parameters
 		self.num_block = 20
@@ -68,12 +68,9 @@ class Inverse_agent(object):
 			direction_id = action_id % self.num_direction
 			return (direction_id, block_id)
 
-	def action2msg(self, action_id):
-		if action_id == self.num_actions - 1:
+	def action2msg(self, block_id, direction_id):
+		if direction_id == 4:
 			return "Stop"
-
-		block_id = action_id / self.num_direction
-		direction_id = action_id % self.num_direction
 
 		if direction_id == 0:
 			direction_id_str = "north"
@@ -94,7 +91,6 @@ class Inverse_agent(object):
 		instruction_batch = [] # list of 1 * max_instruction
 		lens_batch = [] # list of (1,)
 		previous_batch = [] # list of 1 * 2
-		action_batch = [] # list of (1,)
 		for exp in trajectory:
 			state = exp[0]
 			imgs = np.concatenate(list(state[0]), axis=0) # 
@@ -105,17 +101,14 @@ class Inverse_agent(object):
 			instruction_id_padded = np.lib.pad(instruction_id, (0, max_instruction - len(instruction_id)), 'constant', constant_values=(0,0))
 			instruction_id_padded = np.expand_dims(instruction_id_padded, axis=0)
 			instruction_batch.append(instruction_id_padded)
-			action = exp[1]
-			action_batch.append(action)
 			previous_action = state[2]
 			previous_batch.append(previous_action)
 
 		image_batch = Variable(torch.from_numpy(np.concatenate(image_batch, axis=0)).float().cuda())
 		instruction_batch = Variable(torch.LongTensor(np.concatenate(instruction_batch, axis=0)).cuda())
 		previous_batch = Variable(torch.LongTensor(previous_batch).cuda().view(-1,1))
-		action_batch = Variable(torch.LongTensor(action_batch).cuda())
 
-		return (image_batch, instruction_batch, lens_batch, previous_batch, action_batch)
+		return (image_batch, instruction_batch, lens_batch, previous_batch)
 
 	def exps_to_batchs(self, replay_memory, max_instruction=83):
 		image_batch = []

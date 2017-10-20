@@ -69,7 +69,7 @@ class Policy_model(nn.Module):
 		dist_entropy = - (log_probs * probs).sum(-1).mean()
 		return action_log_probs, dist_entropy
 
-	def sl_loss(self, batch, batch_size):
+	def sl_loss(self, batch):
 		imgs = batch[0]
 		instructions = batch[1]
 		lens = batch[2]
@@ -79,6 +79,7 @@ class Policy_model(nn.Module):
 
 		direction_probs, block_probs, _ = self((imgs, instructions, lens, last_directions))
 
+		batch_size = direction_probs.size()[0]
 		block_gather_indices = torch.arange(0, batch_size).long().cuda() * 20 + gold_blocks
 		direction_gather_indices = torch.arange(0, batch_size).long().cuda() * 5 + gold_directions
 		block_loss =  - torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6).mean()
