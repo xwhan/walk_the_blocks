@@ -57,7 +57,7 @@ class Policy_model(nn.Module):
 
 		direction_prob = F.softmax(self.direction_layer(F.relu(state_embed))) # batch_size * num_actions
 		block_prob = F.softmax(self.block_layer(F.relu(state_embed_nlp)))
-		values = self.value_layer(state_embed)
+		values = self.value_layer(F.relu(state_embed))
 		return direction_prob, block_prob, values
 
 	def evaluate_action(self, inputs, directions):
@@ -84,11 +84,45 @@ class Policy_model(nn.Module):
 		direction_gather_indices = torch.arange(0, batch_size).long().cuda() * 5 + gold_directions
 		block_loss =  - torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6).mean()
 		direction_loss = - torch.log(direction_probs.view(-1)[direction_gather_indices] + 1e-6).mean()
-
 		final_loss = block_loss + direction_loss
-
 		return final_loss
 
+	def ppo_loss(self, batch, old_model, rewards, baselines, args):
+		imgs = batch[0]
+		instructions = batch[1]
+		lens = batch[2]
+		last_directions = batch[3]
+		gold_blocks = batch[4]
+		chosen_directions = batch[5]
+
+		advs = np.array(rewards) - np.array(baselines)
+		# advs = (advs - advs.mean()) / (advs.std() + 1e-6)
+		rewards = Variable(torch.FloatTensor(rewards).cuda())
+		# advs = np.array(rewards)
+
+		direction_probs, block_probs, values = self((imgs, instructions, lens, last_directions))
+
+		direction_entropy = - (torch.log(direction_probs + 1e-6) * direction_probs).sum(-1).mean()
+		entropy_loss = - direction_entropy * args.entropy_coef
+
+		batch_size = direction_probs.size()[0]
+		block_gather_indices = torch.arange(0, batch_size).long().cuda() * 20 + gold_blocks
+		block_loss = - torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6).mean()
+
+		old_direction_probs, _, _ = old_model((imgs, instructions, lens, last_directions))
+		direction_gather_indices = torch.arange(0, batch_size).long().cuda() * 5 + chosen_directions
+		direction_log_probs = torch.log(direction_probs.view(-1)[direction_gather_indices] + 1e-6)
+		old_direction_log_probs = torch.log(old_direction_probs.view(-1)[direction_gather_indices] + 1e-6)
+		ratio = torch.exp(direction_log_probs - Variable(old_direction_log_probs.data))
+		adv_targ = Variable(torch.FloatTensor(advs).cuda())
+		surr1 = ratio * adv_targ
+		surr2 = torch.clamp(ratio, 1.0 - args.clip_epsilon, 1.0 + args.clip_epsilon) * adv_targ
+		action_loss = - torch.min(surr1, surr2).mean()
+		# action_loss = - (direction_log_probs * adv_targ).mean()
+
+		value_loss = (rewards - values).pow(2).mean()
+
+		return (block_loss + action_loss + value_loss + entropy_loss)
 
 if __name__ == '__main__':
 	model = Context_attention(image_embed_dim=200, hidden_dim=200, action_dim_1=32, action_dim_2=24, inter_dim=120)
