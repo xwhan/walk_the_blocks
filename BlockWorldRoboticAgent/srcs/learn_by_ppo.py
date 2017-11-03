@@ -12,12 +12,13 @@ import constants
 from config import Config
 import collections
 import numpy as np
+import pickle
 
 from tensorboard_logger import configure, log_value
 
 def ppo_update(agent, sl_path):
 	parser = argparse.ArgumentParser(description='PPO update')
-	parser.add_argument('-max_epochs', type=int, default=1, help='training epochs')
+	parser.add_argument('-max_epochs', type=int, default=3, help='training epochs')
 	parser.add_argument('-lr', type=float, default=0.0001, help='learning rate')
 	parser.add_argument('-ppo_epoch', type=int, default=4)
 	parser.add_argument('-clip_epsilon', type=float, default=0.05)
@@ -98,28 +99,27 @@ def ppo_update(agent, sl_path):
 
 			# sample expert demonstration
 			expert_path = []
-			expert_memory = pickel.load(f)
-			for exp in expert_memory
+			expert_memory = pickle.load(f)
+			for exp in expert_memory:
 				state = exp[0]
 				last_direction = state[2][0]
-				real_image = []
-				for _ in range(len(state[0]) - 1):
-					real_image.append(state[0][-1] - state[0][_])
-				real_image.append(state[0][-1])
-				state_ = (real_image, state[1], last_direction)
+				state_ = (state[0], state[1], last_direction)
 				action_id = exp[1]
+				block_id = action_id / 4
 				if action_id == 80:
 					direction_id = 4
+					block_id = exp[0][2][1]
 				else:
 					direction_id = action_id % 4
-				expert_path.append((deepcopy(state_), direction_id))
+				expert_path.append((deepcopy(state_), block_id, direction_id))
 			expert_batch = agent.build_batch_inputs(expert_path)
 
 			old_model = deepcopy(agent.policy_model)
 			old_model.load_state_dict(agent.policy_model.state_dict())
 			for _ in range(args.ppo_epoch):
 				ppo_loss = agent.policy_model.ppo_loss(batch, old_model, rewards, baselines, args)
-				sl_loss = 
+				sl_loss = agent.policy_model.sl_loss(expert_batch, args.entropy_coef)
+				final_loss = ppo_loss + sl_loss
 				opti.zero_grad()
 				final_loss.backward()
 				# nn.utils.clip_grad_norm(agent.policy_model.parameters(), 5.0)
@@ -129,7 +129,7 @@ def ppo_update(agent, sl_path):
 
 			# log_value('path length', len(rewards), sample_id)
 
-	save_path = '../models/from_scratch_ppo_critic_epochs' + str(args.max_epochs) + '_lr_' + str(args.lr) + '_clip_' + str(args.clip_epsilon) + '.pth'
+	save_path = '../models/multi_task_from_scratch_ppo_critic_epochs' + str(args.max_epochs) + '_lr_' + str(args.lr) + '_clip_' + str(args.clip_epsilon) + '.pth'
 	torch.save(agent.policy_model.state_dict(), save_path)
 
 if __name__ == '__main__':
