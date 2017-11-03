@@ -1,10 +1,10 @@
 Num of datapoints:-1
 Shuffle before select:true
-File name:trainset.json
+File name:devset.json
 Simplified:false
 horizon:40
 Reward function type:4
-use localhost:true
+use localhost:false
 stop action reward:-1.0
 screen size:120
 decoration:both

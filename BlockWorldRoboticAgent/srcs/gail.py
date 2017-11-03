@@ -32,14 +32,13 @@ def advesarial_imitation(agent):
 	# configure("runs/" + 'gail_epochs_' + str(args.max_epochs) + '_lr1_' + str(args.lr_agent) + '_lr2_' + str(args.lr_critic) + '_entropyCoef_' + str(args.entropy_coef) + '_clipEpsilon_' + str(args.clip_epsilon) + '_ppoEpoch_' + str(args.ppo_epoch), flush_secs=2)
 
 	constants_hyperparam = constants.constants
-	config = Config.parse("../../BlockWorldSimulator/Assets/config.txt")
+	config = Config.parse("../../simulator2/Assets/config.txt")
 	assert config.data_mode == Config.TRAIN
 	dataset_size = constants_hyperparam["train_size"]
 
 	for epoch in range(args.max_epochs):
 		print 'Training Epoch: %d' % epoch
 		print 'file holder for demonstrations'
-		f = open('../demonstrations.pkl', 'rb')
 
 		for sample_id in tqdm(range(dataset_size)):
 			img_state = collections.deque([],5)

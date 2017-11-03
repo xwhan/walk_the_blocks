@@ -36,13 +36,15 @@ class Agent:
         # Connect to simulator
         if len(sys.argv) < 2:
             logger.Log.info("IP not given. Using localhost i.e. 0.0.0.0")
-            self.unity_ip = "0.0.0.0"
+            # self.unity_ip = "0.0.0.0"
+            self.unity_ip = "128.111.68.194"
         else:
             self.unity_ip = sys.argv[1]
 
         if len(sys.argv) < 3:
             logger.Log.info("PORT not given. Using 11000")
-            self.PORT = 11000
+            # self.PORT = 11000
+            self.PORT = 38929
         else:
             self.PORT = int(sys.argv[2])
 

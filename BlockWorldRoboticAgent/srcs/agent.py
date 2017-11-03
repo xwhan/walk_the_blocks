@@ -20,12 +20,14 @@ class Inverse_agent(object):
 		# logger.Log.open('./log.txt')
 
 		# Connect to simulator
-		self.unity_ip = "0.0.0.0"
+		# self.unity_ip = "0.0.0.0"
+		self.unity_ip = "128.111.68.194"
 
-		self.PORT = 11000
+		# self.PORT = 11000
+		self.PORT = 34429
 
 		# Size of image
-		config = Config.parse("../../BlockWorldSimulator/Assets/config.txt")
+		config = Config.parse("../../simulator2/Assets/config.txt")
 		self.config = config
 		image_dim = self.config.screen_size
 
@@ -176,7 +178,7 @@ class Inverse_agent(object):
 		self.policy_model.load_state_dict(torch.load(saved_model))
 		print 'Model reloaded'
 
-		config = Config.parse("../../BlockWorldSimulator/Assets/config.txt")
+		config = Config.parse("../../simulator2/Assets/config.txt")
 		constants_hyperparam = constants.constants
 		if mode == 'dev':
 			assert config.data_mode == Config.DEV
