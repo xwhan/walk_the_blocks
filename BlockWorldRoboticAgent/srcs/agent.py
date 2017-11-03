@@ -12,6 +12,7 @@ from tqdm import tqdm
 import random
 import argparse
 from policy_model import *
+from critic_model import *
 
 class Inverse_agent(object):
 	"""inverse rl with GAN"""
@@ -48,6 +49,7 @@ class Inverse_agent(object):
 		self.gamma = 1.0
 
 		self.policy_model = Policy_model(image_embed_dim=200, hidden_dim=250, action_dim_1=32, action_dim_2=24, inter_dim=120)
+		self.critic_model = Critic_model(image_embed_dim=200, hidden_dim=250, direction_dim=24, inter_dim=120)
 
 	def receive_instruction_image(self):
 
@@ -135,6 +137,7 @@ class Inverse_agent(object):
 			gold_block_id = exp[1] / 4
 			if exp[1] == 80:
 				gold_direction = 4
+				gold_block_id = exp[0][2][1]
 			else:
 				gold_direction = exp[1] % 4
 			direction_batch.append(gold_direction)
@@ -212,7 +215,7 @@ class Inverse_agent(object):
 			_, block_prob, _ = self.policy_model(inputs)
 
 			block_id_pred = self.sample_policy(block_prob.squeeze(), method='greedy')
-			gold_block_id = trajectory[0] / 4
+			# block_id_pred = gold_block_id
 
 			if block_id_pred == gold_block_id:
 				print 'block correct'

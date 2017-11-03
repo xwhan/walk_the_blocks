@@ -61,7 +61,7 @@ def learning_from_demonstrations(agent):
 	parser.add_argument('-batch_size', type=int, default=32, help='batch size for demonstrations')
 	parser.add_argument('-max_epochs', type=int, default=1, help='training epochs')
 	parser.add_argument('-lr', type=float, default=0.001, help='learning rate')
-	# parser.add_argument('-entropy_weight', type=float, default=0.1, help='weight for entropy loss')
+	parser.add_argument('-entropy_weight', type=float, default=0.1, help='weight for entropy loss')
 	parser.add_argument('-replay_memory_size', type=int, default=3200, help='random shuffle')
 	args = parser.parse_args()
 	batch_size = args.batch_size
@@ -71,7 +71,7 @@ def learning_from_demonstrations(agent):
 	parameters = agent.policy_model.parameters()
 	optimizer = torch.optim.Adam(parameters, lr=lr)
 
-	configure("../runs/" + 'sl_batch_' +str(batch_size) + 'epochs_' + str(max_epochs) + 'lr_' + str(lr), flush_secs=2)
+	# configure("../runs/" + 'sl_batch_' +str(batch_size) + 'epochs_' + str(max_epochs) + 'lr_' + str(lr) + '_entropy_' + str(args.entropy_weight), flush_secs=2)
 
 	num_experiences = 184131
 
@@ -104,23 +104,19 @@ def learning_from_demonstrations(agent):
 				imgs, instructions, lens, previous, blocks, directions = agent.exps_to_batchs(replay_memory[(batch_size*batch_index):end])
 
 				# log_value('avg_batch_loss', batch_loss.data.cpu().numpy() / batch_size, step)
-				try:
-					batch_loss = agent.policy_model.sl_loss((imgs, instructions, lens, previous, blocks, directions))
-					optimizer.zero_grad()
-					batch_loss.backward()
-					optimizer.step()
-					step += 1
-					log_value('avg_batch_loss', batch_loss.data.cpu().numpy(), step)
-				except Exception as e:
-					print 'something'
-
+				batch_loss = agent.policy_model.sl_loss((imgs, instructions, lens, previous, blocks, directions), args.entropy_weight)
+				optimizer.zero_grad()
+				batch_loss.backward()
+				optimizer.step()
+				step += 1
+					# log_value('avg_batch_loss', batch_loss.data.cpu().numpy(), step)
 
 			replay_memory = [] # reset the replay memory after use
 			exp_used += replay_memory_size
 
 
 	# save the model
-	savepath = '../models/batch_' +str(batch_size) + 'epochs_' + str(max_epochs) + 'lr_' + str(lr) + 'entropy_' + str(entropy_loss_weight) + '.pth'
+	savepath = '../models/batch_' +str(batch_size) + 'epochs_' + str(max_epochs) + 'lr_' + str(lr) + 'entropy_' + str(args.entropy_weight) + '.pth'
 	torch.save(agent.policy_model.state_dict(), savepath)
 	print 'Model saved'
 

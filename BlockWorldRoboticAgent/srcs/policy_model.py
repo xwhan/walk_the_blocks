@@ -63,13 +63,26 @@ class Policy_model(nn.Module):
 	def evaluate_action(self, inputs, directions):
 		probs, _, _ = self(inputs)
 		batch_size = probs.size()[0]
-		log_probs = torch.log(probs + 1e-8) # batch * num_actions
-		gather_indices = torch.arange(0, batch_size).long().cuda()* 5 + directions.data
+		log_probs = torch.log(probs + 1e-6) # batch * num_actions
+		gather_indices = torch.arange(0, batch_size).long().cuda() * 5 + directions
 		action_log_probs = log_probs.view(-1)[gather_indices]
 		dist_entropy = - (log_probs * probs).sum(-1).mean()
 		return action_log_probs, dist_entropy
 
-	def sl_loss(self, batch):
+	def block_loss(self, batch):
+		imgs = batch[0]
+		instructions = batch[1]
+		lens = batch[2]
+		last_directions = batch[3]
+		gold_blocks = batch[4]
+
+		_, block_probs, _ = self((imgs, instructions, lens, last_directions))
+		batch_size = block_probs.size()[0]
+		block_gather_indices = torch.arange(0, batch_size).long().cuda() * 20 + gold_blocks
+		block_loss = - torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6).mean()
+		return block_loss
+
+	def sl_loss(self, batch, entropy_coef):
 		imgs = batch[0]
 		instructions = batch[1]
 		lens = batch[2]
@@ -78,13 +91,16 @@ class Policy_model(nn.Module):
 		gold_directions = batch[5]
 
 		direction_probs, block_probs, _ = self((imgs, instructions, lens, last_directions))
+		direction_log_probs = torch.log(direction_probs + 1e-6)
+		dist_entropy = - (direction_log_probs * direction_probs).sum(-1).mean()
+		entropy_loss =  - entropy_coef * dist_entropy
 
 		batch_size = direction_probs.size()[0]
 		block_gather_indices = torch.arange(0, batch_size).long().cuda() * 20 + gold_blocks
 		direction_gather_indices = torch.arange(0, batch_size).long().cuda() * 5 + gold_directions
 		block_loss =  - torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6).mean()
 		direction_loss = - torch.log(direction_probs.view(-1)[direction_gather_indices] + 1e-6).mean()
-		final_loss = block_loss + direction_loss
+		final_loss = block_loss + direction_loss + entropy_loss
 		return final_loss
 
 	def ppo_loss(self, batch, old_model, rewards, baselines, args):
