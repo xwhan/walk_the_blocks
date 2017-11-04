@@ -24,7 +24,7 @@ class Inverse_agent(object):
 		self.unity_ip = "128.111.68.194"
 
 		# self.PORT = 11000
-		self.PORT = 34429
+		self.PORT = 34665
 
 		# Size of image
 		config = Config.parse("../../simulator2/Assets/config.txt")
@@ -136,13 +136,9 @@ class Inverse_agent(object):
 		direction_batch = []
 		block_batch = []
 		for exp in replay_memory:
-			gold_block_id = exp[1] / 4
-			if exp[1] == 80:
-				gold_direction = 4
-				gold_block_id = exp[0][2][1]
-			else:
-				gold_direction = exp[1] % 4
-			direction_batch.append(gold_direction)
+			gold_block_id = exp[1]
+			gold_direction_id = exp[2]
+			direction_batch.append(gold_direction_id)
 			block_batch.append(gold_block_id)
 			state = exp[0]
 			imgs = np.concatenate(list(state[0]), axis=0)
@@ -153,8 +149,7 @@ class Inverse_agent(object):
 			instruction_id_padded = np.lib.pad(instruction_id, (0, max_instruction - len(instruction_id)), 'constant', constant_values=(0,0))
 			instruction_id_padded = np.expand_dims(instruction_id_padded, axis=0)
 			instruction_batch.append(instruction_id_padded)
-			previous_action = state[2]
-			previous_direction = previous_action[0]
+			previous_direction = state[2]
 			previous_batch.append(previous_direction)
 
 		image_batch = Variable(torch.from_numpy(np.concatenate(image_batch, axis=0)).float().cuda())

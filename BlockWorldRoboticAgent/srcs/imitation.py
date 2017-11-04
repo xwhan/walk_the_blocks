@@ -19,50 +19,60 @@ from tensorboard_logger import configure, log_value
 def build_demonstrations(agent):
 	"""supervised learning with expert moves"""
 	constants_hyperparam = constants.constants
-	config = Config.parse("../BlockWorldSimulator/Assets/config.txt")
+	config = Config.parse("../../simulator2/Assets/config.txt")
 	assert config.data_mode == Config.TRAIN
 	train_size = constants_hyperparam["train_size"]	
 
+	exp_count = 0
+
 	for sample_id in tqdm(range(train_size)):
 		img_state = collections.deque([], 5)
-		init_imgs = agent.model.image_encoder.build_init_images()
+		init_imgs = agent.policy_model.image_encoder.build_init_images()
 		for img in init_imgs:
 			img_state.append(img)
 		_, _, img, instruction, trajectory = agent.receive_instruction_image()
 		img = np.transpose(img, (2,0,1))
 		img_state.append(img)
-		previous_action = agent.null_previous_action
-		instruction_ids = agent.model.seq_encoder.instruction2id(instruction)
+		previous_direction = agent.null_previous_direction
+		instruction_ids = agent.policy_model.seq_encoder.instruction2id(instruction)
 
 		memory = []
 		traj_index = 0
 		while True:
 			action_id = trajectory[traj_index]
-			action_msg = agent.action2msg(action_id)
+			block_id = action_id / 4
+			if action_id == 80:
+				direction_id = 4
+				block_id = trajectory[traj_index - 1] / 4
+			else:
+				direction_id = action_id % 4
+			action_msg = agent.action2msg(block_id, direction_id)
 			traj_index += 1
 			agent.connection.send_message(action_msg)
 			(status_code, reward, new_img, is_reset) = agent.receive_response()
-			memory.append(((deepcopy(img_state), instruction_ids, previous_action), action_id, 1.0))
+			memory.append(((deepcopy(img_state), instruction_ids, previous_direction), block_id, direction_id, 1.0))
 			new_img = np.transpose(new_img, (2,0,1))
 			img_state.append(new_img)
-			previous_action = agent.decode_action(action_id)
+			previous_direction = direction_id
 
 			if agent.message_protocol_kit.is_reset_message(is_reset):
 				agent.connection.send_message("Ok-Reset")
 				break
 
-		with open('demonstrations.pkl', 'ab') as output:
+		exp_count += len(memory)
+
+		with open('../demonstrations.pkl', 'ab') as output:
 			pickle.dump(memory, output, pickle.HIGHEST_PROTOCOL)
 	print 'Demonstration Saved'
-
+	print 'How many experiences:', exp_count
 
 def learning_from_demonstrations(agent):
 	parser = argparse.ArgumentParser(description='Supervised Training hyperparameters')
-	parser.add_argument('-batch_size', type=int, default=32, help='batch size for demonstrations')
-	parser.add_argument('-max_epochs', type=int, default=1, help='training epochs')
+	parser.add_argument('-batch_size', type=int, default=64, help='batch size for demonstrations')
+	parser.add_argument('-max_epochs', type=int, default=2, help='training epochs')
 	parser.add_argument('-lr', type=float, default=0.001, help='learning rate')
-	parser.add_argument('-entropy_weight', type=float, default=0.1, help='weight for entropy loss')
-	parser.add_argument('-replay_memory_size', type=int, default=3200, help='random shuffle')
+	parser.add_argument('-entropy_weight', type=float, default=0.0, help='weight for entropy loss')
+	parser.add_argument('-replay_memory_size', type=int, default=6400, help='random shuffle')
 	args = parser.parse_args()
 	batch_size = args.batch_size
 	max_epochs = args.max_epochs
@@ -80,7 +90,7 @@ def learning_from_demonstrations(agent):
 		f = open('../demonstrations.pkl', 'rb')
 		replay_memory = []
 		replay_memory_size = args.replay_memory_size
-		print 'Leaning from demonstrations Epoch %d' % epoch
+		print 'Learning from demonstrations Epoch %d' % epoch
 		exp_used = 0 # record how many experience used
 		memory = []
 		# refill the replay memory
@@ -116,7 +126,7 @@ def learning_from_demonstrations(agent):
 
 
 	# save the model
-	savepath = '../models/batch_' +str(batch_size) + 'epochs_' + str(max_epochs) + 'lr_' + str(lr) + 'entropy_' + str(args.entropy_weight) + '.pth'
+	savepath = '../models/new_batch_' +str(batch_size) + 'epochs_' + str(max_epochs) + 'lr_' + str(lr) + 'entropy_' + str(args.entropy_weight) + '.pth'
 	torch.save(agent.policy_model.state_dict(), savepath)
 	print 'Model saved'
 
