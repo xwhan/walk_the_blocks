@@ -24,7 +24,7 @@ class Inverse_agent(object):
 		self.unity_ip = "128.111.68.194"
 
 		# self.PORT = 11000
-		self.PORT = 34665
+		self.PORT = 46367
 
 		# Size of image
 		config = Config.parse("../../simulator2/Assets/config.txt")

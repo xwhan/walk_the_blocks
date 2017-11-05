@@ -1,4 +1,3 @@
 *.pyc
 *.pkl
-*.pth
 BlockWorldRoboticAgent/runs/*

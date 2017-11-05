@@ -101,7 +101,7 @@ class Policy_model(nn.Module):
 		block_loss =  - torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6).mean()
 		direction_loss = - torch.log(direction_probs.view(-1)[direction_gather_indices] + 1e-6).mean()
 		final_loss = block_loss + direction_loss + entropy_loss
-		return final_loss
+		return final_loss, dist_entropy
 
 	def ppo_loss(self, batch, old_model, rewards, baselines, args):
 		imgs = batch[0]
