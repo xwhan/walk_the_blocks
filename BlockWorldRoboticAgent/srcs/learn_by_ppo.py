@@ -135,6 +135,8 @@ def ppo_update(agent, sl_path):
 	opti = torch.optim.Adam(agent.policy_model.parameters(), lr=args.lr)
 	# sl_opti = torch.optim.Adam(agent.policy_model.parameters(), lr=0.0001)
 
+	configure('runs/scheduled_' + 'epochs_' + str(args.max_epochs) + 'lr_' + str(args.lr) + '_entropy_' + str(args.entropy_coef) + str(50), flush_secs=0.5)
+
 	# load from best sl model
 	# agent.policy_model.load_state_dict(torch.load(sl_path))
 
@@ -143,22 +145,32 @@ def ppo_update(agent, sl_path):
 	assert config.data_mode == Config.TRAIN
 	dataset_size = constants_hyperparam["train_size"]
 
-	bisk_baseline = [5.0]
+	bisk_metrics = collections.deque([6.0], 50)
+	policy_entropy = []
+	sl = False
+	step = 0
 
 	for epoch in range(args.max_epochs):
 		# f = open('../demonstrations.pkl', 'rb')
 		for sample_id in tqdm(range(dataset_size)):
 			# if sample_id % 100 == 0:
-			# entropy = sl_step(agent, opti, args)
+			step += 1
+			if sl and epoch!=2:
+				entropy = sl_step(agent, opti, args)
+				sl = False	
 			# entropies.append(entropy)
 			# else:
-			ppo_step(agent, opti, args)
-			
+			else:
+				dis = ppo_step(agent, opti, args)
+				if dis > np.mean(bisk_metrics) * 2: # performance lower than baselines
+					sl = True
+				bisk_metrics.append(dis)
+				log_value('avg_dis', np.mean(bisk_metrics), step)	
+				log_value('curr_dis', dis, step)
 
-	save_path = '../models/imitation_' + str(args.max_epochs) + '_lr_' + str(args.lr) + '_clip_' + str(args.clip_epsilon) + '.pth'
+	save_path = '../models/schedule_v1_' + str(args.max_epochs) + '_lr_' + str(args.lr) + '_clip_' + str(args.clip_epsilon) + '_' + str(50) + '.pth'
 	torch.save(agent.policy_model.state_dict(), save_path)
-	np.save('../plot_data', np.array(entropies))
-
+	# np.save('../plot_data/', np.array(entropies))
 if __name__ == '__main__':
 	agent = Inverse_agent()
 	agent.policy_model.cuda()

@@ -70,9 +70,10 @@ def learning_from_demonstrations(agent):
 	parser = argparse.ArgumentParser(description='Supervised Training hyperparameters')
 	parser.add_argument('-batch_size', type=int, default=64, help='batch size for demonstrations')
 	parser.add_argument('-max_epochs', type=int, default=2, help='training epochs')
-	parser.add_argument('-lr', type=float, default=0.0005, help='learning rate')
+	parser.add_argument('-lr', type=float, default=0.001, help='learning rate')
 	parser.add_argument('-entropy_weight', type=float, default=0.1, help='weight for entropy loss')
 	parser.add_argument('-replay_memory_size', type=int, default=6400, help='random shuffle')
+	parser.add_argument('-id', default='imitation')
 	args = parser.parse_args()
 	batch_size = args.batch_size
 	max_epochs = args.max_epochs
@@ -81,9 +82,12 @@ def learning_from_demonstrations(agent):
 	parameters = agent.policy_model.parameters()
 	optimizer = torch.optim.Adam(parameters, lr=lr)
 
-	configure("runs/" + 'new_sl_batch_' +str(batch_size) + 'epochs_' + str(max_epochs) + 'lr_' + str(lr) + '_entropy_' + str(args.entropy_weight), flush_secs=2)
+	configure("runs/" + args.id, flush_secs=0.5)
 
 	num_experiences = 179200
+
+	entropies = collections.deque([], 100)
+	plot_data = []
 
 	step = 0
 	for epoch in range(max_epochs):
@@ -127,17 +131,19 @@ def learning_from_demonstrations(agent):
 				batch_loss.backward()
 				optimizer.step()
 				step += 1
-				log_value('avg_batch_loss', batch_loss.data.cpu().numpy(), step)
-				log_value('avg_entropy', avg_entropy.data.cpu().numpy(), step)
+				entropies.append(avg_entropy.data.cpu().numpy())
+				log_value('Avg. Entropy', np.mean(entropies), step)
 
 			replay_memory = [] # reset the replay memory after use
 			exp_used += replay_memory_size
 
-
 	# save the model
-	savepath = '../models/shuffle_batch_' +str(batch_size) + 'epochs_' + str(max_epochs) + 'lr_' + str(lr) + 'entropy_' + str(args.entropy_weight) + '.pth'
+	savepath = '../models/' + args.id + '.pth'
 	torch.save(agent.policy_model.state_dict(), savepath)
 	print 'Model saved'
+	np.save('../plot_data/' + args.id, np.array(plot_data))
+	print 'Plot data saved'
+
 
 
 if __name__ == '__main__':
