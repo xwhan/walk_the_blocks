@@ -69,14 +69,14 @@ def ppo_step(agent, opti, args):
 	old_model = deepcopy(agent.policy_model)
 	old_model.load_state_dict(agent.policy_model.state_dict())
 	for _ in range(args.ppo_epoch):
-		ppo_loss = agent.policy_model.ppo_loss(batch, old_model, rewards, baselines, args)
+		ppo_loss, entropy = agent.policy_model.ppo_loss(batch, old_model, rewards, baselines, args)
 		# sl_loss = agent.policy_model.sl_loss(expert_batch, args.entropy_coef)
 		final_loss = ppo_loss
 		opti.zero_grad()
 		final_loss.backward()
 		# nn.utils.clip_grad_norm(agent.policy_model.parameters(), 5.0)
 		opti.step()
-	return bisk_metric
+	return bisk_metric, entropy.data.cpu().numpy()
 
 def sl_step(agent, sl_opti, args):
 	img_state = collections.deque([], 5)
@@ -125,41 +125,80 @@ def sl_step(agent, sl_opti, args):
 
 def ppo_update(agent, sl_path):
 	parser = argparse.ArgumentParser(description='PPO update')
-	parser.add_argument('-max_epochs', type=int, default=1, help='training epochs')
+	parser.add_argument('-max_epochs', type=int, default=2, help='training epochs')
 	parser.add_argument('-lr', type=float, default=0.0001, help='learning rate')
 	parser.add_argument('-ppo_epoch', type=int, default=4)
 	parser.add_argument('-clip_epsilon', type=float, default=0.05)
 	parser.add_argument('-entropy_coef', type=float, default=0.1, help='weight for entropy loss')
+	parser.add_argument('-id', default='ppo', help='model setting')
 	args = parser.parse_args()
 
 	opti = torch.optim.Adam(agent.policy_model.parameters(), lr=args.lr)
 	# sl_opti = torch.optim.Adam(agent.policy_model.parameters(), lr=0.0001)
 
+	configure('runs/' + args.id, flush_secs=0.5)
+
 	# load from best sl model
-	# agent.policy_model.load_state_dict(torch.load(sl_path))
+	agent.policy_model.load_state_dict(torch.load(sl_path))
 
 	constants_hyperparam = constants.constants
 	config = Config.parse("../../simulator2/Assets/config.txt")
 	assert config.data_mode == Config.TRAIN
 	dataset_size = constants_hyperparam["train_size"]
 
-	bisk_baseline = [5.0]
+	bisk_metrics = collections.deque([], 100)
+	# policy_entropy = collections.deque([], 200)
+	plot_data = []
+	plot_time = []
+	sl = False
+	step = 0
 
 	for epoch in range(args.max_epochs):
 		# f = open('../demonstrations.pkl', 'rb')
 		for sample_id in tqdm(range(dataset_size)):
-			# if sample_id % 100 == 0:
-			# entropy = sl_step(agent, opti, args)
-			# entropies.append(entropy)
+			step += 1
+			# if sl:
+			# 	entropy = sl_step(agent, opti, args)
+			# 	sl = False	
 			# else:
-			ppo_step(agent, opti, args)
-			
+			# 	dis, _ = ppo_step(agent, opti, args)
+			# 	bisk_metrics.append(dis)
+			# 	if dis > np.mean(bisk_metrics) * 2: # performance lower than baselines
+			# 		sl = True
+			# 	log_value('avg_dis', np.mean(bisk_metrics), step)	
 
-	save_path = '../models/imitation_' + str(args.max_epochs) + '_lr_' + str(args.lr) + '_clip_' + str(args.clip_epsilon) + '.pth'
+			if sample_id % 200 == 0:
+				_ = sl_step(agent, opti, args)
+			else:
+				dis, _ = ppo_step(agent, opti, args)
+				bisk_metrics.append(dis)
+				log_value('avg_dis', np.mean(bisk_metrics), step)	
+				plot_data.append(np.mean(bisk_metrics))
+				plot_data.append(step)
+
+			# if epoch == 0:
+			# 	_ = sl_step(agent, opti, args)
+			# else:
+			# 	dis, _ = ppo_step(agent, opti, args)
+			# 	bisk_metrics.append(dis)
+			# 	log_value('avg_dis', np.mean(bisk_metrics), step)
+			# 	plot_data.append(np.mean(bisk_metrics))
+			# 	plot_time.append(step)
+
+			# dis, entropy = ppo_step(agent, opti, args)
+			# bisk_metrics.append(dis)
+			# policy_entropy.append(entropy)
+			# log_value('avg_dis', np.mean(bisk_metrics), step)
+			# log_value('ppo_entropy', np.mean(policy_entropy), step)
+
+	save_path = '../models/' + args.id + '.pth'
 	torch.save(agent.policy_model.state_dict(), save_path)
-	np.save('../plot_data', np.array(entropies))
+	print 'Model Saved'
+	np.save('../plot_data/' + args.id, np.array(plot_data))
+	np.save('../plot_data/' + args.id + 'steps', np.array(plot_time))
+	print 'Plotdata Saved'
 
 if __name__ == '__main__':
 	agent = Inverse_agent()
 	agent.policy_model.cuda()
-	ppo_update(agent, '../models/new_from_scratch3_lr_0.0001_clip_0.05.pth')
+	ppo_update(agent, '../models/scheduled_ppo_1.pth')

@@ -138,7 +138,7 @@ class Policy_model(nn.Module):
 
 		value_loss = (rewards - values).pow(2).mean()
 
-		return (block_loss + action_loss + value_loss + entropy_loss)
+		return (block_loss + action_loss + value_loss + entropy_loss), direction_entropy
 
 if __name__ == '__main__':
 	model = Context_attention(image_embed_dim=200, hidden_dim=200, action_dim_1=32, action_dim_2=24, inter_dim=120)
