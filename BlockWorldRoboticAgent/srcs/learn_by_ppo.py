@@ -66,16 +66,21 @@ def ppo_step(agent, opti, args):
 	# 	rewards_final[_] = sum(rewards[_:])
 	batch = agent.build_batch_inputs(replay_memory)
 
+	# a2c_loss, entropy = agent.policy_model.a2c_loss(batch, baselines, rewards, args)
+	# opti.zero_grad()
+	# a2c_loss.backward()
+	# opti.step()
+
 	old_model = deepcopy(agent.policy_model)
 	old_model.load_state_dict(agent.policy_model.state_dict())
 	for _ in range(args.ppo_epoch):
 		ppo_loss, entropy = agent.policy_model.ppo_loss(batch, old_model, rewards, baselines, args)
-		# sl_loss = agent.policy_model.sl_loss(expert_batch, args.entropy_coef)
 		final_loss = ppo_loss
 		opti.zero_grad()
 		final_loss.backward()
 		# nn.utils.clip_grad_norm(agent.policy_model.parameters(), 5.0)
 		opti.step()
+
 	return bisk_metric, entropy.data.cpu().numpy()
 
 def sl_step(agent, sl_opti, args):
@@ -139,7 +144,7 @@ def ppo_update(agent, sl_path):
 	configure('runs/' + args.id, flush_secs=0.5)
 
 	# load from best sl model
-	agent.policy_model.load_state_dict(torch.load(sl_path))
+	# agent.policy_model.load_state_dict(torch.load(sl_path))
 
 	constants_hyperparam = constants.constants
 	config = Config.parse("../../simulator2/Assets/config.txt")
@@ -167,23 +172,23 @@ def ppo_update(agent, sl_path):
 			# 		sl = True
 			# 	log_value('avg_dis', np.mean(bisk_metrics), step)	
 
-			if sample_id % 200 == 0:
-				_ = sl_step(agent, opti, args)
-			else:
-				dis, _ = ppo_step(agent, opti, args)
-				bisk_metrics.append(dis)
-				log_value('avg_dis', np.mean(bisk_metrics), step)	
-				plot_data.append(np.mean(bisk_metrics))
-				plot_data.append(step)
-
-			# if epoch == 0:
+			# if sample_id % 50 == 0:
 			# 	_ = sl_step(agent, opti, args)
 			# else:
 			# 	dis, _ = ppo_step(agent, opti, args)
 			# 	bisk_metrics.append(dis)
-			# 	log_value('avg_dis', np.mean(bisk_metrics), step)
+			# 	log_value('avg_dis', np.mean(bisk_metrics), step)	
 			# 	plot_data.append(np.mean(bisk_metrics))
-			# 	plot_time.append(step)
+			# 	plot_data.append(step)
+
+			if epoch == 0:
+				_ = sl_step(agent, opti, args)
+			else:
+				dis, _ = ppo_step(agent, opti, args)
+				bisk_metrics.append(dis)
+				log_value('avg_dis', np.mean(bisk_metrics), step)
+				plot_data.append(np.mean(bisk_metrics))
+				plot_time.append(step)
 
 			# dis, entropy = ppo_step(agent, opti, args)
 			# bisk_metrics.append(dis)
@@ -201,4 +206,4 @@ def ppo_update(agent, sl_path):
 if __name__ == '__main__':
 	agent = Inverse_agent()
 	agent.policy_model.cuda()
-	ppo_update(agent, '../models/scheduled_ppo_1.pth')
+	ppo_update(agent, '../models/')
