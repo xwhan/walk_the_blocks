@@ -162,45 +162,52 @@ def ppo_update(agent, sl_path):
 		# f = open('../demonstrations.pkl', 'rb')
 		for sample_id in tqdm(range(dataset_size)):
 			step += 1
+
+			# schedule rule
 			# if sl:
 			# 	entropy = sl_step(agent, opti, args)
 			# 	sl = False	
 			# else:
 			# 	dis, _ = ppo_step(agent, opti, args)
 			# 	bisk_metrics.append(dis)
-			# 	if dis > np.mean(bisk_metrics) * 2: # performance lower than baselines
+			# 	if dis > np.max(bisk_metrics): # performance lower than baselines
 			# 		sl = True
 			# 	log_value('avg_dis', np.mean(bisk_metrics), step)	
-
-			# if sample_id % 50 == 0:
-			# 	_ = sl_step(agent, opti, args)
-			# else:
-			# 	dis, _ = ppo_step(agent, opti, args)
-			# 	bisk_metrics.append(dis)
-			# 	log_value('avg_dis', np.mean(bisk_metrics), step)	
 			# 	plot_data.append(np.mean(bisk_metrics))
-			# 	plot_data.append(step)
+			# 	plot_time.append(step)
 
-			if epoch == 0:
+
+			# schedule every 100
+			if sample_id % 100 == 0:
 				_ = sl_step(agent, opti, args)
 			else:
 				dis, _ = ppo_step(agent, opti, args)
 				bisk_metrics.append(dis)
-				log_value('avg_dis', np.mean(bisk_metrics), step)
+				log_value('avg_dis', np.mean(bisk_metrics), step)	
 				plot_data.append(np.mean(bisk_metrics))
 				plot_time.append(step)
 
-			# dis, entropy = ppo_step(agent, opti, args)
+			# imitation 1 epoch, RL 1 epoch
+			# if epoch == 0:
+			# 	_ = sl_step(agent, opti, args)
+			# else:
+			# 	dis, _ = ppo_step(agent, opti, args)
+			# 	bisk_metrics.append(dis)
+			# 	log_value('avg_dis', np.mean(bisk_metrics), step)
+			# 	plot_data.append(np.mean(bisk_metrics))
+			# 	plot_time.append(step)
+
+			# dis, _ = ppo_step(agent, opti, args)
 			# bisk_metrics.append(dis)
-			# policy_entropy.append(entropy)
 			# log_value('avg_dis', np.mean(bisk_metrics), step)
-			# log_value('ppo_entropy', np.mean(policy_entropy), step)
+			# plot_data.append(np.mean(bisk_metrics))
+			# plot_time.append(step)
 
 	save_path = '../models/' + args.id + '.pth'
 	torch.save(agent.policy_model.state_dict(), save_path)
 	print 'Model Saved'
 	np.save('../plot_data/' + args.id, np.array(plot_data))
-	np.save('../plot_data/' + args.id + 'steps', np.array(plot_time))
+	np.save('../plot_data/' + args.id + '_steps', np.array(plot_time))
 	print 'Plotdata Saved'
 
 if __name__ == '__main__':
