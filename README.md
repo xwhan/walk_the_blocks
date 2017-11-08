@@ -1,72 +1,18 @@
-# Blocks World -- Simulator, Code, and Models (Misra et al. EMNLP 2017)
+# Scheduled Policy Optimization for Natural Language Communication with Intelligent Agents
 
-[Mapping Instructions and Visual Observations to Actions with Reinforcement Learning](https://arxiv.org/abs/1704.08795)  
-Dipendra Misra, John Langford, and Yoav Artzi  
-In Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP), 2017.  
+## Models and Algorithms
+See files under `walk_the_blocks/BlockWorldRoboticAgent/srcs/`
 
-<p align="center"><a href="https://youtu.be/fmCP-SdDOT0"><img src="http://yoavartzi.com/temp/emnlp2017-video.gif"></a></p>
+* `learn_by_ppo.py` 
+   run this file for training, you can change the schedule mechanism in the function `ppo_update()`, these are the options:
+   * do imitation every 50
+   * do imitation based on rules
+   * imitation 1 epoch and then RL 1 epoch
 
-The original environment was designed by [Bisk et al. 2016](http://yonatanbisk.com/papers/2016-NAACL.pdf), who also collected the [data](https://nlg.isi.edu/language-grounding/). 
-
-## Run the Code in 60 Seconds (Requires only python 2.7)
-
-In this section, we will run the oracle baseline on the devset. 
-This will give an idea of the simulator and the code and does not requires any dependency besides python 2.7.
-
-**Supports:** Mac OS and Linux (with Unity Desktop)
-
-**Requires:** python2.7
-
-### Running on Mac
-
-1) Clone the code  ``git clone https://github.com/clic-lab/blocks``
-2) Go to ``./blocks/BlockWorldSimulator/`` and run ``build_mac.app`` by double clicking.
-
-   Choose the Fastest mode setting and any resolution (does not matter which resolution).
-   
-3) Now run the oracle baseline by running the following command in the home directory.
-   May take 5-10 seconds for the simulator to be ready and before following command works.
-     
-      ``cd ./blocks/BlockWorldRoboticAgent/``
-      
-      ``export PYTHONPATH=<location-of-blocks-folder>/BLockWorldRoboticAgent/:$PYTHONPATH``
-      
-      ``python ./experiments/test_oracle.py``
-      
-   You can similarly run ``python ./experiments/test_stop.py`` and ``python ./experiments/test_random.py``
-   to run stop and random walk baselines respectively.
-      
-4) The log will be generated in ``./blocks/BlockWorldRoboticAgent/log.txt`` and final number should match
-    the numbers in the paper *0.35 mean distance error*.
-
-### Running on Linux
-
-1) Clone the code  ``git clone https://github.com/clic-lab/blocks``
-2) Go to ``./blocks/BlockWorldSimulator/`` and make the file ``linux_build.x86_64`` executable by running:
-
-     ``chmod 777 linux_build.x86_64``
-
-3) Now run the file ``linux_build.x86_64`` by double clicking.
-
-   Choose the Fastest mode setting and any resolution (does not matter which resolution).
-   
-3) Finally run the oracle baseline by running the following command in the home directory.
-   May take 5-10 seconds for the simulator to be ready and before following command works.
-     
-      ``cd ./blocks/BlockWorldRoboticAgent/``
-      
-      ``export PYTHONPATH=<location-of-blocks-folder>/BLockWorldRoboticAgent/:$PYTHONPATH``
-      
-      ``python ./experiments/test_oracle.py``
-      
-   You can similarly run ``python ./experiments/test_stop.py`` and ``python ./experiments/test_random.py``
-   to run stop and random walk baselines respectively.
-      
-4) The log will be generated in ``./blocks/BlockWorldRoboticAgent/log.txt`` and final number should match
-    the numbers in the paper *0.35 mean distance error*.
-    
-Instructions for running other baselines will come soon.
-
--------
-
-**Production Release and pre-trained models coming soon ...**
+   example:
+   `python learn_by_ppo.py -lr 0.0001 -max_epochs 2 -entropy_coef 0.05`
+* `policy_model.py`
+   the network achitecture and loss functions:
+   * PPO Loss
+   * Supervised Loss
+   * Advantage Actor-Critic Loss
