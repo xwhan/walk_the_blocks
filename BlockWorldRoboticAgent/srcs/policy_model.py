@@ -134,6 +134,32 @@ class Policy_model(nn.Module):
 
 		return (block_loss + entropy_loss + value_loss + action_loss), direction_entropy
 
+	def reinforce_loss(self, batch, rewards, args):
+		imgs = batch[0]
+		instructions = batch[1]
+		lens = batch[2]
+		last_directions = batch[3]
+		gold_blocks = batch[4]
+		chosen_directions = batch[5]
+
+		rewards = Variable(torch.FloatTensor(rewards).cuda())
+
+		direction_probs, block_probs, values = self((imgs, instructions, lens, last_directions))
+		direction_entropy = - (torch.log(direction_probs + 1e-6) * direction_probs).sum(-1).mean()	
+		entropy_loss = - direction_entropy * args.entropy_coef
+
+		batch_size = direction_probs.size()[0]
+		block_gather_indices = torch.arange(0, batch_size).long().cuda() * 20 + gold_blocks
+		block_loss = - torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6).mean()
+
+		direction_gather_indices = torch.arange(0, batch_size).long().cuda() * 5 + chosen_directions
+		direction_log_probs = torch.log(direction_probs.view(-1)[direction_gather_indices] + 1e-6)
+
+		action_loss = - (direction_log_probs * rewards).mean()
+
+		return	(action_loss + block_loss + entropy_loss), direction_entropy
+
+
 	def ppo_loss(self, batch, old_model, rewards, baselines, args):
 		imgs = batch[0]
 		instructions = batch[1]

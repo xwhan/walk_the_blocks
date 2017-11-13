@@ -130,7 +130,7 @@ def sl_step(agent, sl_opti, args):
 
 def ppo_update(agent):
 	parser = argparse.ArgumentParser(description='PPO update')
-	parser.add_argument('-max_epochs', type=int, default=1, help='training epochs')
+	parser.add_argument('-max_epochs', type=int, default=4, help='training epochs')
 	parser.add_argument('-lr', type=float, default=0.0001, help='learning rate')
 	parser.add_argument('-ppo_epoch', type=int, default=4)
 	parser.add_argument('-clip_epsilon', type=float, default=0.05)
@@ -140,7 +140,6 @@ def ppo_update(agent):
 	args = parser.parse_args()
 
 	opti = torch.optim.Adam(agent.policy_model.parameters(), lr=args.lr)
-	# sl_opti = torch.optim.Adam(agent.policy_model.parameters(), lr=0.0001)
 
 	configure('runs/' + args.id, flush_secs=0.5)
 
@@ -166,19 +165,20 @@ def ppo_update(agent):
 		for sample_id in tqdm(range(dataset_size)):
 			step += 1
 
-			# # schedule rule
-			# if sl:
-			# 	entropy = sl_step(agent, opti, args)
-			# 	sl = False	
-			# else:
-			# 	dis, _ = ppo_step(agent, opti, args)
-			# 	if dis > 0.5:
-			# 		bisk_metrics.append(dis)
-			# 	if dis > np.max(bisk_metrics): # performance lower than baselines
-			# 		sl = True
-			# 	log_value('avg_dis', np.mean(bisk_metrics), step)	
-			# 	plot_data.append(np.mean(bisk_metrics))
-			# 	plot_time.append(step)
+			# schedule rule
+			if sl:
+				entropy = sl_step(agent, opti, args)
+				sl = False
+			else:
+				dis, _ = ppo_step(agent, opti, args)
+				# if dis > 0.5:
+				bisk_metrics.append(dis)
+				if len(bisk_metrics) != 0 and dis > 1.5 * np.mean(bisk_metrics): # performance lower than baselines
+					sl = True
+				if len(bisk_metrics) > 0:
+					log_value('avg_dis', np.mean(bisk_metrics), step)	
+					plot_data.append(np.mean(bisk_metrics))
+					plot_time.append(step)
 
 
 			# # schedule every 100
@@ -203,19 +203,20 @@ def ppo_update(agent):
 			# 	plot_data.append(np.mean(bisk_metrics))
 			# 	plot_time.append(step)
 
-			# Pure PPO
-			dis, _ = ppo_step(agent, opti, args)
-			bisk_metrics.append(dis)
-			log_value('avg_dis', np.mean(bisk_metrics), step)
-			plot_data.append(np.mean(bisk_metrics))
-			plot_time.append(step)
+			# # Pure PPO
+			# dis, _ = ppo_step(agent, opti, args)
+			# bisk_metrics.append(dis)
+			# log_value('avg_dis', np.mean(bisk_metrics), step)
+			# plot_data.append(np.mean(bisk_metrics))
+			# plot_time.append(step)
 
-	save_path = '../models/' + args.id + '.pth'
-	torch.save(agent.policy_model.state_dict(), save_path)
-	print 'Model Saved'
-	np.save('../plot_data/' + args.id, np.array(plot_data))
-	np.save('../plot_data/' + args.id + '_steps', np.array(plot_time))
-	print 'Plotdata Saved'
+		save_path = '../models/' + args.id + '_epoch' + str(epoch + 1) + '.pth'
+		torch.save(agent.policy_model.state_dict(), save_path)
+		print 'Model Saved'
+	
+	# np.save('../plot_data/' + args.id, np.array(plot_data))
+	# np.save('../plot_data/' + args.id + '_steps', np.array(plot_time))
+	# print 'Plotdata Saved'
 
 if __name__ == '__main__':
 	torch.manual_seed(3)
