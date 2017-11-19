@@ -25,8 +25,9 @@ def ppo_step(agent, opti, args):
 	img = np.transpose(img, (2,0,1))
 	img_state.append(img)
 	previous_direction = agent.null_previous_direction
+	previous_block = agent.null_previous_block
 	instruction_ids = agent.policy_model.seq_encoder.instruction2id(instruction)
-	state = (img_state, instruction_ids, previous_direction)
+	state = (img_state, instruction_ids, previous_direction, previous_block)
 	inputs = agent.build_batch_inputs([(state, 0, 0)])
 
 	gold_block_id = traj[0] / 4
@@ -39,10 +40,11 @@ def ppo_step(agent, opti, args):
 	while True:
 		d_probs, b_probs, baseline = agent.policy_model(inputs)
 		d_id = agent.sample_policy(d_probs, method='random')
+		b_id = agent.sample_policy(b_probs, method='random')
 		# b_id = agent.sample_policy(b_probs, method='greedy')
 		baseline = baseline.squeeze()
 		baselines.append(baseline.data.cpu().numpy()[0])
-		b_id = gold_block_id
+		# b_id = gold_block_id
 		action_msg = agent.action2msg(b_id, d_id)
 		agent.connection.send_message(action_msg)
 
@@ -58,7 +60,8 @@ def ppo_step(agent, opti, args):
 
 		img_state.append(new_img)
 		previous_direction = d_id
-		state = (img_state, instruction_ids, previous_direction)
+		previous_block = b_id
+		state = (img_state, instruction_ids, previous_direction, previous_block)
 		inputs = agent.build_batch_inputs([(state, 0, 0)])
 
 	# rewards_final = [0] * len(rewards)
@@ -71,15 +74,20 @@ def ppo_step(agent, opti, args):
 	# a2c_loss.backward()
 	# opti.step()
 
-	old_model = deepcopy(agent.policy_model)
-	old_model.load_state_dict(agent.policy_model.state_dict())
-	for _ in range(args.ppo_epoch):
-		ppo_loss, entropy = agent.policy_model.ppo_loss(batch, old_model, rewards, baselines, args)
-		final_loss = ppo_loss
-		opti.zero_grad()
-		final_loss.backward()
-		# nn.utils.clip_grad_norm(agent.policy_model.parameters(), 5.0)
-		opti.step()
+	reinforce_loss, entropy = agent.policy_model.reinforce_loss(batch, rewards, args)
+	opti.zero_grad()
+	reinforce_loss.backward()
+	opti.step()
+
+	# old_model = deepcopy(agent.policy_model)
+	# old_model.load_state_dict(agent.policy_model.state_dict())
+	# for _ in range(args.ppo_epoch):
+	# 	ppo_loss, entropy = agent.policy_model.ppo_loss(batch, old_model, rewards, baselines, args)
+	# 	final_loss = ppo_loss
+	# 	opti.zero_grad()
+	# 	final_loss.backward()
+	# 	# nn.utils.clip_grad_norm(agent.policy_model.parameters(), 5.0)
+	# 	opti.step()
 
 	return bisk_metric, entropy.data.cpu().numpy()
 
@@ -92,8 +100,9 @@ def sl_step(agent, sl_opti, args):
 	img = np.transpose(img, (2,0,1))
 	img_state.append(img)
 	previous_direction = agent.null_previous_direction
+	previous_block = agent.null_previous_block
 	instruction_ids = agent.policy_model.seq_encoder.instruction2id(instruction)
-	state = (img_state, instruction_ids, previous_direction)
+	state = (img_state, instruction_ids, previous_direction, previous_block)
 
 	path = []
 	traj_index = 0
@@ -113,7 +122,8 @@ def sl_step(agent, sl_opti, args):
 		new_img = np.transpose(new_img, (2,0,1))
 		img_state.append(new_img)
 		previous_direction = direction_id
-		state = (img_state, instruction_ids, previous_direction)
+		previous_block = block_id
+		state = (img_state, instruction_ids, previous_direction, previous_block)
 
 		if agent.message_protocol_kit.is_reset_message(is_reset):
 			agent.connection.send_message('Ok-Reset')
@@ -130,8 +140,8 @@ def sl_step(agent, sl_opti, args):
 
 def ppo_update(agent):
 	parser = argparse.ArgumentParser(description='PPO update')
-	parser.add_argument('-max_epochs', type=int, default=4, help='training epochs')
-	parser.add_argument('-lr', type=float, default=0.0001, help='learning rate')
+	parser.add_argument('-max_epochs', type=int, default=2, help='training epochs')
+	parser.add_argument('-lr', type=float, default=0.00005, help='learning rate')
 	parser.add_argument('-ppo_epoch', type=int, default=4)
 	parser.add_argument('-clip_epsilon', type=float, default=0.05)
 	parser.add_argument('-entropy_coef', type=float, default=0.1, help='weight for entropy loss')
@@ -162,6 +172,9 @@ def ppo_update(agent):
 
 	for epoch in range(args.max_epochs):
 		# f = open('../demonstrations.pkl', 'rb')
+		# if epoch == 4:
+		# 	opti = torch.optim.Adam(agent.policy_model.parameters(), lr=args.lr / 2)
+
 		for sample_id in tqdm(range(dataset_size)):
 			step += 1
 
@@ -173,13 +186,12 @@ def ppo_update(agent):
 				dis, _ = ppo_step(agent, opti, args)
 				# if dis > 0.5:
 				bisk_metrics.append(dis)
-				if len(bisk_metrics) != 0 and dis > 1.5 * np.mean(bisk_metrics): # performance lower than baselines
+				if len(bisk_metrics) != 0 and dis > np.mean(bisk_metrics): # performance lower than baselines
 					sl = True
 				if len(bisk_metrics) > 0:
 					log_value('avg_dis', np.mean(bisk_metrics), step)	
 					plot_data.append(np.mean(bisk_metrics))
 					plot_time.append(step)
-
 
 			# # schedule every 100
 			# if (sample_id + 1) % 100 == 0:
@@ -192,25 +204,25 @@ def ppo_update(agent):
 			# 	plot_data.append(np.mean(bisk_metrics))
 			# 	plot_time.append(step)
 
-			# # imitation 1 epoch, RL 1 epoch
-			# if epoch == 0:
+			# imitation 1 epoch, RL 1 epoch
+			# if epoch < 2:
 			# 	_ = sl_step(agent, opti, args)
 			# else:
 			# 	dis, _ = ppo_step(agent, opti, args)
-			# 	if dis > 0.5:
-			# 		bisk_metrics.append(dis)
+			# 	# if dis > 0.5:
+			# 	bisk_metrics.append(dis)
 			# 	log_value('avg_dis', np.mean(bisk_metrics), step)
 			# 	plot_data.append(np.mean(bisk_metrics))
 			# 	plot_time.append(step)
 
-			# # Pure PPO
+			# Pure PPO
 			# dis, _ = ppo_step(agent, opti, args)
 			# bisk_metrics.append(dis)
 			# log_value('avg_dis', np.mean(bisk_metrics), step)
 			# plot_data.append(np.mean(bisk_metrics))
 			# plot_time.append(step)
 
-		save_path = '../models/' + args.id + '_epoch' + str(epoch + 1) + '.pth'
+		save_path = '../models/' + args.id + '_epoch' + str(epoch + 7) + '.pth'
 		torch.save(agent.policy_model.state_dict(), save_path)
 		print 'Model Saved'
 	
@@ -221,6 +233,6 @@ def ppo_update(agent):
 if __name__ == '__main__':
 	torch.manual_seed(3)
 	torch.cuda.manual_seed(3)
-	agent = Inverse_agent()
+	agent = Agent()
 	agent.policy_model.cuda()
 	ppo_update(agent)

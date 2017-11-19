@@ -27,9 +27,9 @@ class Policy_model(nn.Module):
 
 		self.image_encoder = CNN_encoder(input_channels=3*5, output_size=self.image_embed_dim, image_dim=120)
 		self.seq_encoder = Seq_encoder(output_size=self.hidden_dim, embed_dim=150)
-		self.action_encoder = Action_encoder(num_directions=n_directions, block_dim=self.block_dim, direction_dim=self.direction_dim)
+		self.action_encoder = Action_encoder(num_directions=n_directions, block_dim=self.block_dim, direction_dim=self.direction_dim, num_blocks=n_blocks)
 
-		self.mlp1 = nn.Linear(self.image_embed_dim + self.hidden_dim + self.direction_dim, self.inter_dim) 
+		self.mlp1 = nn.Linear(self.image_embed_dim + self.hidden_dim + self.direction_dim + self.block_dim, self.inter_dim) 
 		self.mlp2 = nn.Linear(self.hidden_dim, self.inter_dim) # just predict block id
 		self.value_layer = nn.Linear(self.inter_dim, 1)
 		self.block_layer = nn.Linear(self.inter_dim, n_blocks)
@@ -45,18 +45,20 @@ class Policy_model(nn.Module):
 		images = inputs[0]
 		instructions = inputs[1]
 		lens = inputs[2]
-		last_actions = inputs[3] # batch_size * 1
+		last_directions = inputs[3] # batch_size * 1
+		last_blocks = inputs[4]
+
 		img_embed = self.image_encoder(images) # batch_size * image_embed_dim
 		seq_embed = self.seq_encoder(instructions, lens) # max_len * batch_size * hidden
 
 		seq_embed = torch.mean(seq_embed, dim=0) # batch_size * hidden
 
-		action_embed = self.action_encoder(last_actions) # batch_size * 56
+		action_embed = self.action_encoder(last_directions, last_blocks) # batch_size * 56
 		state_embed = self.mlp1(torch.cat((img_embed, seq_embed, action_embed), dim=1)) # batch_size * inter_dim
 		state_embed_nlp = self.mlp2(seq_embed)
 
 		direction_prob = F.softmax(self.direction_layer(F.relu(state_embed))) # batch_size * num_actions
-		block_prob = F.softmax(self.block_layer(F.relu(state_embed_nlp)))
+		block_prob = F.softmax(self.block_layer(F.relu(state_embed)))
 		values = self.value_layer(F.relu(state_embed))
 		return direction_prob, block_prob, values
 
@@ -87,10 +89,11 @@ class Policy_model(nn.Module):
 		instructions = batch[1]
 		lens = batch[2]
 		last_directions = batch[3]
-		gold_blocks = batch[4]
-		gold_directions = batch[5]
+		last_blocks = batch[4]
+		gold_blocks = batch[5]
+		gold_directions = batch[6]
 
-		direction_probs, block_probs, _ = self((imgs, instructions, lens, last_directions))
+		direction_probs, block_probs, _ = self((imgs, instructions, lens, last_directions, last_blocks))
 		direction_log_probs = torch.log(direction_probs + 1e-6)
 		dist_entropy = - (direction_log_probs * direction_probs).sum(-1).mean()
 		entropy_loss =  - entropy_coef * dist_entropy
@@ -108,20 +111,21 @@ class Policy_model(nn.Module):
 		instructions = batch[1]
 		lens = batch[2]
 		last_directions = batch[3]
-		gold_blocks = batch[4]
-		gold_directions = batch[5]
+		last_blocks = batch[4]
+		chosen_blocks = batch[5]
+		chosen_directions = batch[6]
 
 		advs = np.array(rewards) - np.array(baselines)
 		rewards = Variable(torch.FloatTensor(rewards).cuda())
 
-		direction_probs, block_probs, values = self((imgs, instructions, lens, last_directions))
-		direction_entropy = - (torch.log(direction_probs + 1e-6) * direction_probs).sum(-1).mean()	
+		direction_probs, block_probs, values = self((imgs, instructions, lens, last_directions, last_blocks))
+		direction_entropy = - (torch.log(direction_probs + 1e-6) * direction_probs).sum(-1).mean()
 		entropy_loss = - direction_entropy * args.entropy_coef	
 
 		batch_size = direction_probs.size()[0]
-		block_gather_indices = torch.arange(0, batch_size).long().cuda() * 20 + gold_blocks
-
-		block_loss = - torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6).mean()
+		block_gather_indices = torch.arange(0, batch_size).long().cuda() * 20 + chosen_blocks
+		block_log_probs = torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6)
+		block_loss = - (block_log_probs * rewards).mean()
 
 		direction_gather_indices = torch.arange(0, batch_size).long().cuda() * 5 + chosen_directions
 		direction_log_probs = torch.log(direction_probs.view(-1)[direction_gather_indices] + 1e-6)
@@ -139,22 +143,23 @@ class Policy_model(nn.Module):
 		instructions = batch[1]
 		lens = batch[2]
 		last_directions = batch[3]
-		gold_blocks = batch[4]
-		chosen_directions = batch[5]
+		last_blocks = batch[4]
+		chosen_blocks = batch[5]
+		chosen_directions = batch[6]
 
 		rewards = Variable(torch.FloatTensor(rewards).cuda())
 
-		direction_probs, block_probs, values = self((imgs, instructions, lens, last_directions))
+		direction_probs, block_probs, values = self((imgs, instructions, lens, last_directions, last_blocks))
 		direction_entropy = - (torch.log(direction_probs + 1e-6) * direction_probs).sum(-1).mean()	
 		entropy_loss = - direction_entropy * args.entropy_coef
 
 		batch_size = direction_probs.size()[0]
-		block_gather_indices = torch.arange(0, batch_size).long().cuda() * 20 + gold_blocks
-		block_loss = - torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6).mean()
+		block_gather_indices = torch.arange(0, batch_size).long().cuda() * 20 + chosen_blocks
+		block_log_probs = torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6)
+		block_loss = - (block_log_probs * rewards).mean()
 
 		direction_gather_indices = torch.arange(0, batch_size).long().cuda() * 5 + chosen_directions
 		direction_log_probs = torch.log(direction_probs.view(-1)[direction_gather_indices] + 1e-6)
-
 		action_loss = - (direction_log_probs * rewards).mean()
 
 		return	(action_loss + block_loss + entropy_loss), direction_entropy
@@ -165,35 +170,44 @@ class Policy_model(nn.Module):
 		instructions = batch[1]
 		lens = batch[2]
 		last_directions = batch[3]
-		gold_blocks = batch[4]
-		chosen_directions = batch[5]
+		last_blocks = batch[4]
+		chosen_blocks = batch[5]
+		chosen_directions = batch[6]
 
 		advs = np.array(rewards) - np.array(baselines)
 		rewards = Variable(torch.FloatTensor(rewards).cuda())
 
-		direction_probs, block_probs, values = self((imgs, instructions, lens, last_directions))
+		direction_probs, block_probs, values = self((imgs, instructions, lens, last_directions, last_blocks))
 
 		direction_entropy = - (torch.log(direction_probs + 1e-6) * direction_probs).sum(-1).mean()
 		entropy_loss = - direction_entropy * args.entropy_coef
 
-		batch_size = direction_probs.size()[0]
-		block_gather_indices = torch.arange(0, batch_size).long().cuda() * 20 + gold_blocks
-		block_loss = - torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6).mean()
+		old_direction_probs, old_block_probs, _ = old_model((imgs, instructions, lens, last_directions, last_blocks))
 
-		old_direction_probs, _, _ = old_model((imgs, instructions, lens, last_directions))
+		adv_targ = Variable(torch.FloatTensor(advs).cuda())
+
+		batch_size = direction_probs.size()[0]
+		block_gather_indices = torch.arange(0, batch_size).long().cuda() * 20 + chosen_blocks
+		# block_loss = - torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6).mean()
+		block_log_probs = torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6)
+		old_block_log_probs = torch.log(old_block_probs.view(-1)[block_gather_indices] + 1e-6)
+		ratio_block = torch.exp(block_log_probs - Variable(old_block_log_probs.data))
+		surr1_block = ratio_block * adv_targ
+		surr2_block = torch.clamp(ratio_block, 1.0 - args.clip_epsilon, 1.0 +  args.clip_epsilon) * adv_targ
+		block_action_loss = - torch.min(surr1_block, surr2_block).mean()
+
 		direction_gather_indices = torch.arange(0, batch_size).long().cuda() * 5 + chosen_directions
 		direction_log_probs = torch.log(direction_probs.view(-1)[direction_gather_indices] + 1e-6)
 		old_direction_log_probs = torch.log(old_direction_probs.view(-1)[direction_gather_indices] + 1e-6)
-		ratio = torch.exp(direction_log_probs - Variable(old_direction_log_probs.data))
-		adv_targ = Variable(torch.FloatTensor(advs).cuda())
-		surr1 = ratio * adv_targ
-		surr2 = torch.clamp(ratio, 1.0 - args.clip_epsilon, 1.0 + args.clip_epsilon) * adv_targ
-		action_loss = - torch.min(surr1, surr2).mean()
+		ratio_direction = torch.exp(direction_log_probs - Variable(old_direction_log_probs.data))
+		surr1_direction = ratio_direction * adv_targ
+		surr2_direction = torch.clamp(ratio_direction, 1.0 - args.clip_epsilon, 1.0 + args.clip_epsilon) * adv_targ
+		direction_action_loss = - torch.min(surr1_direction, surr2_direction).mean()
 		# action_loss = - (direction_log_probs * adv_targ).mean()
 
 		value_loss = (rewards - values).pow(2).mean()
 
-		return (block_loss + action_loss + value_loss + entropy_loss), direction_entropy
+		return (block_action_loss + direction_action_loss + value_loss + entropy_loss), direction_entropy
 
 if __name__ == '__main__':
 	model = Context_attention(image_embed_dim=200, hidden_dim=200, action_dim_1=32, action_dim_2=24, inter_dim=120)

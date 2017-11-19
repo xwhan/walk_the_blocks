@@ -14,7 +14,7 @@ import argparse
 from policy_model import *
 from critic_model import *
 
-class Inverse_agent(object):
+class Agent(object):
 	"""inverse rl with GAN"""
 	def __init__(self):		
 		# logger.Log.open('./log.txt')
@@ -24,8 +24,7 @@ class Inverse_agent(object):
 		self.unity_ip = "128.111.68.195"
 
 		# self.PORT = 11000
-		self.PORT = 39080
-
+		self.PORT = 37085
 		# Size of image
 		config = Config.parse("../../simulator2/Assets/config.txt")
 		self.config = config
@@ -47,11 +46,12 @@ class Inverse_agent(object):
 		self.message_protocol_kit = mpu.MessageProtocolUtil(self.num_direction, self.num_actions, use_stop)
 
 		self.null_previous_direction = self.num_direction + 1
+		self.null_previous_block = self.num_block
 
 		self.gamma = 1.0
 
 		self.policy_model = Policy_model(image_embed_dim=200, hidden_dim=250, action_dim_1=32, action_dim_2=24, inter_dim=120)
-		self.critic_model = Critic_model(image_embed_dim=200, hidden_dim=250, direction_dim=24, inter_dim=120)
+		# self.critic_model = Critic_model(image_embed_dim=200, hidden_dim=250, direction_dim=24, inter_dim=120)
 
 	def receive_instruction_image(self):
 
@@ -73,7 +73,7 @@ class Inverse_agent(object):
 			return (direction_id, block_id)
 
 	def action2msg(self, block_id, direction_id):
-		if direction_id == 4:
+		if direction_id == 4 or block_id == 20:
 			return "Stop"
 
 		if direction_id == 0:
@@ -96,6 +96,7 @@ class Inverse_agent(object):
 		instruction_batch = [] # list of -1 * max_instruction
 		lens_batch = [] # list of lengths
 		previous_batch = [] # list of -1 * 1
+		previous_blocks = []
 
 		block_ids = []
 		direction_ids = []
@@ -113,17 +114,20 @@ class Inverse_agent(object):
 			instruction_id_padded = np.expand_dims(instruction_id_padded, axis=0)
 			instruction_batch.append(instruction_id_padded)
 			previous_direction = state[2]
+			previous_block = state[3]
 			previous_batch.append(previous_direction)
+			previous_blocks.append(previous_block)
 			block_ids.append(block_id)
 			direction_ids.append(direction_id)
 
 		image_batch = Variable(torch.from_numpy(np.concatenate(image_batch, axis=0)).float().cuda())
 		instruction_batch = Variable(torch.LongTensor(np.concatenate(instruction_batch, axis=0)).cuda())
 		previous_batch = Variable(torch.LongTensor(previous_batch).cuda().view(-1,1))
+		previous_batch_2 = Variable(torch.LongTensor(previous_blocks).cuda().view(-1,1))
 		block_ids = torch.LongTensor(block_ids).cuda()
 		direction_ids = torch.LongTensor(direction_ids).cuda()
 
-		return (image_batch, instruction_batch, lens_batch, previous_batch, block_ids, direction_ids)
+		return (image_batch, instruction_batch, lens_batch, previous_batch, previous_batch_2, block_ids, direction_ids)
 
 	# def build_inputs(self, state):
 
@@ -206,8 +210,9 @@ class Inverse_agent(object):
 			img = np.transpose(img, (2,0,1))
 			img_state.append(img)
 			previous_direction = self.null_previous_direction
+			previous_block = self.null_previous_block
 			instruction_ids = self.policy_model.seq_encoder.instruction2id(instruction)
-			state = (img_state, instruction_ids, previous_direction)
+			state = (img_state, instruction_ids, previous_direction, previous_block)
 			inputs = self.build_batch_inputs([(state, 0, 0)])
 			_, block_prob, _ = self.policy_model(inputs)
 
@@ -223,8 +228,9 @@ class Inverse_agent(object):
 			action_paths = []
 
 			while True:
-				direction_prob, _, _ = self.policy_model(inputs)
+				direction_prob, block_prob, _ = self.policy_model(inputs)
 				direction_id = self.sample_policy(direction_prob, method=sample_method)
+				block_id_pred = self.sample_policy(block_prob, method=sample_method)
 				action_msg = self.action2msg(block_id_pred, direction_id)
 				action_paths.append(action_msg)
 				self.connection.send_message(action_msg)
@@ -234,7 +240,8 @@ class Inverse_agent(object):
 				img_state.append(new_img)
 				# previous_action = self.decode_action(action_id)
 				previous_direction = direction_id
-				state = (img_state, instruction_ids, previous_direction)
+				previous_block = block_id_pred
+				state = (img_state, instruction_ids, previous_direction, previous_block)
 				inputs = self.build_batch_inputs([(state, 0, 0)])
 
 				if self.message_protocol_kit.is_reset_message(is_reset):
@@ -260,7 +267,7 @@ if __name__ == '__main__':
 
 	model_path = '../models/' + args.model_path
 
-	agent = Inverse_agent()
+	agent = Agent()
 	agent.policy_model.cuda()
 	agent.test(model_path, mode=args.mode)
 
