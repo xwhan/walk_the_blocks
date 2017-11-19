@@ -69,17 +69,24 @@ def ppo_step(agent, opti, args):
 	# a2c_loss, entropy = agent.policy_model.a2c_loss(batch, baselines, rewards, args)
 	# opti.zero_grad()
 	# a2c_loss.backward()
+	# nn.utils.clip_grad_norm(agent.policy_model.parameters(), 5.0)
 	# opti.step()
 
-	old_model = deepcopy(agent.policy_model)
-	old_model.load_state_dict(agent.policy_model.state_dict())
-	for _ in range(args.ppo_epoch):
-		ppo_loss, entropy = agent.policy_model.ppo_loss(batch, old_model, rewards, baselines, args)
-		final_loss = ppo_loss
-		opti.zero_grad()
-		final_loss.backward()
-		# nn.utils.clip_grad_norm(agent.policy_model.parameters(), 5.0)
-		opti.step()
+	reinforce_loss, entropy = agent.policy_model.reinforce_loss(batch, rewards, args)
+	opti.zero_grad()
+	reinforce_loss.backward()
+	nn.utils.clip_grad_norm(agent.policy_model.parameters(), 5.0)
+	opti.step()
+
+	# old_model = deepcopy(agent.policy_model)
+	# old_model.load_state_dict(agent.policy_model.state_dict())
+	# for _ in range(args.ppo_epoch):
+	# 	ppo_loss, entropy = agent.policy_model.ppo_loss(batch, old_model, rewards, baselines, args)
+	# 	final_loss = ppo_loss
+	# 	opti.zero_grad()
+	# 	final_loss.backward()
+	# 	# nn.utils.clip_grad_norm(agent.policy_model.parameters(), 5.0)
+	# 	opti.step()
 
 	return bisk_metric, entropy.data.cpu().numpy()
 
@@ -130,7 +137,7 @@ def sl_step(agent, sl_opti, args):
 
 def ppo_update(agent):
 	parser = argparse.ArgumentParser(description='PPO update')
-	parser.add_argument('-max_epochs', type=int, default=2, help='training epochs')
+	parser.add_argument('-max_epochs', type=int, default=1, help='training epochs')
 	parser.add_argument('-lr', type=float, default=0.0001, help='learning rate')
 	parser.add_argument('-ppo_epoch', type=int, default=4)
 	parser.add_argument('-clip_epsilon', type=float, default=0.05)
@@ -140,6 +147,7 @@ def ppo_update(agent):
 	args = parser.parse_args()
 
 	opti = torch.optim.Adam(agent.policy_model.parameters(), lr=args.lr)
+	# sl_opti = torch.optim.Adam(agent.policy_model.parameters(), lr=0.0001)
 
 	configure('runs/' + args.id, flush_secs=0.5)
 
@@ -154,40 +162,30 @@ def ppo_update(agent):
 	dataset_size = constants_hyperparam["train_size"]
 
 	bisk_metrics = collections.deque([], 100)
-	entropies = collections.deque([], 100)
-	# plot_data = []
-	# plot_time = []
+	# policy_entropy = collections.deque([], 200)
+	plot_data = []
+	plot_time = []
 	sl = False
 	step = 0
-	plot_entropy = []
-	plot_entropy_time = []
 
 	for epoch in range(args.max_epochs):
 		# f = open('../demonstrations.pkl', 'rb')
 		for sample_id in tqdm(range(dataset_size)):
 			step += 1
-			# schedule rule
+
+			# # schedule rule
 			# if sl:
-			entropy = sl_step(agent, opti, args)
-			entropies.append(entropy)
-			plot_entropy.append(np.mean(entropies))
-			plot_entropy_time.append(step)
-			log_value('entropy_plot', np.mean(entropies), step)
-				# sl = False
+			# 	entropy = sl_step(agent, opti, args)
+			# 	sl = False	
 			# else:
-			# 	dis, entropy = ppo_step(agent, opti, args)
-			# 	# if dis > 0.5:
-			# 	bisk_metrics.append(dis)
-			# 	entropies.append(entropy)
-			# 	plot_entropy.append(np.mean(entropies))
-			# 	plot_entropy_time.append(step)
-			# 	log_value('entropy_plot', np.mean(entropies), step)
-			# 	if len(bisk_metrics) != 0 and dis > np.mean(bisk_metrics): # performance lower than baselines
+			# 	dis, _ = ppo_step(agent, opti, args)
+			# 	if dis > 0.5:
+			# 		bisk_metrics.append(dis)
+			# 	if dis > np.max(bisk_metrics): # performance lower than baselines
 			# 		sl = True
-				# if len(bisk_metrics) > 0:
-				# 	log_value('avg_dis', np.mean(bisk_metrics), step)	
-				# 	plot_data.append(np.mean(bisk_metrics))
-				# 	plot_time.append(step)
+			# 	log_value('avg_dis', np.mean(bisk_metrics), step)	
+			# 	plot_data.append(np.mean(bisk_metrics))
+			# 	plot_time.append(step)
 
 
 			# # schedule every 100
@@ -212,24 +210,21 @@ def ppo_update(agent):
 			# 	plot_data.append(np.mean(bisk_metrics))
 			# 	plot_time.append(step)
 
-			# # Pure PPO
-			# dis, _ = ppo_step(agent, opti, args)
-			# bisk_metrics.append(dis)
-			# log_value('avg_dis', np.mean(bisk_metrics), step)
-			# plot_data.append(np.mean(bisk_metrics))
-			# plot_time.append(step)
+			# Pure PPO
+			dis, _ = ppo_step(agent, opti, args)
+			bisk_metrics.append(dis)
+			log_value('avg_dis', np.mean(bisk_metrics), step)
+			plot_data.append(np.mean(bisk_metrics))
+			plot_time.append(step)
 
-		# save_path = '../models/' + args.id + '_epoch' + str(epoch + 1) + '.pth'
-		# torch.save(agent.policy_model.state_dict(), save_path)
-		# print 'Model Saved'
-	
-	np.save('../plot_data/' + args.id, np.array(plot_entropy))
-	np.save('../plot_data/' + args.id + '_steps', np.array(plot_entropy_time))
+	save_path = '../models/' + args.id + '.pth'
+	torch.save(agent.policy_model.state_dict(), save_path)
+	print 'Model Saved'
+	np.save('../plot_data/' + args.id, np.array(plot_data))
+	np.save('../plot_data/' + args.id + '_steps', np.array(plot_time))
 	print 'Plotdata Saved'
 
 if __name__ == '__main__':
-	torch.manual_seed(2)
-	torch.cuda.manual_seed(2)
 	agent = Inverse_agent()
 	agent.policy_model.cuda()
 	ppo_update(agent)

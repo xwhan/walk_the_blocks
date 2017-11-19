@@ -24,7 +24,7 @@ class Inverse_agent(object):
 		self.unity_ip = "128.111.68.194"
 
 		# self.PORT = 11000
-		self.PORT = 36544
+		self.PORT = 33075
 
 		# Size of image
 		config = Config.parse("../../simulator2/Assets/config.txt")
@@ -32,7 +32,7 @@ class Inverse_agent(object):
 		image_dim = self.config.screen_size
 
 		self.connection = rc.ReliableConnect(self.unity_ip, self.PORT, image_dim)
-		# self.connection.connect()
+		self.connection.connect()
 
 		# Dataset specific parameters
 		self.num_block = 20
@@ -212,7 +212,6 @@ class Inverse_agent(object):
 			_, block_prob, _ = self.policy_model(inputs)
 
 			block_id_pred = self.sample_policy(block_prob.squeeze(), method='greedy')
-			# block_id_pred = gold_block_id
 
 			if block_id_pred == gold_block_id:
 				print 'block correct'
