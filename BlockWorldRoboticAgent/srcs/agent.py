@@ -13,6 +13,7 @@ import random
 import argparse
 from policy_model import *
 from critic_model import *
+import time
 
 class Agent(object):
 	"""inverse rl with GAN"""
@@ -21,10 +22,10 @@ class Agent(object):
 
 		# Connect to simulator
 		# self.unity_ip = "0.0.0.0"
-		self.unity_ip = "128.111.68.195"
+		self.unity_ip = "128.111.68.195"	
 
 		# self.PORT = 11000
-		self.PORT = 37085
+		self.PORT = 34439
 		# Size of image
 		config = Config.parse("../../simulator2/Assets/config.txt")
 		self.config = config
@@ -47,8 +48,6 @@ class Agent(object):
 
 		self.null_previous_direction = self.num_direction + 1
 		self.null_previous_block = self.num_block
-
-		self.gamma = 1.0
 
 		self.policy_model = Policy_model(image_embed_dim=200, hidden_dim=250, action_dim_1=32, action_dim_2=24, inter_dim=120)
 		# self.critic_model = Critic_model(image_embed_dim=200, hidden_dim=250, direction_dim=24, inter_dim=120)

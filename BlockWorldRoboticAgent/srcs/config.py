@@ -22,7 +22,7 @@ class Config:
             self.data_mode = Config.TRAIN
         elif dataset_file == "devset.json":
             self.data_mode = Config.DEV
-        elif dataset_file == "testset.json":
+        elif dataset_file == "testset.json" or dataset_file == "testset1.json" :
             self.data_mode = Config.TEST
         else:
             raise AssertionError("Unknown dataset file " + str(dataset_file))

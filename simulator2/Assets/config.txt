@@ -1,6 +1,6 @@
 Num of datapoints:-1
-Shuffle before select:true
-File name:devset.json
+Shuffle before select:false
+File name:testset.json
 Simplified:false
 horizon:40
 Reward function type:4
