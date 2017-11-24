@@ -22,10 +22,10 @@ class Agent(object):
 
 		# Connect to simulator
 		# self.unity_ip = "0.0.0.0"
-		self.unity_ip = "128.111.68.195"	
+		self.unity_ip = "128.111.68.194"	
 
 		# self.PORT = 11000
-		self.PORT = 34439
+		self.PORT = 38279
 		# Size of image
 		config = Config.parse("../../simulator2/Assets/config.txt")
 		self.config = config
@@ -190,6 +190,7 @@ class Agent(object):
 
 		sum_bisk_metric = 0
 		bisk_metrics = []
+		episode_lens = []
 		sum_reward = 0
 		sum_steps = 0
 		right_block = 0
@@ -226,13 +227,15 @@ class Agent(object):
 
 			action_paths = []
 
+			step = 0
 			while True:
 				direction_prob, block_prob, _ = self.policy_model(inputs)
-				direction_id = self.sample_policy(direction_prob, method=sample_method)
-				block_id_pred = self.sample_policy(block_prob, method=sample_method)
+				direction_id = self.sample_policy(direction_prob, method='greedy')
+				block_id_pred = self.sample_policy(block_prob, method='greedy')
 				action_msg = self.action2msg(block_id_pred, direction_id)
 				action_paths.append(action_msg)
 				self.connection.send_message(action_msg)
+				step += 1
 				(_, reward, new_img, is_reset) = self.receive_response()
 
 				new_img = np.transpose(new_img, (2,0,1))
@@ -247,8 +250,11 @@ class Agent(object):
 					self.connection.send_message('Ok-Reset')
 					break
 
+			episode_lens.append(len(action_paths))
+
 			print 'action path:', action_paths
 			print 'bisk metric until now:', np.mean(bisk_metrics)
+			print 'last bisk:', bisk_metrics[-1]
 			# print 'expert path:', expert_path
 
 		avg_bisk_metric = sum_bisk_metric / float(test_size)
@@ -256,6 +262,7 @@ class Agent(object):
 		print "Avg. Bisk Metric " + str(avg_bisk_metric)
 		print "Med. Bisk Metric " + str(median_bisk_metric)
 		print "First Block accuracy  " + str(first_right/float(test_size))
+		print 'Avg. Episode Len ' + str(np.mean(episode_lens))
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Options at test stage')
@@ -265,6 +272,7 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	model_path = '../models/' + args.model_path
+	print model_path
 
 	agent = Agent()
 	agent.policy_model.cuda()

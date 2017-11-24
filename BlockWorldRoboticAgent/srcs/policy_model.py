@@ -125,12 +125,12 @@ class Policy_model(nn.Module):
 		batch_size = direction_probs.size()[0]
 		block_gather_indices = torch.arange(0, batch_size).long().cuda() * 20 + chosen_blocks
 		block_log_probs = torch.log(block_probs.view(-1)[block_gather_indices] + 1e-6)
-		block_loss = - (block_log_probs * rewards).mean()
-
 		direction_gather_indices = torch.arange(0, batch_size).long().cuda() * 5 + chosen_directions
 		direction_log_probs = torch.log(direction_probs.view(-1)[direction_gather_indices] + 1e-6)
 
 		adv_targ = Variable(torch.FloatTensor(advs).cuda())
+
+		block_loss = - (block_log_probs * adv_targ).mean()
 
 		value_loss = (rewards - values).pow(2).mean()
 
@@ -178,7 +178,6 @@ class Policy_model(nn.Module):
 		rewards = Variable(torch.FloatTensor(rewards).cuda())
 
 		direction_probs, block_probs, values = self((imgs, instructions, lens, last_directions, last_blocks))
-
 		direction_entropy = - (torch.log(direction_probs + 1e-6) * direction_probs).sum(-1).mean()
 		entropy_loss = - direction_entropy * args.entropy_coef
 

@@ -72,11 +72,13 @@ def ppo_step(agent, opti, args):
 	# a2c_loss, entropy = agent.policy_model.a2c_loss(batch, baselines, rewards, args)
 	# opti.zero_grad()
 	# a2c_loss.backward()
+	# # nn.utils.clip_grad_norm(agent.policy_model.parameters(), 5.0)
 	# opti.step()
 
 	reinforce_loss, entropy = agent.policy_model.reinforce_loss(batch, rewards, args)
 	opti.zero_grad()
 	reinforce_loss.backward()
+	nn.utils.clip_grad_norm(agent.policy_model.parameters(), 10.0)
 	opti.step()
 
 	# old_model = deepcopy(agent.policy_model)
@@ -140,7 +142,7 @@ def sl_step(agent, sl_opti, args):
 
 def ppo_update(agent):
 	parser = argparse.ArgumentParser(description='PPO update')
-	parser.add_argument('-max_epochs', type=int, default=2, help='training epochs')
+	parser.add_argument('-max_epochs', type=int, default=4, help='training epochs')
 	parser.add_argument('-lr', type=float, default=0.00005, help='learning rate')
 	parser.add_argument('-ppo_epoch', type=int, default=4)
 	parser.add_argument('-clip_epsilon', type=float, default=0.05)
@@ -174,6 +176,7 @@ def ppo_update(agent):
 		# f = open('../demonstrations.pkl', 'rb')
 		# if epoch == 4:
 		# 	opti = torch.optim.Adam(agent.policy_model.parameters(), lr=args.lr / 2)
+		# 	bisk_metrics = collections.deque([], 100)
 
 		for sample_id in tqdm(range(dataset_size)):
 			step += 1
@@ -222,7 +225,7 @@ def ppo_update(agent):
 			# plot_data.append(np.mean(bisk_metrics))
 			# plot_time.append(step)
 
-		save_path = '../models/' + args.id + '_epoch' + str(epoch + 7) + '.pth'
+		save_path = '../models/' + args.id + '_epoch' + str(epoch + 5) + '.pth'
 		torch.save(agent.policy_model.state_dict(), save_path)
 		print 'Model Saved'
 	
