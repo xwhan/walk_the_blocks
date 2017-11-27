@@ -78,7 +78,7 @@ def ppo_step(agent, opti, args):
 	reinforce_loss, entropy = agent.policy_model.reinforce_loss(batch, rewards, args)
 	opti.zero_grad()
 	reinforce_loss.backward()
-	nn.utils.clip_grad_norm(agent.policy_model.parameters(), 10.0)
+	# nn.utils.clip_grad_norm(agent.policy_model.parameters(), 10.0)
 	opti.step()
 
 	# old_model = deepcopy(agent.policy_model)
@@ -143,7 +143,7 @@ def sl_step(agent, sl_opti, args):
 def ppo_update(agent):
 	parser = argparse.ArgumentParser(description='PPO update')
 	parser.add_argument('-max_epochs', type=int, default=4, help='training epochs')
-	parser.add_argument('-lr', type=float, default=0.00005, help='learning rate')
+	parser.add_argument('-lr', type=float, default=0.000025, help='learning rate')
 	parser.add_argument('-ppo_epoch', type=int, default=4)
 	parser.add_argument('-clip_epsilon', type=float, default=0.05)
 	parser.add_argument('-entropy_coef', type=float, default=0.1, help='weight for entropy loss')
@@ -225,7 +225,7 @@ def ppo_update(agent):
 			# plot_data.append(np.mean(bisk_metrics))
 			# plot_time.append(step)
 
-		save_path = '../models/' + args.id + '_epoch' + str(epoch + 5) + '.pth'
+		save_path = '../models/' + args.id + '_epoch' + str(epoch + 9) + '.pth'
 		torch.save(agent.policy_model.state_dict(), save_path)
 		print 'Model Saved'
 	
