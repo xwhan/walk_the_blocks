@@ -75,21 +75,21 @@ def ppo_step(agent, opti, args):
 	# # nn.utils.clip_grad_norm(agent.policy_model.parameters(), 5.0)
 	# opti.step()
 
-	reinforce_loss, entropy = agent.policy_model.reinforce_loss(batch, rewards, args)
-	opti.zero_grad()
-	reinforce_loss.backward()
-	nn.utils.clip_grad_norm(agent.policy_model.parameters(), 10.0)
-	opti.step()
+	# reinforce_loss, entropy = agent.policy_model.reinforce_loss(batch, rewards, args)
+	# opti.zero_grad()
+	# reinforce_loss.backward()
+	# nn.utils.clip_grad_norm(agent.policy_model.parameters(), 10.0)
+	# opti.step()
 
-	# old_model = deepcopy(agent.policy_model)
-	# old_model.load_state_dict(agent.policy_model.state_dict())
-	# for _ in range(args.ppo_epoch):
-	# 	ppo_loss, entropy = agent.policy_model.ppo_loss(batch, old_model, rewards, baselines, args)
-	# 	final_loss = ppo_loss
-	# 	opti.zero_grad()
-	# 	final_loss.backward()
-	# 	# nn.utils.clip_grad_norm(agent.policy_model.parameters(), 5.0)
-	# 	opti.step()
+	old_model = deepcopy(agent.policy_model)
+	old_model.load_state_dict(agent.policy_model.state_dict())
+	for _ in range(args.ppo_epoch):
+		ppo_loss, entropy = agent.policy_model.ppo_loss(batch, old_model, rewards, baselines, args)
+		final_loss = ppo_loss
+		opti.zero_grad()
+		final_loss.backward()
+		# nn.utils.clip_grad_norm(agent.policy_model.parameters(), 5.0)
+		opti.step()
 
 	return bisk_metric, entropy.data.cpu().numpy()
 
@@ -98,7 +98,7 @@ def sl_step(agent, sl_opti, args):
 	init_imgs = agent.policy_model.image_encoder.build_init_images()
 	for img in init_imgs:
 		img_state.append(img)
-	(_, _, img, instruction, traj) = agent.receive_instruction_image()
+	(_, bisk_metric, img, instruction, traj) = agent.receive_instruction_image()
 	img = np.transpose(img, (2,0,1))
 	img_state.append(img)
 	previous_direction = agent.null_previous_direction
@@ -138,12 +138,12 @@ def sl_step(agent, sl_opti, args):
 	sl_opti.step()
 
 	_, entropy = agent.policy_model.sl_loss(expert_batch, args.entropy_coef)
-	return entropy.data.cpu().numpy()
+	return bisk_metric, entropy.data.cpu().numpy()
 
 def ppo_update(agent):
 	parser = argparse.ArgumentParser(description='PPO update')
-	parser.add_argument('-max_epochs', type=int, default=4, help='training epochs')
-	parser.add_argument('-lr', type=float, default=0.00005, help='learning rate')
+	parser.add_argument('-max_epochs', type=int, default=2, help='training epochs')
+	parser.add_argument('-lr', type=float, default=0.0001, help='learning rate')
 	parser.add_argument('-ppo_epoch', type=int, default=4)
 	parser.add_argument('-clip_epsilon', type=float, default=0.05)
 	parser.add_argument('-entropy_coef', type=float, default=0.1, help='weight for entropy loss')
@@ -166,10 +166,12 @@ def ppo_update(agent):
 	dataset_size = constants_hyperparam["train_size"]
 
 	bisk_metrics = collections.deque([], 100)
-	# policy_entropy = collections.deque([], 200)
+	policy_entropy = collections.deque([], 100)
 	plot_data = []
-	plot_time = []
+	plot_error = []
+	error_step = []
 	sl = False
+	last_sl = False
 	step = 0
 
 	for epoch in range(args.max_epochs):
@@ -181,31 +183,67 @@ def ppo_update(agent):
 		for sample_id in tqdm(range(dataset_size)):
 			step += 1
 
-			# schedule rule
-			if sl:
-				entropy = sl_step(agent, opti, args)
-				sl = False
-			else:
-				dis, _ = ppo_step(agent, opti, args)
-				# if dis > 0.5:
-				bisk_metrics.append(dis)
-				if len(bisk_metrics) != 0 and dis > np.mean(bisk_metrics): # performance lower than baselines
-					sl = True
-				if len(bisk_metrics) > 0:
-					log_value('avg_dis', np.mean(bisk_metrics), step)	
-					plot_data.append(np.mean(bisk_metrics))
-					plot_time.append(step)
+			# _ = sl_step(agent, opti, args)
 
-			# # schedule every 100
-			# if (sample_id + 1) % 100 == 0:
-			# 	_ = sl_step(agent, opti, args)
+			# # schedule rule
+			# if sl:
+			# 	dis, entropy = sl_step(agent, opti, args)
+			# 	sl = False
+			# 	bisk_metrics.append(dis)
+			# 	log_value('distance', np.mean(bisk_metrics), step)
+			# 	plot_error.append(np.mean(bisk_metrics))
+			# 	error_step.append(step)
+			# 	last_sl = True
+
 			# else:
-			# 	dis, _ = ppo_step(agent, opti, args)
-			# 	if dis > 0.5:
+			# 	dis, entropy = ppo_step(agent, opti, args)
+			# 	# if dis > 0.5:
+			# 	bisk_metrics.append(dis)
+			# 	if len(bisk_metrics) != 0 and dis > np.mean(bisk_metrics): # performance lower than baselines
+			# 		sl = True
+			# 	if not last_sl:
 			# 		bisk_metrics.append(dis)
-			# 	log_value('avg_dis', np.mean(bisk_metrics), step)	
-			# 	plot_data.append(np.mean(bisk_metrics))
-			# 	plot_time.append(step)
+			# 		log_value('distance', np.mean(bisk_metrics), step)
+			# 		plot_error.append(np.mean(bisk_metrics))
+			# 		error_step.append(step)
+			# 	last_sl = False
+
+			# policy_entropy.append(entropy)
+			# log_value('entropy', np.mean(policy_entropy), step)
+			# plot_data.append(np.mean(policy_entropy))			
+
+			# schedule every 100
+			if (sample_id + 1) % 20 == 0:
+				dis, entropy = sl_step(agent, opti, args)
+				bisk_metrics.append(dis)
+				log_value('distance', np.mean(bisk_metrics), step)
+				plot_error.append(np.mean(bisk_metrics))
+				error_step.append(step)
+				last_sl = True
+			else:
+				dis, entropy = ppo_step(agent, opti, args)
+				# if dis > 0.5:
+				if not last_sl:
+					bisk_metrics.append(dis)
+					log_value('distance', np.mean(bisk_metrics), step)
+					plot_error.append(np.mean(bisk_metrics))
+					error_step.append(step)
+				last_sl = False
+
+			policy_entropy.append(entropy)
+			log_value('entropy', np.mean(policy_entropy), step)
+			plot_data.append(np.mean(policy_entropy))
+
+
+			# ### pure ppo
+			# dis, entropy = ppo_step(agent, opti, args)
+			# policy_entropy.append(entropy)
+			# bisk_metrics.append(dis)
+			# log_value('entropy', np.mean(policy_entropy), step)
+			# log_value('distance', np.mean(bisk_metrics), step)
+			# plot_data.append(np.mean(policy_entropy))
+			# plot_error.append(np.mean(bisk_metrics))
+			# error_step.append(step)
 
 			# imitation 1 epoch, RL 1 epoch
 			# if epoch < 2:
@@ -225,13 +263,15 @@ def ppo_update(agent):
 			# plot_data.append(np.mean(bisk_metrics))
 			# plot_time.append(step)
 
-		save_path = '../models/' + args.id + '_epoch' + str(epoch + 5) + '.pth'
-		torch.save(agent.policy_model.state_dict(), save_path)
-		print 'Model Saved'
+		# save_path = '../models/' + args.id + '_epoch' + str(epoch + 9) + '.pth'
+		# torch.save(agent.policy_model.state_dict(), save_path)
+		# print 'Model Saved'
 	
-	# np.save('../plot_data/' + args.id, np.array(plot_data))
+	np.save('../plot_data/' + args.id + 'entropy', np.array(plot_data))
+	np.save('../plot_data/' + args.id + 'distance', np.array(plot_error))
+	np.save('../plot_data/' + args.id + 'steps', np.array(error_step))
 	# np.save('../plot_data/' + args.id + '_steps', np.array(plot_time))
-	# print 'Plotdata Saved'
+	print 'Plotdata Saved'
 
 if __name__ == '__main__':
 	torch.manual_seed(3)
