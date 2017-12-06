@@ -183,7 +183,11 @@ def ppo_update(agent):
 		for sample_id in tqdm(range(dataset_size)):
 			step += 1
 
-			# _ = sl_step(agent, opti, args)
+			dis, entropy = sl_step(agent, opti, args)
+
+			policy_entropy.append(entropy)
+			log_value('entropy', np.mean(policy_entropy), step)
+			plot_data.append(np.mean(policy_entropy))					
 
 			# # schedule rule
 			# if sl:
@@ -212,27 +216,27 @@ def ppo_update(agent):
 			# log_value('entropy', np.mean(policy_entropy), step)
 			# plot_data.append(np.mean(policy_entropy))			
 
-			# schedule every 100
-			if (sample_id + 1) % 20 == 0:
-				dis, entropy = sl_step(agent, opti, args)
-				bisk_metrics.append(dis)
-				log_value('distance', np.mean(bisk_metrics), step)
-				plot_error.append(np.mean(bisk_metrics))
-				error_step.append(step)
-				last_sl = True
-			else:
-				dis, entropy = ppo_step(agent, opti, args)
-				# if dis > 0.5:
-				if not last_sl:
-					bisk_metrics.append(dis)
-					log_value('distance', np.mean(bisk_metrics), step)
-					plot_error.append(np.mean(bisk_metrics))
-					error_step.append(step)
-				last_sl = False
+			# # schedule every 100
+			# if (sample_id + 1) % 20 == 0:
+			# 	dis, entropy = sl_step(agent, opti, args)
+			# 	bisk_metrics.append(dis)
+			# 	log_value('distance', np.mean(bisk_metrics), step)
+			# 	plot_error.append(np.mean(bisk_metrics))
+			# 	error_step.append(step)
+			# 	last_sl = True
+			# else:
+			# 	dis, entropy = ppo_step(agent, opti, args)
+			# 	# if dis > 0.5:
+			# 	if not last_sl:
+			# 		bisk_metrics.append(dis)
+			# 		log_value('distance', np.mean(bisk_metrics), step)
+			# 		plot_error.append(np.mean(bisk_metrics))
+			# 		error_step.append(step)
+			# 	last_sl = False
 
-			policy_entropy.append(entropy)
-			log_value('entropy', np.mean(policy_entropy), step)
-			plot_data.append(np.mean(policy_entropy))
+			# policy_entropy.append(entropy)
+			# log_value('entropy', np.mean(policy_entropy), step)
+			# plot_data.append(np.mean(policy_entropy))
 
 
 			# ### pure ppo
@@ -268,8 +272,8 @@ def ppo_update(agent):
 		# print 'Model Saved'
 	
 	np.save('../plot_data/' + args.id + 'entropy', np.array(plot_data))
-	np.save('../plot_data/' + args.id + 'distance', np.array(plot_error))
-	np.save('../plot_data/' + args.id + 'steps', np.array(error_step))
+	# np.save('../plot_data/' + args.id + 'distance', np.array(plot_error))
+	# np.save('../plot_data/' + args.id + 'steps', np.array(error_step))
 	# np.save('../plot_data/' + args.id + '_steps', np.array(plot_time))
 	print 'Plotdata Saved'
 

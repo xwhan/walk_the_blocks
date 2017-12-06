@@ -1,0 +1,2110 @@
+6 should be at the south end of the table in the center
+10 should be north of 11
+Place block 10 north of block 11.
+9 should be north of 10
+Place block 9 north of block 10.
+Move block number 9 to the top of block number 10 and set it lined up with each other.
+8 should be north of 9
+Place block 8 north of block 9.
+14 should be north of 15
+Place block 14 north of block 15.
+13 should be north of 14
+Place block 13 north of block 14.
+Move block number 13 so it is in line with blocks 14 and 15, above them.
+Place block 17 north of block 18.
+Place block 16 north of block 17.
+Move block number 16 so that it is over block number 17 with their top and bottom's touching.
+Move block number 4 so that it is in line with blocks 5, 7, 12 and 16.
+Move block number 3 so it is in a straight line with blocks number 3, 4, 6, 12 and 16.
+Move block number 2 so that it is in a straight line with blocks nubmer 3, 4, 5,7, 12 and 16.
+move block number 1 so that it is in a straight line with blocks number 2, 3, 4, 5, 7, 12 and 16.
+Take block 1 and move it next to block 6. Block 1's top edge should be in line with block 6's bottom edge; block 1's right edge should be very slightly to the left of block 6's left edge.
+Move block 1 horizontally in line with block 14; there should be 2 blocks of empty space between block 1 (on the left) and block 14 (on the right).
+Place block 2 south of block 1.
+Move block 2 so that it is in line with block 10; there should be 1 block's worth blank space between block 2 (on the left) and block 10 (on the right).
+Place block 3 south of block 2.
+Move block 3 so that it is in line with blocks 1 and 2, with block 3 on the bottom.
+Move block 7 so that it is vertically in line with block 6, and horizontally in line with block 3.
+Place block 12 south of block 11.
+Move block 8 so that it is vertically in line with block 7, horizontally just below block 12's bottom edge.
+Move block 8 so that its left side lines up with block 6's left side. It's top edge should line up with block 12's bottom edge.
+move block 4 until it's in numerical order with block's 1-3, but leave two spaces between 3 and 4
+Move block 4 so that it is vertically in line with block 3. It should be just below block 8's bottom edge.
+Move block 4 to create a vertical line from blocks 1 through 4. There should be 2 block's worth of space between blocks 3 and 4.
+Place block 5 south of block 4.
+Move block 5 so that it is vertically in line with block 4, with block 4 immediately above it.
+Slide 10 over until its left edge aligns with 17's right edge and down so that its bottom edge is about halfway through block 13.
+Put 15 on 6's left and then slide it up level with 10.
+Place block 14 north of block 15.
+Begin a right upward diagonal from 14 with 18.
+Put 18 above 6 and slide it up until its bottom edge is level with 14's top edge.
+Place block 17 north of block 18.
+Place block 16 north of block 17.
+Place block 16 so that it makes a column on the surface with it at the top, followed by blocks 17 and 18.
+Begin a left downward diagonal from 13 with 9.
+Place block 6 so it is in the same row as block 18 and in the column to the left of the column with blocks 9 and 10.
+Continue that diagonal with 6.
+UPS should be south of Twitter and northwest of BMW
+Place the UPS block south of the Twitter block.
+Target should be west of UPS, east of SRI, and south of Stella Artois
+Texaco should be south of Target
+Place the Texaco block south of the Target block.
+Toyota should be south of Texaco
+Place the Toyota block south of the Texaco block.
+Slide the Adidas box left a down until it is about one box above the Toyota box with half of the Adidas box to the left of the left side of the Toyota box.
+Pick up the Adidas box and place it one block above the Toyota box with half of the Adidas box to the left of the Toyota box’s left edge.
+Move Adidas so it is above Toyota, with one block length between them and with Adidas's bottom right corner even with Toyota's top edge midpoint
+Position Adidas so its bottom edge faces Toyota's top edge with one block length in between and Adidas over half a block length
+Place the Burger King block north of the Coca Cola block.
+Burger King should be north of Coca Cola
+Place the Shell block north of the SRI block.
+Shell should be north of SRI
+place the Target block north of the Texaco block.
+Put the UPS block three columns east of the Target block, and four rows north of the Target block.
+Put the Twitter block two columns east of the Target block, and three rows north of the Target block.
+slide the Toyota cube right, up and then right until side by side with the Twitter cube
+Continue the horizontal line with Stella Artois
+Continue the line with Mercedes cube
+Place the Nvidia block south of the Mercedes block.
+Place nvidia cube making a right angle with the Twitter Mercedes line on the Mercedes side and down
+Place the Pepsi block south of the Nvidia block.
+Continue the Mercedes nvidia line with the Pepsi cube
+Continue the verical line with Pepsi
+Put the Heineken block northwest of the Texaco block, with one intervening empty block space in between.
+Place Heineken cube forming a right angle with Mercedes Pepsi line  to the left
+Place the Coca Cola block underneath and to the left of the Heineken block.
+Place the HP block south of the Heineken block.
+HP should be east of Coca Cola and south of Heineken
+Place the Shell block south of the Pepsi block.
+Shell should be east of HP, south of Pepsi, and west of Target
+Place the SRI block south of the Shell block.
+SRI should be west of Texaco and south of Shell
+Place the Stella Artois block south of the SRI block.
+Starbucks should be south of SRI
+Start to form a diagonal line by placing  the Esso block to the left and underneath the McDonald's block.
+Put the Esso block underneath and to the left of the McDonald's block.
+Put the Adidas block in the same row as the McDonalds block, to the left and with three intervening empty block spaces in between.
+Position 15 so its top edge faces 1's bottom edge with a block length between them
+15 should be south of 1, with a block length between the two
+Take block 15 and put it below block one but aligned with block 13 to its right.
+Put block 15 to the left of block 13 and slide it directly to the left until it is below block 1 but still aligned with block 13 to the right, maybe a slight bit lower than block 13.
+Put block 15 to the right of block 3 and then move it straight to the right until it is directly aligned with block 1 and up towards block 1 until the top of block 15 is almost in line with the top of block 13.
+Move 1 so it is to the right of 2. There should be half a block length between 2 and 1, and the bottom edge of 1 should be about a quarter block length higher than 2's block length
+Position 1 so its left edge faces 2's right edge, with a half block length between them horizontally and the bottom edge of 1 slightly higher than 2's bottom edge
+1 should be east of 2, but with a half-block length between them and 2 being closer to the bottom edge of the table than 1
+Put block 1 southwest of block 15, with three intervening empty block spaces in between.
+Move block 3 straight towards you and when its top edge is even with the top edge of block one, move it to the left until it just lines up with block 1.
+2 should be north of 3
+Place block 2 north of block 3.
+5 should be north of 6
+Place block 5 north of block 6.
+Put block 5 in line with block 6 but one space farther away from you towards the top of the surface.
+4 should be north of 5
+Place block 4 north of block 4.
+Put block 4 in the first open spot north of block 6.
+8 should be north of 9
+Place block 8 north of block 9.
+7 should be north of 8
+Place block 7 north of block 8.
+Place block 14 north of block 15.
+13 should be north of 14
+Place block 13 north of block 14.
+12 should be north of 13
+Place block 12 north of block 13.
+11 should be north of 12
+Place block 11 north of block 12.
+10 should be north of 11
+Place block 10 north of block 11.
+Move box 5 from the top right of box 11 to above box 14 in the middle with a small space.
+Slide box 5 right until it is lined up just above box 14 with a small space between the two.
+Pick up box 5 and place it above box 14 with a small space between the two.
+Place block 4 three spaces to the north of block 5.
+Put block 4 in the same column as block 5, above and with two intervening empty block spaces in between.
+Place block 4 above block 5, then slide it up until it is in line with block 3.
+Place block 4 to the left of block 3, then slide it to the left until it is in line with blocks 14 and 5.
+Place block 4 below block 10, then slide it to the right until it is in line with blocks 14 and 5.
+Place block 3 north of block 4.
+Move box 7 from lower part of the middle of the mat to the top right corner of box 3 with their corners nearly touching.
+Slide box 11 up and between boxes 1 and 7. Then slide it right and down until it is lined up with box 7 to the right.
+Place block 20 south of block 19.
+Put block 20 underneath block 19.
+Place block 9 south of block 8.
+Put block 9 underneath block 8.
+Take block 9 and place it directly underneath block 8.
+Take block 13 and place it directly underneath block 12.
+Place block 17 below block 13, then slide it to the right until it is in line with block 16.
+Place block 18 south of block 17.
+Put block 18 underneath block 17.
+Take block 18 and place it directly underneath block 17.
+Place block 14 below block 18, then slide it to the left until it is in line with block 13.
+Continue the diagonal line formed by block 18 and 14 with block 10.
+Place block 10 below block 14, then slide it to the left until it is in line with block 9.
+Place block 1 north of block 2.
+Place block 13 north of block 14.
+Place block 12 north of block 13.
+Place block 11 north of block 12.
+Put block 6 on the bottom row beneath the 4
+Place block 5 north of block 6.
+Place block 4 north of block 5.
+Place block 9 north of block 10.
+Place block 8 north of block 9.
+Move HP so it is in the middle of the bottom edge of the table with half of the block on the table and half off the table
+Position HP at the bottom of the table with half of the block hanging off. The left edge of HP should be in line with the right edge of Stella Artois.
+place the hp box immediately to the right of the stella artois box then slide it down til the bottom of the h is aligned with the bottom of the gray field
+place the pepsi box one half block width to the left of the esso box then slide it into line with the hp box
+place the pepsi box immediately below the nvidia box then slide it down to align with the hp box
+Nvidia should be north of Pepsi
+Place the Nvidia block north of the Pepsi block.
+Mercedes Benz should be north of Nvidia
+Place the Mercedes block north of the Nvidia block.
+place the mercedes benz box upper most in the line with the pepsi box
+SRI should be north of Starbucks
+Place the SRI block north of the Starbucks block.
+place the sri box against the left side of the texaco box and slide it to the left til it aligns with the starbucks box
+Texaco should be north of Toyota
+Place the Texaco block north of the Toyota block.
+place the texaco box to the immediate left of the target box then slide it left til it aligns with the toyota box
+Twitter should be north of UPS
+Place the Twitter block north of the UPS block.
+place the twitter box immediately to the left of the shell box then slide it left til it aligns with the ups box
+Move the Target box lined up with and directly to the left of the Twitter box.
+Slide the Target box up and to the left between the Shell and Twitter boxes. Then slide the Target box left until it is just passed the Twitter box. Lastly slide the Target box down until it is lined up with and directly beside the Twitter box.
+Pick up the Target box and place it lined up with and directly to the left of the Twitter box.
+Move the Stella Artois box directly above and lined up with the Target box.
+Slide the Stella Artois box up and to the right until it is directly above and lined up with the Target box.
+Pick up the Stella Artois box and place it lined up with and directly above of the Target box.
+Stella Artois should be north of Target
+Place the Stella Artois block north of the Target block.
+Move the Shell box directly to the left of and lined up with the Stella Artois box.
+Slide the Shell box up and to the left until it will pass the Stella Artois box at the top. Then slide the Shell box to the left until it will slide beside the Stella Artois box. Lastly slide the Shell box down until it is lined up with and directly beside the Stella Artois box.
+Pick up the Shell box and place it lined up with and directly to the left of the Stella Artois box.
+Move the McDonald’s  box directly to the left of and lined up with the Shell box.
+Slide the McDonald’s box right and slightly down until it is lined up with and directly beside the Shell box.
+Pick up the McDonald’s box and place it lined up with and directly to the left of the Shell box.
+Move the Heineken  box directly to the left of and lined up with the McDonald’s box.
+Slide the Heineken box up and right until it is lined up with and directly to the left of the McDonald’s box.
+Pick up the Heineken box and place it lined up with and directly to the left of the McDonald’s box.
+Move the Esso  box directly to the left of and lined up with the Heineken box.
+Slide the Esso box up and to the right until it is above the Stella Artois box. Then slide the Esso box to the left until it will be able to slide down beside the Heineken box. Lastly, slide the ESSO box down until it is directly to the left of and lined up with the Heineken box.
+Pick up the Esso box and place it lined up with and directly to the left of the Heineken box.
+Move the Burger King  box directly to the left of and lined up with the Esso box.
+Pick up the Burger King box and place it lined up with and directly to the left of the Esso box.
+Move the Adidas  box directly to the left of and lined up with the Burger King box.
+Pick up the Adidas box and place it lined up with and directly to the left of the Burger King box.
+Move the BMW box directly below and lined up with with Adidas box.
+Pick up the BMW box and place it lined up with and directly below the Adidas box.
+BMW should be south of BMW
+Place the BMW block south of the Adidas block.
+Move box 18 to the upper right area. The bottom of box 18 should be lined up with the top of box 5 and there should be a small gap between the two.
+Slide box 18 from the bottom diagonally up and right until its bottom edge lines up with the top edge of box 5. Box 18 should be a half a box left of box 5.
+Place block 18 to the left of block 5, leaving about a third a block of space. Then slide up block 18 until it is in line with block 14.
+Place block 18 above and to the left of block 17, then slide it up until it is in line with block 14.
+Place block 18 to the right of block 8, then slide it down until it is in line with block 14.
+Slide box 17 from the right side diagonally up and left until its bottom edge is lined up with the top edge of box 8. Then slide box 17 above box 18 lining it up with boxes 18 and 19.
+Find box 13 in the middle. Place it to the left and lined up with boxes 17 and 19.
+Slide box 13 up and right until it is directly to the left and lined up with box 17.
+Place block 2 one row south of block 18, and in the same column as block 16.
+Slide box 5 down and then right until it is to the right of box 2 with the two lined up.
+Find box 4 at the bottom . Place it directly above and lined up with box 5.
+Slide box diagonally up and left until it is directly above 5 and lined up with box 14 to the left.
+Place block 4 north of block 5.
+Slide box 7 down and right through boxes 1 and 4. Then slide it down to the right of box 4 lining up box 7 with box 4.
+Find box 10 along the right edge. Place it  so that it lines up to the right of box 7 with its top right corner adjacent to box 13’s bottom left corner.
+Find box 14 on the left side. Place it between boxes 18 and 10 and below box 17. The box should line up with the ones already there.
+Pick up box 14. Place it in the space between and lined up with boxes 10 and 18.
+Place block 15 south of block 14.
+Place block 16 south of block 15.
+Place block 12 south of block 11.
+Place block 9 south of block 8.
+Take block 5 and move it directly down the column, hopping over block 4 and placing block 5 next to block 3 with its left edge lined up with block 3's right edge.
+Put the purple side of block 5 aligned next to the blue side of block 3 with the numbers of the yellow face of blocks 3 and 5 in the upper lefthand corner.
+Put block 7 next to block 5 with the left edge of block 7 lined up with the right edge of block 5.
+Put the purple side of block 7 aligned next to the blue side of block 5 with the numbers of the yellow face of blocks 5 and 7 in the upper lefthand corner.
+Put block 9 next to block 7 with the left edge of block 9 lined up parallel to the right edge of block 7.
+Put the purple side of block 9 aligned next to the blue side of block 7 with the numbers of the yellow face of blocks 7 and 9 in the upper lefthand corners.
+Put block 10 below block 11 so that the top of block 10 lines up with the bottom of block 9.
+Start a column with block 9 at the top and block 10 below so that the hidden face of block 10 matches the green face of block 9 and both blocks have the numbers on their yellow faces in the upper lefthand corner.
+Place block 10 south of block 9.
+Continue the column the column that has block 9 at the top by putting block 11 below block 10so that the hidden face of block 11 matches the green face of block 10 and both blocks have the numbers on their yellow faces in the upper lefthand corner.
+Place block 11 south of block 10.
+Continue the column that has block 9 at the top by putting block 12 at the end with the hidden face of block 12 matching the green face of block 11 and both numbers on the yellow faces along the upper edges.
+Place block 12 south of block 11.
+Move block 13 so that it is below block 12 with the top edge of block 13 lined up parallel to the bottom edge of block 12.
+Continue the column that goes from block 9 at the top to block 12 at the bottom by adding block 13 at the end, matching its hidden face to the green face of block 12, with the yellow faces on top.
+Place block 13 south of block 12.
+Continue the column that has block 9 at the top and block 13 at the bottom by putting block 17 below block 13, but then slide block 17 one block space to the right so that it is directly below block 16 with five empty block spaces between them.
+Place block 16 below block 17, then slide it down until it is almost in line with block 8.
+Place block 16 to the right of block 8, then slide it over until it is in line with block 17.
+Place block 16 to the left of block 2, then slide it up until it is almost in line with block 8.
+Put block 16 on top of block 17 and then hop it down one, two three block spaces in the column below 17, so that it is now also even with block 8 to its left.
+Place block 15 north of block 16.
+Put block 15 in the column directly above block 16 with an empty space above it and the bottom of block 17.
+Place block 14 north of block 15.
+Place block 8 between blocks 17 and 14 and then slide it to the left until it is no longer in line with blocks 17 and 14.
+Continue the diagonal line formed by blocks 17 and 8 with block 6.
+Put block 6 in a new column to the left of the column that has block 8 and the right of the column that has block 5, in the row with column 14, so there is an empty block space between blocks 6 and 14 below block 8.
+Continue the diagonal line formed by blocks 17, 8 and 6 with block 4.
+Put block 4 in the diagonal line at the bottom left of blocks 6, 8 and 1, so it is in the row with block 15 with two empty spaces between them.
+Place block 1 to the left of block 4. Then slide it over leaving a block of space. Then slide block 1 down until it is in line with block 3.
+Put block 2 in the diagonal line between blocks 1 and 4, so that bock two is in the row to the left of block 16 with three block spaces between them that are empty.
+Place block 3 south of block 2.
+Slide block 20 up to just a little before the bottom of 20 and line up it's left edge with the right of block 16
+bring block 17 down and line it up vertically with block 16 and horizontally with block 20
+stick 17 in an L shape with 20 and 16
+18 should be south of 20
+Place block 18 south of block 17.
+Bring block 18 down and place it directly below block 17 so it's aligned with blocks 17 and 16
+bring 18 down so it makes a vertical row with 16 and 17
+Bring block 14 over so it's on the left side of block 18 and horizontally aligned with it and vertically aligned with block 13
+Bring block 11 down so it's right edge is vertically aligned with the left edge of block 14 and it's top edge is vertically aligned with the bottom edge of block 14
+bring 11 down just below 14 so they're corners touch but they aren't lined up next to each other, line 11 up vertically with 10
+Place block 8 to the immediate left of block 11 aligning the 2 horizontally and aligning block 8 vertically with block 7
+Place block 5 down by block 8 aligning it horizontally with blocks 14 and 18 and vertically with block 4
+pit 5 just above and to the left side of 8 and line it up with 14 and 18
+place block 3 driectly to the left of block 5 aligning them horizontally and putting them in a direct line with blocks 14 and 18
+stick 3 to the left of 5 and line them up with 14 and 18
+place block 1 a little above and to the left of block 3 so it's horizontally aligned with blocks 17 and 20 and so it's right edge is in the same vertical line as the left edge of block 3
+bring 1 over so it's a little above and to the left of 3 and line it up with 17 and 20
+bring block 2 over near block 1 so it's horizontally aligned with block 16 and vertically aligned with block 3
+place 2 above and to the Right of 1 and line it up with 3 and 16
+put 2 catty corner to block 1 above and to the right lining her up with 3
+Position 19 so its top edge faces the top edge of the table with one block length between and so its right edge faces the right edge of the table with one block length in between
+19 should be one block south of the table top side and one block west of the table right side
+Slide block 12 until above block 11 with a space.
+Move Target so it is one block length above and two block lengths to the left of BMW
+Position Target so its bottom right corner points at BMW's top left corner, with Target being one block length above and two block lengths to the left of BMW
+Target should be west-northwest of BMW, two block lengths to the west and one block length to the north
+Texaco should be south of Target
+Place the Texaco block south of the Target block.
+Toyota should be south of Texaco
+Place the Toyota block south of the Texaco block.
+Twitter should be south of Toyota
+Place the Twitter block south of the Toyota block.
+Heineken should be north of HP
+Place the Heineken block north of the HP block.
+Esso should be north of Heineken
+Place the Esso block north of the HP block.
+Coca Cola should be north of Esso
+Place the Coca Cola block north of the HP block.
+Push the McDonald's logo to the right until it just clears the Starbucks logo, then push it up until it is just above the Starbucks logo, with the smallest gap between their corners.
+Place the McDonalds block vertically aligned with the Nvidia block, and vertically in between the Starbucks and Shell blocks.
+Put the McDonalds block in the same column as the Nvidia block, above and with seven intervening empty block spaces in between.
+Move the Pepsi logo up until it is even with the McDonald's logo, then move it left until it touches the McDonald's logo.
+Push the Pepsi logo to the left until its left side is even with the right side of the McDonald's logo, then push it up until it is directly beside the McDonald's logo.
+Put the Pepsi block in the same column as the SRI block, above and with six intervening empty block spaces in between.
+Put the Starbucks block in the same column as the Target block, above and with two intervening empty block spaces in between.
+Move the Stella Artois logo down until it top is just even with the bottom of the Starbucks logo, then move the Stella Artois logo right until it is directly below the Starbucks logo.
+Slide the Stella Artois all the way right until it just clears the Starbucks logo, then move it down until its top is even with the bottom of the Starbucks logo, then slide it left until it is directly under the Starbucks logo.
+Push the Stella Artois logo down until it is just below the Starbucks logo, then push it to the right until it is perfectly beneath the Starbucks logo.
+Place the Stella Artois block south of the Starbucks block.
+Put the Stella Artois block in the same column as the Target block, above and with one intervening empty block space in between.
+Move the Shell logo down until it is even with the space between the Stella Artois and Target logos, then move it right until its right corners touch the left corners of the Target and Stella logos.
+Push the Shell logo down until it is just beneath the Stella Artois logo, then push it to the right until it is directly above the SRI logo.
+Put the Shell block in the same column as the SRI block, above and with three intervening empty block spaces in between.
+Put the Mercedes block in the same column as the Nvidia block, above and with four intervening empty block spaces in between.
+Slide the Burger King logo left until it is directly above the Coke logo, then slide it down until it is even with the Stella Artois logo.
+Push the Burger King logo left until it is just above the Coke logo, then push it down until it is i even with the Stella Artois logo.
+Put the Burger King block in the same column as the Coca Cola block, above and with one intervening empty block space in between.
+Place the BMW block north of the Burger King block.
+Move the Adidas logo down until it is even with the McDonald's logo, then move it right as far as it will go.
+Place the Adidas block north of the BMW block.
+Place block 13 north of block 14.
+13 should be north of 14
+Place block 12 north of block 13.
+12 should be north of 13
+Place block 11 north of block 12.
+11 should be north of 12
+Place block 10 north of block 11.
+10 should be north of 11 and south of 10
+Place block 9 south of block 8.
+Place the 9 beneath the 8.
+Place block 3 in the fourth open space to the left of block 17.
+Place block 14 north of block 15.
+Place the Starbucks block north of the Stella Artois block.
+Place the Coca Cola block north of the Esso block.
+Place the Burger King block north of the Coca Cola block.
+Place the BMW block north of the Burger King block.
+Place the Adidas block north of the BMW block.
+Place the Nvidia block north of the Pepsi block.
+Place the Mercedes block north of the Nvidia block.
+Put the Heineken block diagonally above and to the left of the HP block, with half a block gap between them.
+Heineken moves so that its right side is even with the left side of HP, and its bottom is even with the top of Coca Cola
+Heineken moves so that its top is even with the bottom of Target, and its left side is even with the right side of Esso
+Place the HP block south of the Heineken block.
+HP moves to directly beneath Heineken
+Begin a downward line from Heineken with HP.
+Place the McDonalds block south of the HP block.
+McDonald's moves to directly beneath HP
+Continue that line with McDonalds.
+Make an L shape from McDonalds with Texaco.
+Place the Target block north of the Texaco block.
+Place the Stella Artois block north of the Target block.
+Put the Pepsi block in the same column as the Stella Artois block, above and with three intervening empty block spaces in between.
+Pepsi moves so that its left side is even with the left side of Target, and its top is even with the top of Esso
+Pepsi moves so that its right side is even with the right side of Target, and its bottom is even with the top of Nvidia
+Pepsi moves so that its left and right sides are even with Target, and its bottom and top are even with Esso
+Place the Shell block south of the Pepsi block.
+Shell moves to directly beneath Pepsi
+Place the SRI block south of the Shell block.
+SRI moves to directly beneath Shell
+Place block 15 under block 20, then slide it over until it is no longer directly below with block 20.
+Continue the diagonal line formed by blocks 20 and 15 with block 13.
+Continue the diagonal line formed by blocks 20, 15 and 13 with block 11.
+Place block 5 to the left of block 7 and then slide it up until it is no longer in line with block 7.
+4 should be north of 5
+Place block 4 north of block 5.
+3 should be north of 4
+Place block 3 north of block 4.
+2 should be north of 3
+Place block 2 north of block 3.
+1 should be north of 2 and southwest of 6
+Place block 1 north of block 2.
+Position 6 between 18 and 7. 6's top left corner should be even with 18's bottom right corner
+Place block 6 a third a block of space above block 7, then slide block 6 to the right until it is in line with block 15.
+Place block 6 to the right of block 19, then slide it up about a third a block of space, then slide block 6 to the right until it is in line with block 15.
+Place block 8 to the right of block 6, then slide it up until it is no longer in line with block 6.
+Continue the diagonal line formed by blocks 6 and 8 with block 10.
+Place block 10 to the right of block 8, then slide it up until it is no longer in line with block 8.
+Continue the diagonal line formed by blocks 6, 8 and 10 with block 12.
+Place block 12 to the right of block 10, then slide it up until it is no longer in line with block 10.
+Form a zig-zag line with block 10 and 12 by placing block 14 below and to the right of block 12.
+Continue the diagonal line formed by blocks 12 and 14 with block 16.
+Place block 16 to the right of block 14, then slide it down until it is no longer in line with block 14.
+17 should be south of 16
+Place block 17 south of block 16.
+Put block 17 underneath block 16.
+18 should be south of 17
+Place block 18 south of block 17.
+Put block 18 underneath block 17.
+19 should be south of 18
+Place block 19 south of block 18.
+Put block 19 underneath block 18.
+20 should be south of 19
+Place block 20 south of block 19.
+Put block 20 underneath block 19.
+place the Stella artois box so its lower corner is above pepsi and left side aligned with BMW's right edge.
+Slide Stella Artois to the left until its left edge is even with BMW's right edge.
+Align Stella Artois left edge with BMW's right edge but keep it on the same level it is.
+Begin an upward right diagonal from Stella Artois with Texaco.
+Put Texaco on Stella Artois right level with UPS.
+place the twitter box so that it is the upper most in a diagonal line with the texaco and stella artois boxes
+Continue that diagonal with Twitter.
+Continue that diagonal with UPS.
+Begin an upward left diagonal from UPS with Toyota.
+Begin a downward diagonal from Target with Starbucks.
+Continue that diagonal with Nividia.
+Place the Pepsi block south of the Nvidia block.
+Place the Shell block south of the Pepsi block.
+Slide the McDonalds block down till even with the Shell block, then slide it right until it is touching the Shell block.
+Place the Burger King block north of the Coca Cola block.
+Place the BMW block north of the Burger King block.
+Place the Adidas block north of the BMW block.
+Place the Heineken block north of the HP block.
+Place the Esso block north of the Heineken block.
+Overlap the bottom right  of 5 slightly with the top right of 10
+Place block 5 above and to the right of block 10, then slide it up about a block of space until is is in line with block 16.
+Place block 5 below block 2, then slide it down until it is in line with block 16.
+Place block 5 above block 20, then slide it to the left until it is in line with block 2.
+Overlap the lower left side of 9 with the upper right side of 5
+Place block 9 to the right of block 5, then slide it up until it is no longer in line with block 5.
+Place 12 to the right of 9 with the tops and bottoms matching and no space in between
+Place block 17 to the right of block 12, then slide it down until it is no longer in line with block 12.
+Place block 18 south of block 17.
+Match the top of 18 with the bottom of 17
+Place block 18 underneath block 17.
+Place block 13 to the left of block 18, then slide it down until it is no longer in line with block 18.
+Place block 14 south of block 13.
+Match the top of 14 with the bottom of 13
+Place block 14 underneath block 13.
+Place block 15 two spaces south of block 14.
+Place 15 one block length below 14 so that 12, 13, 14, and 15, are aligned
+Place 15 one block length below 14 with the right and left sides aligned
+Place block 15 below and to the right of block 1, then slide it to the right until it is in line with blocks 13 and 14.
+Place block 19 to the right of block 15, then slide it down until it is no longer in line with block 15.
+Place block 20 south of block 19.
+Match the top of 12 with the bottom of 19
+Place block 20 underneath block 19.
+Move the 16 block down until it is even with the 10 block, then move it down as far as it will go, then move it right as far as it will go, then move it down until its top right corner touches the bottom left corner of the 20 block.
+Box 16 is in the top left corner. Slide it diagonally down and right until it is positioned to the lower left of box 20 with their adjacent corners nearly touching.
+Move the 11 block down until it is even with the 14 block, then slide it all the way right, then slide it all the way to the bottom.
+Box 11 is in the top right corner. Slide it diagonally down and right until it is to the lower left of box 16 with their adjacent corners nearly touching.
+Slide the 8 block down until it is even with the 16 block, then slide it right until it is directly below the 5 block.
+Slide the 8 block all the way down, then all the way to the right, then up until it is even with the 16 block.
+Find box 8  to the upper left of box 11. Place it so that it stays to the upper left of box 11 with the lower right corner of box 8 almost touching the top left corner of box 11.
+Box 8 is just to the upper left of box 11. Slide it diagonally down and right so that it stays to the upper left of box 11 with its bottom right corner nearly touching box 11’s top left corner.
+Slide the 4 block up as far as it will go, then right until it just clears the 3 block, then slide it down until it is even with the 20, then slide it right until it is below the 10 block.
+Move the 3 block up until it is even with the 19 block, then slide it right until it is directly above the 4 block.
+Push the 3 block all the way right, then up until it is even with the 19 block, then push it right until it is directly below the 10 block.
+Slide the 3 block all the way to the left, then slide it up until it is even with the 19 block, then slide it right until it is directly above the 4 block.
+Place block 3 north of block 4.
+Move the 7 block up until it is even with the 15 block, then slide it right until it is directly below the 5 block.
+Move the 7 block up until it is even with the 10 block, then move it all the way right, then move it down until it is even with the 15 block, then move it right until it is directly above the 8 block.
+Find box 7 in the lower left corner and place it to the upper right of box 3 with its lower left corner nearly touching the upper right corner of 3.
+Slide the 10 block down until it is even with  the 14 block, then push it all the way right, then push it down until it is even with the 1 block.
+Slide the 10 block right until it directly beneath the 5 block, then slide it down as far as it will go, then slide it right until it is directly below the 9 block.
+Push the 2 block down as far as i will go, then push the 6 block left until it just pass the right edge of the 3 block, then slide it down until it is even with the 14 block, then slide it right until is directly beneath the 5 block.
+Slide the 2 block all the way to the left, then slide the six block all the way to the left, then slide the 6 block down until it is even with the 14 block, then slide it right until it is directly above the 7 block.
+Move the 2 block to the left until it is directly above the 3 block, then slide it down until it is even with the 13 block.
+Move the 2 block all the way to the left, then slide it down until it is even with the 13 block, then slide it right until its bottom right corner touches the top right corner of the 6 block.
+Slide the 2 block all the way down, then slide it left until it is directly above the 1 block, then slide it down until it is even with the 13 block, then slide it right until it is directly above the 3 block.
+Slide the 1 block up until it is even with the 18 block, then slide it right until it is directly above the 2 block.
+Slide the 1 block to the left until it right corners are even with the left corners of the 3 block then slide it up until it is even with the 18 block, then slide it right until it is above the 2 block.
+Find box 1 on the left. Slide it up, and then right until it is lined up directly above box 2 with its top right corner nearly touching the bottom left corner of box 5.
+Move box 1 so that it is lined up directly above box 2 with its top right corner adjacent to box 5’s lower left corner.
+Place block 1 north of block 2.
+Mercedes moves so that its left side is even with the right side of Esso, and its bottom is even with the top of SRI
+Mercedes moves so that its right side is even with the left side of Nvidia, and its top is even with the bottom of Nvidia
+Put the Esso block in the same row as the SRI block, to the left and with five intervening empty block spaces in between.
+Esso moves so that its right side is even with the left side of Heineken, and its bottom is even with the bottom of SRI
+Esso moves so that its left side is even with the right side of Burger King, and its top is even with the bottom of HP
+Coca Cola moves so that its right side is even with the left side of Esso, and its bottom is even with the top of Esso
+Coca Cola moves so that its left side is even with the left side of Burger King, and its top is even with the top of HP
+Burger King should be north of Coca-Cola
+Place the Burger King block north of the Coca Cola block.
+Burger King moves so that its left and right sides are even with Coca Cola, and its bottom is even with the top of HP
+BMW should be north of Burger King
+Place the BMW block north of the Burger King block.
+BMW moves so that its left side is even with the left side of Burger King and its top is even with the top of Twitter
+Adidas should be north of BMW
+Place the Adidas block north of the BMW block.
+Texaco is placed so that it is even with SRI on the left and right sides, and its top is even with the bottom of Twitter
+Texaco is moved so that its bottom is even with the middle of Heineken, and its right side is even with Coca Cola
+Move the texaco block so that it is sides are in line with the SRI block and top is parallel with the twitter block
+Move the texaco block so that its top is parallel with the bottom of the twitter block and sides are square to the SRI block
+Create a line with the SRI block and texaco block with the top of the texaco block in line with the twitter block
+Toyota is placed directly beneath Texaco
+Toyota is placed so that its right side is even with the left side of Coca Cola, and its top is touching Texaco
+Create a line with toyota block and the texaco block with the toyota block immediately below the texaco block
+Move the Toyota block directly beneath the Texaco block
+Twitter is placed directly beneath Toyota
+Twitter is placed so that its right side is even with the left side of Coca Cola, and its top is touching Toyota
+Create a line with twitter block and the toyota block with the twitter block immediately below the toyotablock
+Target is placed so that its top is even with the middle of Stella Artois, and its right side is even with the left side of Twitter
+Target slides down until its bottom is even with the middle of Nvidia, and then slides to the right two block widths
+Move the target block so its right side is parallel to the left side of the twitter block and top is in line with the bottom of the stella artois block
+Move the target block so its right side is parallel to the left side of the toyota block and top is square with respect to the bottom of the stella artois block
+Place the target block so its right side is in line with left side of the twitter block and top is parrallel to the bottom of the stella artois block
+Stella Artois is placed so that its right side is even with Twitter, and its bottom is touching Target
+Create a line with stella artois block and the target block with the stella artois block immediately above the target block
+Starbucks is placed so that its right side is even with the left side of Twitter, and its bottom is touching Stella Artois
+Create a line with stella artois block and the starbucks block with the starbucks block immediately above the stella artois block
+SRI is placed so that is right side is even with the left side of Twitter, and its bottom is touching Stella Artois
+Create a line with SRI block and the starbucks block with the SRI block immediately above the starbucks block
+Shell is placed so that its right side is even with the left side of Twitter, and its bottom is touching SRI
+Create a line with shell block and the SRI block with the Shell block immediately above the SRI block
+Pepsi is placed so that its right side is even with the left side of Twitter, and its bottom is touching Shell
+Create a line with shell block and the pepsi block with the pepsi block immediately above the shell block
+Nvidia is placed so that its bottom and top are even with Pepsi, and its right side is even with Target
+Slide the Nvidia box down the length of one box. Then slide the Nvidia box right until it is just past the Heineken box. Lastly, slide the Nvidia box up so that it is lined up below the Mercedes Benz box.
+Move the SRI box so that it is lined up directly with and below the Shell box.
+Slide the SRI box up and slightly left until it is lined up with and directly below the Shell box.
+SRI should be south of SHell
+Place the SRI block south of the Shell block.
+Move the Starbucks box so that it is lined up with and directly below the SRI box.
+Slide the Starbuck box straight down until it is past the Target box. Then slide the Starbucks box right until it is lined up with and directly below the SRI box.
+Starbucks should be south of SRI
+Place the Starbucks block south of the SRI block.
+Move the Stella Artois box so that it is lined up with and directly below the Starbuck box.
+Slide the Stella Artois box straight down until its top is just below the bottom of the Starbucks box. Then slide the Stella Artois box left until it is lined up with and directly below the Starbucks box.
+Pick up the Stella Artois box from the top right corner and place it so that it is lined up with and directly below the Starbucks box.
+Stella Artois should be south of Starbucks
+Place the Stella Artois block south of the Starbucks block.
+Move the Target box so that it is lined up with and directly below the Stella Artois box.
+Slide the Target box down and right until it is lined up with and directly below the Stella Artois box.
+Target should be south of Stella Artois
+Place the Target block south of the Stella Artois block.
+Move the Pepsi box so that it is lined up with and directly to the left of the Target box.
+Slide the Pepsi box to the left until it can pass going down between the HP and Adidas boxes. Then slide the Pepsi box down until it is even with the Target box. Finally slide the Pepsi box right until it is lined up with and directly to the left of the Target box.
+Move the HP box so that it is lined up with and directly to the left of the Pepsi box.
+Slide the HP box straight down until it is lined up with the Pepsi box. Then slide the HP box right until it is lined up with and directly to the left of the Pepsi box.
+Pick up the HP box in the top left corner and place it lined up with and directly to the left of the Pepsi box.
+place the merces benz box in a horizontal line with the esso box so that its left edge is aligned vertically with the center of the adidas box
+Move Mercedes Benz so it is to the left and below Shell. It should be half a block length to the left of Shell.
+Position Mercedes Benz so its top right corner faces Shell's left side midpoint, with a half block length between the two
+Mercedes Benz should be west-southwest of Shell with half a block length between them
+McDonalds should be north of Mercedes Benz
+Place the McDonalds block north of the Mercedes block.
+place the adidas box so that it is in line vertically with the right side of the burger king box and aligned horizontally with the esso box
+place the adidas box so that its top touches the bottom of the pepsi box now slide it down to align with the esso box
+BMW should be south of Adidas
+Place the BMW block south of the Adidas block.
+Burger King should be south of BMW
+Place the Burger King block south of the BMW block.
+Coca Cola should be south of Burger King
+Place the Coca Cola block south of the Burger King block.
+Place the Twitter block in the same column as the Toyota block, below and with four intervening block spaces in between.
+Twitter moves so that its right side is even with the left side of BMW, and its bottom is even with the top of Nvidia
+Twitter moves so that its top is even with the middle of Target, and its left side is even with the middle of Toyota
+Twitter moves to that its left and right sides are even with Toyota and its top is half a block below BMW
+UPS should be south of Twitter
+Place the UPS block south of the Twitter block.
+UPS moves to directly beneath Twitter
+BMW should be north of Burger King
+Place the BMW block north of the Burger King block.
+Adidas should be north of BMW and southwest of Heineken
+Place the Adidas block north of the BMW block.
+Move Esso left and up in line with and to the right of Mercedes and UPS.  There is one block space between them.
+Place the Coca Cola block north of the Esso block.
+Move Coca Cola right, above and in line with Esso.  There doesn't seem to be any space between them.
+Move McDonald's up and left, to the right and in line with Coca Cola.  There is a small gap between them.
+Move Pepsi right and up, to the right and in line with McDonald's .  There is a small gap between them.
+Move Starbucks up and left, to the right and in line with Pepsi .  There is a small gap between them.
+Toyota should be south of Texaco
+Place the Toyota block south of the Texaco block.
+Move Toyota right and up, under and inline with Texaco.  There is a small gap between them.
+Put the Stella Artois block in the same column as the Starbucks block, below and with two intervening empty block spaces in between.
+Mercedes goes above and just to the right of Heineken, with a slight gap between them.
+Move 18 so it is directly between and half a block length above 6 and 13
+Position 18 halfway between 6 and 13. The bottom edge of 18 should be even with the midpoints of 6's right edge and 13's left edge
+18 should be northeast of 6 and northwest of 13. It should be halfway between them and slightly to the north of them.
+Place block 18 halfway between blocks 6 and 13, aligned with them. Then push block 18 up towards the top edge of the surface so that a slight bit of block 18 is in between blocks 6 and 13.
+19 should be south of 18
+Place block 19 south of block 18.
+Place block 19 directly to the right of block 8. Then slide it to the right until it aligns with block 18. Then slide it ulp until it just touches block 18.
+20 should be south of 19
+Place block 20 south of block 19.
+Place block 20 directly to the right of block 8. Then slide it to the right until it aligns with block 19. Then slide it up until it just touches block 19.
+Place block 16 directly to the right of block 8. Slide it to the right until it just touches the edge of block 20. Then slide it up until its right face (blue) aligns with and slightly touches the left face (purple) of block 20.
+17 should be south of 16
+Place block 17 south of block 16.
+Position 15 in the next column to the left, so 16's right edge is colinear with 16 and 17's left edges. 15's bottom edge should be even with the bottom of the table.
+Place block 15 at the bottom edge of the surface so that the green face is beyond the edge at the bottom of the surface and about 20% of the block is beyond the edge, and so that it's right face is in line with the left faces of blocks 16 and 17.
+Place block 15 on the surface directly to the left of block 9. Move it to the left until its right face (blue) aligns with the left (purple) faces of blocks 16 and 17. Then move it down slightly, about 20%, over the bottom edge of the surface.
+14 should be north of 15
+13 should be north of 14
+12 should be north of 13
+11 should be north of 12 and southwest of 17
+Put block 1 in the fourth open space to the left of block 10.
+Put block 3 in the fifth open space to the left of block 17.
+2 should be north of 3
+Place block 2 north of block 3.
+7 should be north of 8
+Place block 7 north of block 8
+place box 8 so it is algined vertically with box 9 and horizontally with box 11
+place box 4 so its aligned vertically with box 5 and horizontally with box 11
+place box 3 so it aligns vertically with box 5 and horizontally with box 1
+2 should be north of 3
+Place block 2 north of block 3.
+place box 16 so it aligns vertically with box 17 and horizontally with box 10
+5 should be two blocks north of the bottom of the table and four blocks east of the left side of the table
+Locate block 5 and move it towards the bottom of the plane. The middle top of block 5 should be approximately equal with block 9. There should also be enough space between block 5 and block 9 to fit another block.
+Place block 5 so that it's bottom edge is in line with the top edge of block 13. There should be about one block's space between block 5 and block 9.
+6 should be south of 5
+Locate block 6 and move it directly beneath block 5. These two blocks should be completely parallel.
+Place block 6 below block 5 and about equal with block 13 (slightly below parallel).
+Place block 6 south of block 5.
+Place block nine horizontally parallel with block 6. Block 9 should almost line up with block 10 (block 9 is slightly to the left).
+Relocate block 18 so that it is in the same diaganol plane as block 15. The left edge of block 18 should almost be in line with the right edge of block 19.
+19 should be north of 20
+Relocate block 19 it's bottom edge comes into perfect contact with the top edge of block 20.
+Place block 19 north of block 20.
+Relocate block 17 so that it's right edge is in line with and above the left edges of blocks 19 and 20. Block 17 should be in the same vertical plane as block 18.
+Put the Stella Artois block in the same column as the Starbucks block, below and with five intervening empty block spaces in between.
+Put the SRI block in the same column as the Shell block, below and with six intervening empty block spaces in between.
+Put the Pepsi block in the same column as the Nvidia block, below and with six intervening empty block spaces in between.
+Put the Mercedes block in the same column as the McDonalds block, below and with six intervening empty block spaces in between.
+slide HP cube so it exactly touches the upper left corner of the Mercedes Benz cube with its lower right edge
+Put the HP block in the same column as the Heineken block, below and with five intervening empty block spaces in between.
+Move the HP logo so that it forms a diagonal line with the Mercedes logo. The HP logo should be up and to the left of the Mercedes logo.
+Move the HP logo so that it is inline with the UPS logo, beneath the Heineken logo, and slightly above and to the left of Mercedes logo.
+slide Esso cube so it exactly touches the upper left corner of the HP cube with its lower right edge
+Put the Esso block in the same row as the Twitter block, to the left and with five intervening empty block spaces in between.
+Continue the diagonal line made with the HP and Mercedes logos by putting the Esso logo up and to the left of the HP logo.
+Put the Esso logo so that it is inline with the Twitter logo and up and to the left of the HP logo
+Place the Coca Cola block north of the Esso block.
+Place the Burger King block north of the Coca Cola block.
+Place the BMW block north of the Burger King block.
+Move the BMW logo so that it is in line with the Target logo and above the Burger King logo.
+Place the Adidas block north of the BMW block.
+Move the Adidas logo so that it is inline with the Starbucks logo, above the BMW logo and slightly beneath and to the left of the Heineken logo.
+Put the Heineken block vertically aligned with the Shell block, and horizontally aligned in between the Adidas and SRI blocks.
+place the heineken block in a vertical line withe the shell block above it so that the bottom edge of the heineken block lines up with the top edge of the adidas block in a horizontal line
+place the heineken block flush with the top of the shell block now slide it up three places
+Hop the Heineken logo over the Stella and Shell logos . It should be in line with the Shell logo but a few spaces above it.
+place the mcdonalds block flush with and directly to the right of the heineken box
+place the mcdonalds block flush with the right side of the shell block. now slide it up three places into line with the heineken box
+place the mcdonalds box with its bottom right corner touching the upper left corner of the ups block now slide it up into line with the heineken box
+Move the McDonalds logo directly up the grid until it is even with the Heineken logo.
+Form a horizontal line with the McDonald's and Heineken logos. The McDonald's logo should be to the right of the Heineken logo.
+place the nvidia block flush with and directly to the right of the mcdonalds block
+place the nvidia block flush with the top of the starbucks block and then slide it up one space, slide it over half a block width left  so that it completely in line with the mcdonalds block
+Move the Nvidia logo up and to the left slightly so that it is inline with the Heineken and McDonald's logo.
+place the shell block flush with and directly to the right of the nvidia block
+place she shell block so that it is aligned with the right half of the starbucks block the top of the starbucks block she ould be touching half it's bottom. then slide it up one place to the line with the nvidia block
+The Shell logo is moved up and to the right so that is next to the Nvidia logo and in line with that logo, the Heineken logo, and the McDonald's logo.
+place the starbucks box flush with and to the right of the shell box now slide it down one block length
+Move the Starbucks logo up and to the right so it is in a diagonal line with the Shell logo.
+Make a diagonal line that runs down and to the right using the Shell logo in its current position and placing the Starbucks logo beneath it.
+move the target box so it is in a diagonal line with the starbucks block the line should go down and to the right
+place the target box flush with the starbucks box right side now slide it down one box length
+Move the Target logo so that is continues the diagonal line formed with the Shell and Starbucks logo.
+Continue the diagonal line with the Shell and Starbucks logos by adding the Target logo down and to the right of the Starbucks block.
+Place the Texaco block south of the Target block.
+place the Texaco block flush with and directly below the Target box
+place the texaco block so it is the bottom in a line with the target block
+Move the Texaco logo down and to the left so that it is directly beneath the Target logo. They should form a vertical line.
+Place the Texaco logo directly beneath the Target logo.
+Make a vertical line by placing the Texaco logo beneath the Target logo.
+Place the Toyota block south of the Texaco block.
+place the Mercedes benz block flush with and directly below the texaco block
+place the mercedes benz box so that it is the bottom of the line with the target box
+Move the Toyota logo down and to the right so that it is directly beneath the Texaco logo. Now the Target, Texaco, and Toyota logos should all be in a vertical line.
+Shift the Toyota logo to the right and down so that it is aligned with the Texaco and Target logos.
+Continue making a vertical line on the right side of the board by putting the Target logo beneath the Texaco logo.
+Place the Twitter block south of the Toyota block.
+place the twitter block flush with and directly belows the toyota block
+place the twitter box so it is the bottom of the line with the target box
+Move the Twitter logo to the right side of the board inline with the Target, Texaco, and Toyota logos. It should be directly beneath the Toyota logo.
+Place the UPS block south of the Twitter block.
+place the ups block flush with and directly below the twitter block
+place the ups block so that it is the bottom of the line with the target box
+Place the UPS logo directly beneath the Twitter logo on the right side of the board.
+Make a 5 block vertical line by putting the UPS logo beneath the Twitter logo.
+Place the 16 beneath the 18 and slide it to the left one cube-space.
+Place the 14 beneath the 16. Now, slide it to the left one cube-space.
+Place the 12 beneath the 14 and slide it one cube-space to the left.
+1 should be north of 2
+Move block 1 north of block 2.
+20 should be south of 19
+Place block 20 south of block 19.
+Move McDonalds so it is at the bottom of the table half way between the corners, with the bottom half of the block hanging over the dge
+Position McDonalds at the bottom center of the table with its bottom edge hanging off
+McDonalds should be at the south end of the table, in the center with the south end of the block hanging over
+Slide McDonalds below the Esso block, then slide it down to the edge of the table. Move the McDonalds block about a quarter block-length to the left.
+HP should be north of McDonalds
+Put the HP block north of the McDonalds block.
+Place Pepsi above HP, then slide it one block-length to the right.
+Nvidia should be north of Pepsi
+Place the Nvidia block north of the Pepsi block.
+SRI should be north of Starbucks
+Place the SRI block north of the Starbucks block.
+Place Toyota above SRI, then slide it one block-length to the right.
+Texaco should be north of Toyota
+Place the Texaco block north of the Toyota block.
+Put the Texaco block in the first open space north of the Toyota block.
+Move Stella Artois so it is above Texaco with one block length between them
+Position Stella Artois so its bottom edge faces Texaco's top edge with one block length in between
+Stella Artois should be north of Texaco with space for one block between them
+Place Stella Artois above Texaco, then slide it one block-length up.
+Place Stella Artois to the left of BMW, then slide it to the left until it is vertically aligned with Texaco.
+Place Stella Artois to the right of Target, then slide it to the ride until it is vertically aligned with Texaco.
+Move the Stella Artois block to the same column as the Texaco block, above and with one intervening empty space in between.
+Place the UPS block south of the Twitter block.
+UPS should be south of Twitter
+Place the Esso block south of the Coca Cola block.
+Esso should be south of Coca Cola
+Put the right side of Adidas so that it aligns with the left side of BMW.
+Continue the diagonal line formed by blocks 10 and 13 with block 16.
+Put block 17 underneath block 16.
+Place block 17 south of block 16.
+Place block 11 underneath block 10, then slide it down until it is in line with block 14.
+Place block 11 to the right of block 14, then slide it to the right until it is in line with block 10.
+Slide block 11 to the left until it is in line block 10, then slide it down until it is in line with block 14.
+Form a zig zag line with blocks 11 and 14 by placing block 18 below and to the right of block 18.
+Place block 18 below block 17, then slide it down until it is in line with block 11.
+Put block 19 underneath block 18.
+Place block 19 south of block 18.
+move block 20 so it's in numerical order with 16 - 19
+Put block 20 underneath block 19
+Place block 20 south of block 19.
+move block 15 to make contact with block 20's bottom left corner
+move block 5 so that both bottom corners touch the top 2 corners of block 6
+take block 5 and move it so its bottom side completely lines up with the top side of block6
+Place block 5 north of block 6.
+Place block 5 in the first open space north of block 6.
+Place block 4 north of block 5.
+Place block 4 in the first open space north of block 6.
+move block 2 so that its bottom side completely lines up with the top side of block 3
+line up block 2's bottom side with block 3's top side
+Place block 2 north of block 3.
+move block 1 so that its bottom side completely lines up with the top side of block 2
+move block 1 so both its bottom corners touch block 2's upper corners
+Place block 1 north of block 2.
+17 should be two blocks south of the table's top edge and two blocks west of the table's right edge
+Move block 17 a little to the left and down.  It should be about a block's width down from block 4, and offset to the left of block 4 by about a quarter of a block's width.
+Take the highest block on the board and slide it about a half block's width to the left, then about three blocks' width forward.
+Pick up block 14 and move it to the immediate left of block 17, in line with 17 vertically.  There should only be a sliver of space between the two blocks.
+Move block 14 to be on the left side of and in line with block 17, with a small space between.
+Pick up block 11 and move it to the immediate left of block 14, in line with 14 and 17 horizontally.  There should only be a sliver of space between the two blocks, same as with 14 and 17.
+Move block 11 until it is directly to the left of block 14.  It should align with 14 and 17.
+Take block 11 and move it back and to the right so that it aligns with blocks 14 and 17, sitting to the left of 14.
+Move block 7 up and a little to the right, until it is next to block 11 and in line with 11, 14, and 17.  There should be equal spacing between those four blocks.
+Pick up block 4 and move it down and left, until it is next to block 7 on the left side and in line with all the other blocks in that row.
+Take block 4 and put it on the immediate left side of block 7, aligned with the other blocks in the row.
+Move block 4 to be aligned with blocks 7, 11, 14, and 17, on the left end of that set.
+Move block 1 up and a little to the right until it is next to block 4 and in line with the rest of the blocks in that row.
+Slide block 1 over and back to be in line with 4, 7, 11, 14, and 17, on the left side of block 4.
+Move the block with the smallest number backward and a little to the right so that it is immediately left of block number 4.
+2 should be south of 1
+Place block 2 south of block 1.
+Move block 2 to the left and a little up, until it is directly in front of block 1.  It should be aligned with block 1 horizontally, with the same distance between 1 and 2 as between 1 and 4 or 4 and 7.
+Move the block with the second smallest number to the left until it is immedieately in front of the block with the smallest number.
+Slide block 5 left and backward until it is between blocks 2 and 4, aligned with both.
+Move block 8 to the right and in front of block 5, in a diagonal line with blocks 5 and 1.
+9 should be south of 8
+Place block 9 south of block 8.
+Move block 9 forward and to the right until it is directly in front of block 8, and in line with 8 and 7.
+Place block 9 in front of block 8 with only a sliver of space between the two blocks.
+Put block 9 immediately in front of block 8, aligned with it horizontally.
+place box 15 so it is aligned vertically with box 14 and horizontally with box 12
+19 should be south of 18
+Place block 19 south of block 18.
+place box 19 so that its is aligned vertically  with box 17 and its bottom is aligned horizontally with the center of box 13
+place box 10 so that it aligns vertically with box 9 and horizontally with box 13
+place box 3 so it is aligned vertically with box 2 and horizontally with box 6
+Pick up block 18 and place it north of block 19, block 18's bottom edge  should touch the top edge of block 19.
+Place block 18 north of block 19.
+Move block 18 and place it immediately above block 19 so that block 18 vertically aligns with with blocks 19 and 20 and there is even vertical spacing.
+Pick up block 17 and place it north of block 18. The bottom edge of block 17 should touch the top edge of block 18, now block 20, 19,18 and 17 are in a direct vertical line.
+Place block 17 north of block 18.
+Move block 17 and place it above block 18 so that block 17 is vertically aligned with blocks 18, 19, and 20 and the vertical spacing is evenly distributed.
+Pick up block 16 and place it north of block 17. The bottom edge of block 16 should touch the top edge of block 17. Now blocks, 20,19,18,17 and 16 are in a direct vertical line.
+Place block 16 north of block 17.
+Move block 16 and place it above block 17.  The bottom of block 16 should be touching the top of block 17 and the two blocks should be vertically aligned.  Block 16 will be horizontally aligned with block 12.
+Move block 16 to the right of block 12 so that block 16 is horizontally aligned with blocks 3, 6, 9, and 12 and vertically aligned with blocks 16, 18, 19, and 20.
+Pick up block 15 and place it north of block 16. The bottom edge of block 15 should fully touch the top edge of 16. Now blocks 20,19,18,17,16 and 15 are in a direct vertical line. The line 15-20 should look similar to a crossword puzzle in design. For example if you were looking for 15 down it would be a 6 letter word.
+Place block 15 north of block 16.
+Move block 15 to the top of block 16 aligning them so that block 15 is in vertical alignment with blocks 16 through 20 and the vertical spacing is evenly distributed.
+Pick up block 14 and place it north of block 15. The bottom edge of block 14 should touch the top edge of block 15. Blocks 14-20 are in direct vertical line.
+Place block 14 north of block 15.
+Move block 14 so that the bottom of block 14 is next to the top of block 15, and the blocks 14 through 20 are in vertical alignment with evenly distributed spacing.
+Form a vertical line WITH spaces in it, counting back from13, 12... add block 11 to the line, positioning it in line with blocks 13 and 12, just above number 14 on it's right.
+Move block 11 so that the bottom of block 11 and the top of block 14 forms a straight line, and block 11 is vertically aligned with block 12.
+Place block 11 above block 14 using the same spacing as between blocks 14 and 15.  Now move block 11 to the left so that it aligns vertically with block 12.
+Move block 8 to a location straight above block 9, but in horizontal alignment with block 11.
+Move block 5 straight above block 6, but in horizontal alignment with blocks 8 and 11.
+Move block 2 to the left side of block 5 so that the two blocks are in horizontal alignment and block 2 is in vertical alignment with block 3.
+Move block 2 straight above block 3, but in horizontal alignment with blocks 5, 8, and 11.
+Move block 1 to the left side of block 2 so that the right side of block 1 is immediately adjacent to, but not quite touching, the left side of block 1, and block 1 is in horizontal alignment with block 2.
+Place block 1 to the left side of block 3.  Now move it up so that it in horizontal alignment with blocks 2, 5, 8, and 11 and the horizontal spacing is even.
+Move 12 so it is above and one block length to the right of 20
+Position 12 so its bottom left corner faces 20's top right corner, with a block diagonal length between them
+12 should be one block length north and one block length east of 20
+Box 12 slides one space south so it is one space right and up from 20.
+Box 12 moves south by one space. It should be slightly above the X-axis.
+Take box 9 and move it so it is sharing its right side with box 12.
+Box 9 moves down until it is parallel with 12, then right until they touch.
+Move box six so it is sharing its right side with 9.
+Box 6 moves northwest until its right side shares the left of 9. It should be three spaces south of 4.
+Move box 3 so its shares its right side with 6.
+Move 4 so it is one half block length below and to the right of 18
+Position 4 so its left edge touches 18's right edge, with 4 being half a block length closer to the bottom edge of the table
+18 should be southeast of 4, with 4 being half a block length more to the south
+Put block 4 half a row below block 18, and vertically aligned with block 3.
+Box 4 moves down and shares its left side with 17. Then move it right one space and up one.
+Move box 7 so it shares its left side with 4.
+Box 7 moves right until just below 6, then down until it is touching an edge with 4.
+Box 10 moves down one and left three, so it shares a corner with 7.
+Move box 13 so it shares its left side with 10.
+Box 13 moves down until parallel with 10, then left until they share a side.
+Move box 20 so its shares its left side with 13.
+Move box 20 to one space below 1, then left by two spaces until it shares a side with 13.
+19 should be north of 20
+Place block 19 north of block 20.
+Move box 19 so it shares it bottom side with 20.
+Put the Esso block one row below the BMW block, and vertically aligned with the Coca Cola block.
+Put the UPS block in the same row as the BMW block, to the right and with four intervening empty block spaces in between.
+Twitter should be north of UPS
+Move the Twitter block north of the UPS block.
+Toyota should be north of Twitter
+Move the Toyota block north of the Twitter block.
+Texaco should be north of Toyota
+Move the Texaco block north of the Toyota block.
+Put the Stella Artois block in the same column as the Target block, above and with three intervening block spaces in between.
+Slide the shell block to the right until it touches and lines up perfectly with the shell logo.
+Place the Coca Block in the same column as the Esso block, above and with four intervening empty block spaces.
+Position Coca-Cola two block lengths to the left and one block length above Shell.
+Coca-Cola should be two block lengths west and one block length north of Shell
+Move the Coca Cola symbol straight up, close enough where it should be on the same level with the bottom of the HP logo, but not touching.
+Pepsi should be east of HP and north of Shell
+Place the Nvidia block north of the Pepsi block.
+Nvidia should be north of Pepsi
+Put the Mercedes block in the same column as the Nvidia block, above and with one intervening empty block space in between.
+Slide the Heineken logo down, so its perfectly even with the Mercedes logo.
+Have the Adidas logo right side touch perfectly with the Burger King logo.
+Move 7 so it is one block length to the right and two block lengths above 15
+Position 7 so its bottom left corner faces 15's top right corner with one block length vertically between them
+7 should be north-northeast of 15,  with a vertical block length between them
+Place block 7 below and to the left of block 12, then slide block 7 down until it is almost in line with block 11.
+Place block 7 above and to the right of block 15, then slide block 7 up until it is sort of in line with block 11.
+Place block 11 to the right of block 9, then slide it up until it is no longer in line with block 9.
+16 should be south of 15
+Place block 16 south of block 15.
+Place block 16 underneath block 15.
+17 should be south of 16
+Place block 17 south of block 16.
+18 should be south of 17
+Place block 18 south of block 17.
+Place block 18 underneath block 17.
+19 should be south of 18
+Place block 19 south of block 18.
+Place block 19 underneath block 18.
+20 should be south of 19
+Place block 20 south of block 19.
+Place block 20 underneath block 19.
+Continue the diagonal line formed by blocks 20 and 14 with block 12.
+Continue the diagonal line formed by blocks 20, 14 and 12 with block 10.
+5 should be north of 6
+Place block 5 north of block 6.
+4 should be north of 5
+Place block 4 north of block 5.
+3 should be north of 4
+Place block 3 north of block 4.
+2 should be north of 3
+Place block 2 north of block 3.
+1 should be north of 2 and southwest of 7
+Place block 1 north of block 2.
+15 should be south of 14 and north of 16
+Place block 15 south of block 14.
+Put block 15 north of block 16.
+11 should be south of 10
+Place block 11 south of block 10.
+Move box 8 from the right side to be on the right side of the space between boxes 2 and 9 with the boxes all lining up.
+Move box 7 from the bottom right corner to the space between boxes 2 and 8, lining it up with the rest of the boxes.
+Move box 6 from the bottom to be lined up with boxes 1 and 7.
+6 should be north of 7
+Place block 6 north of block 7.
+5 should be north of 6
+Place block 5 north of block 6.
+Move box 4 from the bottom left to the top, lining it up with boxes 5, 6, and 7.
+4 should be north of 5
+Place block 4 north of block 5.
+Slide box 3 straight up above box 12. Then slide it down and left until it is lined up with box 4.
+Move box 3 from the left edge to above box 4 and lining it up with all boxes below.
+3 should be north of 4
+Place block 3 north of block 4.
+Position 1 so its right edge faces 18's left edge, with space for two blocks between them
+Move block 1 so that it is above the space between blocks 8 and 10. There should be about one block's worth of empty space between block 1 and blocks 8 and 10.
+Reorient block 1 so that its left edge is almost perfectly in line with block 8, while the bottom edge of block 1 is almost perfectly in line with the bottom edge of block 18.
+2 should be south of 1
+Place block 2 south of block 1.
+Move 20 so it is two block lengths below and one block length to the right of 14
+Position 20 so its top left corner points at 14's bottom right corner. 20 should be 1 block length to the right and two block lengths below 14
+Locate block 20 and place it so that the top of block 20 in approximately equal with the middle of block 6. There should be a little over two blocks worth of empty space between blocks 6 and 20.
+Place block 20 so that it's top edge makes a straight line with the bottom edge of block 7. There should be about three block's worth of empty space between blocks 20 and 7.
+Reorient block 20 so that it is virtually in the same vertical plane as block 13 (block 12 is slightly to the left), but the top of block 6 is just above the center of block 6 and about equal with the bottom edfe of block 7.
+19 should be north of 20
+Place block 19 north of block 20.
+18 should be north of 19
+Place block 18 north of block 19.
+17 should be north of 18
+Place block 17 north of block 18.
+16 should be north of 17
+Place block 16 north of block 17.
+Position 12 so its bottom edge faces 16's top edge, with three block lengths between them
+12 should be north of 16, with three block lengths in between
+Place block 12 in the same column as block 16, above and with three intervening empty block spaces in between.
+Put block 12 in the fourth open space above block 20.
+13 should be south of 12
+Place block 13 south of block 12.
+14 should be south of 13
+Place block 14 south of block 13.
+Reorient block 14 so that its top edge contacts with bottom edge of block 13.
+move block 11 so it's kitty corner with block 15, 11 being top left
+Move the 7 block so that it connects with the left side of the 11.
+Move the 3 block to the left and slide it up until it connects with the left of  7.
+Place block 2 south of block 1.
+Move the 2 block so that its right underneath the 1 block.
+Move block 12 directly next to block 8 aligning it vertically with block 8.
+Move block 12 vertically so that it is aligned with block 8.  Move block 12 to the left so that it almost touches block 8.
+Move block 13 directly below block 12 aligning it horizontally with block 12.
+Place block 13 underneath block 12.
+Move block 14 directly below block 13 aligning it horizontally with 13.
+Place block 14 underneath block 13.
+Move block 9 to the right so that it is horizontally aligned with block 8.  Move it up until it just about touches block 14.
+Move block 10 so that it is directly below block 9 aligned horizontally with 9.
+Move block 10 right until it is horizontally aligned with block 9.  Move block 10 up until it is nearly touching block 9.
+Place block 10 underneath block 9.
+Move block 5 left so that it is horizontally aligned with block 3.  Move block 5 down until its upper right corner is almost touching the bottom left corner of block 10.
+Move block 6 so that it is directly below block 5 and aligned horizontally with block 5.
+Place block 6 underneath block 5.
+place box 16 so its bottom is aligned with the top of box 1 and its left side is aligned with the right side of box 4
+place box 16 so it is aligned horizontally with box 17 and its left side is aligned vertically with the right side of box 4
+Place block 16 below block 20, then slide block 16 slightly to the right and then slide it down until it is just above block 1 but still in line with block 20.
+Place block 15 north of block 16.
+place box 15 so that its left side is algined with the right side of box 4 and its top is aligned with the bottom of box 10
+place box 15  immediately below box 10 then slide it to the until it aligns vertically with box 16
+Place block 14 north of block 15.
+place box 14  immediately to the right of box 10 then slide it to the right until it aligns with box 16 vertically
+Place block 19 north of block 20.
+place box 19 so its aligned vertically with box 20 and horizontally with box 12
+place box 10  immediately to the left of box 14 then slide it up into line with box 10 horizontally
+put block 3 at corners with 7 to the left
+Continue the diagonal line formed by blocks 7 and 3 with block 1.
+Slide 2 to the left until it is directly beneath 1.
+Put block 2 underneath block 1.
+place block 2 right underneath block 1
+Move the 4 so that it is touching the bottom right of 2 with its top left.
+Put block 12 underneath block 11.
+place block 12 right underneath 11
+Move 5 to the right until it touches 9 with its top right corner.
+Continue the diagonal line formed by blocks 16,12, and 9 with block 5.
+Put block 6 underneath block 5.
+place block 6 underneath block 5
+Place block 4 north of block 5.
+Place block 3 north of block 4.
+Place block 2 north of block 3.
+Place block 1 north of block 2.
+Place block 10 to the left of block 1, then slide it to the left until it is in line with block 5. Then slide block 10 down until it is in line with block 8.
+Place block 10 to the right of block 8, then slide it to the right until it is in line with block 5.
+Place block 10 below block 5, then slide it down until it is in line with block 8.
+Place block 9 above block 10, then slide it to the left until it is in line with block 7.
+Place block 8 north of block 9.
+Place block 7 north of block 8.
+Place block 6 north of block 7.
+Place block 2 north of block 3.
+place box 2 so its aligned vertically with box 3 and horizontally with box 19
+Move 2 block to position 3H with grid starting at 0 horizontal and A vertical at the top left corner.
+Place block 1 north of block 2.
+place box 1 so it aligns vertically with box 2 and horizontally with box 20
+Move 1 block to position 3G with grid starting at 0 horizontal and A vertical at the top left corner.
+place box 5 so it aligns vertically with box 6 and horizontally with box 20
+Move 5 block to position 4G with grid starting at 0 horizontal and A vertical at the top left corner.
+Place block 4 north of block 5.
+place box 4 so it aligns vertically with box 6 and horizontally with box 12
+Move 4 block to position 4F with grid starting at 0 horizontal and A vertical at the top left corner.
+Move 9 block to position 5F with grid starting at 0 horizontal and A vertical at the top left corner.
+Place block 8 north of block 9.
+Move 8 block to position 5E with grid starting at 0 horizontal and A vertical at the top left corner.
+Place block 7 north of block 8.
+Move 7 block to position 5D with grid starting at 0 horizontal and A vertical at the top left corner.
+Move 11 block to position 6C with grid starting at 0 horizontal and A vertical at the top left corner.
+Move 14 block to position 7B with grid starting at 0 horizontal and A vertical at the top left corner.
+Move 17 block to position 8A with grid starting at 0 horizontal and A vertical at the top left corner.
+Move block 12 so that its south edge is approximately 1 block-width north of block 15. Align the east edge of block 12 with the west edge of block 15 so that they are on the same line.
+Pick up 12 and place it above 15 in the same plane so that 1 block-width separates the two. Align the right edge of 12 to the left edge of 15.
+Move 12 until its right side touches block 15 on the left side. Then move it to the north by two block-widths.
+Move block 15 north 2 block widths so that its center is horizontally aligned with that of block 12.
+Place block 15 to the right of block 12 separated by one block-width. Align 15 horizontally with 12. Then move 15 left one block-width until it touches 12.
+Move block 18 two block widths to the north. Align it horizontally with 15. Then move it to the left until it touches 15.
+Move block 20 two spaces to the north. Then move block 20 to the east until it is 1 block-width past block 18. The top left corner of 20 should be vertically aligned with the bottom right corner of 18.
+Place 20 so that its left edge is aligned with the right edge of 18, and so that its top edge is aligned with the bottom edge of 18.
+Place block 20 so that it is horizontally aligned with block 18 and its left edge touches the right edge of 18. Then move 20 one block-width to the south.
+Slide the 20 beneath the 18 and slide it to the right one cube-space.
+Place 19 to the left of 20 so that it is vertically aligned in the center with 18. Move it 1 space south so that its top edge aligns with the bottom edge of 20.
+Place block 19 so that its top edge touches the bottom edge of 20, and the two blocks are vertically aligned at the center. Then move 19 one block-width to the left.
+Slide the 19 beneath the 20 and move it to the left one cube-space.
+Place block 16 so that its center is vertically aligned with that of 15 and its top edge is horizontally aligned with the bottom edge of 19.
+Place block 16 so that its top edge touches the lower edge of 19, and the two blocks are vertically aligned by the center. Then move 16 one block-width to the left.
+Place the 16 beneath the 19 and slide it to the left one cube-space.
+Slide the 16 to the space beneath the 19. continue by moving the 16 to the left one cube-space.
+Place block 13 so that its center is vertically aligned with that of 12 and its top edge is horizontally aligned with the bottom edge of 16.
+Place block 13 so that its top edge is touching the lower edge of 16 and the two blocks are vertically aligned at the center. Then move 13 one block-width to the left.
+Place the 13 beneath the 16 and slide it to the left one cube-space.
+Slide the 13 beneath the 16 and move it to the left one cube-space.
+Move 10 south until its center is horizontally aligned with 13. Then move it east until the two blocks are touching.
+Place block 10 to the left of block 12 so that the two block's centers are aligned and the right edge of 10 touches the left edge of 12. Then move block 10 south until it is horizontally aligned with 13 at the center.
+Move block 6 five block-widths to the left and then two block-widths up. Its center should be horizontally aligned with that of block 10 in the same plane, and the right side of 6 should touch the left side of 10.
+Place block 6 so that its lower edge is touching the upper edge of block 10 and the centers are vertically aligned. Then move block 6 one full block-width to the left. Then move it one full block-width down. Align its center horizontally with that of 10.
+Pick up block 3 and place it so that its bottom right corner is vertically aligned with the top left corner of 6. The two blocks should be in the same plane.
+Place block 3 to the left of block 6 so that their edges are touching and the two blocks are aligned. Then move block 3 one block-width to the north.
+Place block 3 above block 6 in the same plane so that the lower edge of 3 touches the upper edge of 6. Make sure the centers of 3 and 6 are vertically aligned. Then move block 3 one block-width to the left.
+Move Heineken so it is below Coca Cola with four block lengths in between
+Position Heineken so its top edge races Coca Cola's bottom edge with four block lengths between them
+Heineken should be south of Coca Cola with space for four block lengths in between them
+Place Heineken so that it is horizontally level with Stella Artois, but have it positioned below Coca Cola.
+Place Heineken below Coca Cola, then slide it down until it is horizontally aligned with Stella Artois.
+Place Heineken below Shell, however off-set it to the right about half a block-length. Then slide it down to be even with Stella Artois.
+Move the Heineken logo towards south and place it at the south-east of the Stella Artois logo and directly south of Coca Cola logo with some space among them.
+Take the Heineken logo and put it at the lower-right side of the Stella Artois logo and below the  Coca Cola  logo that it is about equidistant from both logos.
+Move the NVIDIA logo towards south-west and place it at the east side of the Heineken logo that both logos touch each other and get aligned.
+Take the NVIDIA logo and put it at the right side of the Heineken logo so both logos are in touch and get aligned.
+Place Stella Artois to the right of Nvidia, then slide it on block-length up.
+Move the Stella Artois logo towards east and place it at the north-east corner of the NVIDIA logo that both logos touch each other.
+Take the Stella Artois logo and put it at the upper-right corner of the NVIDIA logo so both logos are in touch.
+Starbucks should be north of Stella Artois
+Move the Starbucks logo towards south-west and place it at the north face of the Stella Artois logo that both logos touch each other and get aligned.
+Take the Starbucks  logo and put it at the upper side of the Stella Artois logo so both logos are in touch and get aligned.
+SRI should be north of Starbucks
+Move the SRI logo towards north-east and place it at the north face of the Starbucks logo that both logos touch each other and get aligned.
+Take the SRI logo and put it at the upper side of the Starbucks logo so both logos are in touch and get aligned.
+Shell should be north of SRI
+Move the Shell logo towards north-east and place it at the north face of the SRI logo that both logos touch each other and get aligned.
+Take the Shell logo and put it at the upper side of the SRI logo so both logos are in touch and get aligned.
+Move the McDonalds logo towards north-west and place it at the west side of the Shell logo that both logos touch each other and get aligned.
+Take the McDonalds logo and put it at the left side of the Shell logo so both logos are in touch and get aligned.
+Mercedes Benz should be south of McDonalds
+Move the Mercedes Benz logo towards south-east and place it at the south face of the McDonalds logo that both logos touch each other and get aligned.
+Take the Mercedes Benz logo and put it at the lower side of the McDonalds logo so both logos are in touch and get aligned.
+Place Esso below Merceds Benz, then slide it one block-length to the left.
+Move the Esso logo towards south-east and place it at the south-west corner of the Mercedes Benz logo that both logos touch each other.
+Take the Esso logo and put it at the lower-left corner of the Mercedes Benz logo so both logos are in touch.
+Place Adidas below Esso, then slide it one block-length to the left.
+Move the Adidas logo towards south-east and place it at the south-west corner of the Esso logo that both logos touch each other.
+Take the Adidas logo and put it at the lower-left corner of the Esso logo so both logos are in touch.
+Move Texaco so that it is lined up above the McDonald's box in a way that half of the Texaco box is to the left of the left edge of the McDonald's box, with one  space the size of a box in between the two.
+Slide the Texaco box right between the Shell and Twitter boxes. Then go to the upper right until the Texaco box is above the McDonald’s box. The Texaco box will be split in half by the left edge of the McDonald’s box with one space between the two the size of one box.
+Move the Texaco block between the Esso block and the Coca-Cola block. The Texaco block should be in line with these blocks and slightly right of the midpoint between them.
+Place the UPS block on a diagonal with the Twitter block, such that its lower left edge touches the Twitter block's upper right edge.
+Put the UPS block in line with the Target block and HP block so that it touches the Twitter block.
+Move the UPS block so that it is on a diagonal with the Twitter and Texaco blocks.
+Move the Toyota block so that it is in line with the Twitter block, with its lower right edge touching the UPS block's upper left edge.
+Move the Toyota block to be in line with the Twitter block so that its lower right corner touches the UPS block.
+Move the Toyota block to line up with the Twitter block but be between the HP and UPS blocks.
+Move the Target block so that its lower right edge touches the Toyota block's upper left edge. It should be in line with the HP block.
+Move the Target block to be in line with the HP block but a block's width to its left.
+Move the Target block so that it lines up with the Texaco block up three blocks width up.
+Pick up the Pepsi box and place it so that it is directly to the left of and lined up with the Target box.
+Move the Pepsi block in line with the Mercedes Benz block but a block's width to the right so it touches the Target block.
+Move the HP block so that its upper right edge is touching the Pepsi block's lower left edge. It should be in line with the Toyota block.
+Move the BMW block so that its upper right edge touches the HP block's lower left edge. It should be in line with the Mercedez Benz block.
+Move the BMW block four block's width to the left of the UPS block.
+Move the BMW block one block's width below the Mercedes Benz block and slightly to the right.
+Pick up the Burger King box and place is lined up with and directly below the BMW box.
+Place the Burger King block south of the BMW block.
+Put the Burger King block in the first open space south of the BMW block.
+Move the Burger King block so that it is directly touching the south face of the BMW block.
+Move the Burger King block in line with the Twitter block but three block's width to the left. It should touch the BMW block.
+Pick up the Coca-Cola box and place it directly below and lined up with the Burger King box.
+Place the Coca Cola block south of the Burger King block.
+Put the Coca Cola block in the first open space south of the BMW block.
+Move the Coca-Cola block to touch the south face of the Burger King block.
+Move the Coca-Cola block in line with the Texaco block but two blocks width to the left.
+Put the Toyota block two rows above the Coca Cola block, and vertically aligned with the Esso block.
+Take the Toyota block and move it up the board until it is level with the Starbucks block. Move it slightly higher than the Starbucks block.
+take the block that is under the one with the ESSO word and put it above it instead (and higher).
+Place the Twitter block south of the Toyota block.
+Place the Twitter block directly underneath the Toyota block, with a little space between them.
+take the block with the twitter bird sign and put it right under the block with the Toyota sign that they touch each other completely
+put the block of the twitter sign and put it under the block with Toyota Sign
+put th twitter block under Toyota block
+take the block with the circle sign that is located above the M block sign and put it next to the twitter bird block on it's left
+take the block with target sign and put it to the left of the twitter block
+Place the Texaco block south of the Target block.
+Move the Texaco block directly directly underneath the Target block..
+Move the Stella Artois block underneath the Starbucks block, move the Stella Artois block down two block sizes.
+Move the Starbucks block to the left until it's left edge is parallel with the right edge of the Pepsi block, now slide the Starbucks block down four block sizes.
+Put the Mercedes block on the same row as the Target block, to the left and with three intervening block spaces in between.
+Place the Mercedes Benz block between the Pepsi and the BMW block. The top line of the Mercedes block should line up exactly halfway down the BMW block. The right edge of the Mercedes block should line up perfectly with the left edge of the McDonalds block.
+The left edge of the mercedes benz block should be parallel with the center line of the shell block and should line up perfectly with the Target block.
+Move the Esso block so that the top right corner of the Esso block is touching points with the bottom left corner of the Mercedes Benz block. (or almost touching, put them real close)
+Move the Esso block so that it is underneath the BMW block. The top line of the Esso block should be on the same line as the bottom line of the Mercedes Benz block.
+Move the Esso block up so that it fits perfectly underneath the Twitter block, now jump the Esso block over the Texaco block and over the Pepsi block until it is directly underneath the Mercedes Benz block, now slide the Esso block to the left until just to the point where if you were to slide the Mercedes Benz block down on the board it would not make contact with the Esso block.
+take the Burger king block and put it left of Heineken with 1.5 block spaces
+Slide the Adidas block over to the right until it's right edge is on the same line as the left edge of the Burger King block, now slide the Adidas block up the board so that it's upper edge is on the same line with the Burger King block's bottom edge.
+Move the Adidas block so that it is lined up perfectly to the left of the Starbucks block. Now slide the Adidas block so that the center of the Adidas block is lined up with the left edge of the SRI international block.
+Place the BMW block south of the Adidas block.
+Move BMW block to directly below the Adidas block, with its top edge in direct contact with the Adidas block's bottom edge.
+Put Shell to the right of NVidia, with its left edge almost touching NVidia.
+Place the SRI block south of the Shell block.
+Put Pepsi below NVidia with one blank square between them, in other words, NVidia is on row one, a blank space is on row 2, and Pepsi is on row 3 - vertically aligned.
+Consider a grid with 3 rows and columns, numbered 1,2,3 then 4,5,6 then 7,8,9.  If SRI is at 3, then place Pepsi in 5.
+Put HP below and to the left of Pepsi, with corners just touching.
+Consider a grid with 3 rows and columns, numbered 1,2,3 then 4,5,6 then 7,8,9.  If SRI is at 3, Shell is in 5, then place HP in 7.
+Place the McDonalds block south of the HP block.
+Add McDonalds at the bottom edge, vertically aligned with HP, very close but not quite touching.
+Consider a grid with 3 rows and columns, numbered 1,2,3 then 4,5,6 then 7,8,9.  If Pepsi is in 2, then HP is in 4, and place McDonald's in 7.
+Adidas should be slightly southwest of Nvidia, with Nvidia's bottom left corner touching Adidas's top edge midpoint
+Place the Adidas block so that it is under the Nvidia block but in line with the Texaco block.
+Place the BMW block south of the Adidas block.
+BMW should be south of Adidas
+Place the Coca Cola block south of the Burger King block.
+Coca-Cola should be south of Burger King
+Place the Esso block south of the Coca Cola block.
+Esso should be south of Coca-Cola
+Start to form a diagonal line by placing the Heineken block underneath and to the right of the Esso block.
+Position UPS so its bottom edge faces the bottom edge of the table with one block length in between, and so its right edge faces the right edge of the table with two block lengths in between
+UPS should be northwest of the bottom right corner of the table, two block lengths east of the right edge of the table and two block lengths north of the bottom edge of the table
+Place UPS to the right of Shell, however move it down a slight bit. Then, slide UPS to the right until it it is about a block's width away from the edge of the table.
+Place UPS below Twitter. Slide it down so that it is even with Shell, then slide it down a tad further. Move UPS about a block's width to the left.
+Place Twitter above UPS, then slide it a block's width to the left.
+Toyota should be north of Twitter
+Place the Toyota block north of the Twitter block.
+Texaco should be north of Toyota
+Place the Texaco block north of the Toyota block.
+Target should be north of Texaco
+Place the Target block north of the Texaco block.
+Stella Artois should be north of Target
+Place Stella Artois above Nvidia, then slide it a block's width to the right.
+Place the Stella Artois block north of the Target block.
+Starbucks should be north of Stella Artois
+Place the Starbucks block north of the Stella Artois block.
+SIR should be north of Starbucks
+Place the SRI block north of the Starbucks block.
+Shell should be north of SRI
+Place the Shell block north of the SRI block.
+Pepsi should be north of Shell
+Place the Pepsi block north of the Shell block.
+place box 18 so that it is aligned vertically with box 20 and horizontally with box 13
+Slide the 18 over so that the 19 is underneath the 18.
+Place block 17 north of block 18.
+Slide the 17 so that the 18 is underneath the 17.
+Place block 16 north of block 17.
+Slide the 16 so that the 17 is underneath the 16.
+place box 12 so its aligns horizontally with box 16 and vertically with box 13
+place box 8 so that it aligns vertically with box 9 and horizontally with box 16
+place box 4 so that it aligns vertically with box 6 and horizontally with box 16
+Place block 5 south of block 4.
+place box 5 so that it aligns vertically with box 6 and horizontally with box 17
+Move the 5 so that it's underneath the 4.
+Move the 5 block, so that it is two block spaces on the right away even with 17.
+place box 1 immediately to the left of box 6 then slide it up two spots to align with box 5
+Place block 2 south of block 1.
+Move the 2, so that it is underneath the 1.
+Place block 3 south of block 2.
+place box 3 so it's aligned vertically with box 1 and horizontally with box 9
+Move the 3 so that it is underneath the 2.
+Even out the edge with the 3 block putting it between the 2, and 6 block.
+Slide box 19 from the middle area slightly right and down until there are approximate two spaces between it and boxes 8 and 9. The top edge of box 19 should be lined up with the bottom of box 9 and its bottom edge should be lined up with the top edge of fox 8.
+Move box 19 from the middle down and left. Line it up with the top of box 8 and bottom of box 9 and leave two the size of two boxes between box 19 and boxes 8 and 9.
+Slide 19 down until it is level with 11 and to the right so that its left edge is at 18's right edge.
+Slide box 20 from the top right corner down through boxes 19 and 8. Then slide it left until it is lined up with and nearly touching the bottom of box 19.
+Place block 20 south of block 19.
+Move 7 down so that it it is just off the grid and vertically aligned with 16.
+Horizontally align 7 with 2, push it down about 2/3 of a block and to the left about a block and a half.
+Align 7's top edge with 12's bottom edge and slide it down a hair then to the right about one block.
+Slide box 11 from the middle of the left side down through boxes 5 and 15. Then slide it right through boxes 12 and 15. Finally slide it down and right until it is lined up with the bottom edge and to the right of box 7. The two boxes should be nearly touching.
+Move box 11 from the middle to the direct right of and lined up and with box 7.
+Move box 10 to be lined with and nearly touching box 11.
+Place block 10 north of block 11.
+Slide box 15 from the lower left area down and through boxes 12 and 17. Once through, slide it directly right until it is located toward the top right of box 10 with their two corners nearly touching.
+Begin an upward right diagonal from 10 with 15.
+Move box 14 to be lined up directly above box 15 with its top corners near to corners of boxes 6 and 20.
+Place block 14 north of block 15.
+Slide box 6 from the middle slightly down and right until it is to the upper left area of box 14 with their two adjacent corners touching.
+Place block 6 in the same row as block 19, to the left and with two intervening open spaces in between.
+Level 6 with 19 and move it one block to the left.
+Pick up box 13 from the top left corner. Place it so that its bottom edge is lined up with the top edges of boxes 6, 9, and 19. The bottom corners of box 13 should be nearly touching the corners of boxes 9 and 19.
+Move 19 so it below and to the right of 12. 19 should be a block length from the right edge of the table and half a block length from the bottom edge of the table.
+Position 19  so its right edge faces the right side of the table,  a block length away, and its bottom edge faces the bottom of the table, half  a block length away
+19  should be one block west of the right edge of the      table and half a block north of the bottom edge of the table.
+Put block 19 below and to the left of block 12. Slide block 19 down about a third a block of space and then slide it to the left until it is in line with block 8.
+2 should be north of 3
+Place block 2 north of block 3.
+Place block 5 to the right of block 2, then slide it up until it is no longer in line with block 2.
+Place block 8 to the right of block 5, then slide it up until it is no longer in line with block 5.
+Continue the diagonal line formed by block 2 and 5 with block 8.
+Place 14 horizontally aligned with 18 and vertically aligned with 16.
+Place block 17 north of block 18.
+Slide 17 right until it is in line with 18.
+Place block 16 north of block 17.
+Slide 16 right until it is aligned with 17, then down until it touches 17.
+Slide 13 right to 17 then up until aligned with 16.
+place box 10 so it is aligned horizontally with box 16 and vertically with box 11
+Slide 10 down until it's aligned with 13, then right until they touch.
+place box 7 so it is aligned vertically with box 8 and horizontally with box 16
+Slide 7 right to 4 then down til aligned with 10 then right until 7 and 10 touch.
+place box 4 so that is aligned vertically with box 5 and horizontally with box 16
+Slide 4 down til aligned with 7.
+place box 1 so that it is aligned vertically with box 2 and horizontally with box 16
+Slide 1 down til aligned with 4, then right until they touch.
+Position 15 so its bottom edge faces the table's bottom edge with two block lengths between them, and so its right edget faces the table's right edge with four block lengths between them
+15 should be two blocks north and four blocks west of the bottom right corner of the table
+Continue the diagonal line formed by blocks 15 and 17 with block 20.
+19 should be north of 20
+Place block 19 north of block 20.
+18 should be north of 19
+Place block 18 north of block 19.
+Continue the diagonal line formed by blocks 16 and 14 with block 11.
+12 should be south of 11
+Place block 12 south of block 11.
+Put block 12 underneath block 11.
+13 should be south of 12
+Place block 13 south of block 12.
+5 should be north of 6
+4 should be north of 5
+place box 4 so it aligns vertically with box 6 and horizontally with box 11
+3 should be north of 4
+place box 3 so it aligns vertically with box 6 and horizontally with box 14
+2 should be north of 3
+place box 2 so that it aligns vertically with box 6 and horizontally with box 16
+1 should be north of 2
+7 should be north of 8
+place box 7 so that its bottom is flush with the top of box 8
+Move the HP logo towards north-west and place it at the south-west side of the Twitter logo that it is aligned halfway with some space between them.
+Take the  HP logo and put it at the halfway lower-left side of the Twitter logo with gaps between.
+place the hp box so that it is directlly below the twitter box slide it down one space. now move it one half block width to the left
+Take the HP block and put it under the Twitter block. Slide the block a bit to the left, then slide it down until it is slightly beneath the Texaco block.
+Place the HP block underneath the Twitter block, slide it down about a block's height away, and then ever-so-slightly to the left.
+Move the NVIDIA logo towards south-west and place it at the east side of the HP logo that both logos touch each other and get aligned.
+Take the NVIDIA logo and put it at the right side of the  HP logo so both logos are in touch and get aligned.
+place the nvidia box so that its left side lines up with the head of the twitter bird vertically and it is in line with the hp box horizontally
+Move the SRI logo towards south-west and place it at the east side of the NVIDIA logo that both logos touch each other and get aligned.
+Take the SRI logo and put it at the right side of the  NVIDIA logo so both logos are in touch and get aligned.
+place the sri box on the far right end of the line with the hp box in it
+Move the Target logo towards north-west and place it at the east side of the SRI logo that both logos touch each other and get aligned.
+Take the Target logo and put it at the right side of the SRI logo so both logos are in touch and get aligned.
+place the target box on the far right end of the line with the hp box in it
+Move the Toyota logo towards south-east and place it at the east side of the Target logo that both logos touch each other and get aligned.
+Take the Toyota logo and put it at the right side of the Target logo so both logos are in touch and get aligned.
+place the toyota box on the far right side of the line with the hp box in it
+Move the Twitter logo towards south-east and place it at the south side of the Toyota logo that both logos touch each other and get aligned.
+Take the Twitter logo and put it at the lower side of the Toyota logo so both logos are in touch and get aligned.
+Move the UPS logo towards south-east and place it at the south side of the Twitter logo that both logos touch each other and get aligned.
+Take the UPS logo and put it at the lower side of the Twitter logo so both logos are in touch and get aligned.
+Move the Texaco logo towards south-east and place it at the south-west corner of the UPS logo that both logos touch each other.
+Take the Texaco logo and put it at the lower-right corner of the  UPS logo so both logos are in touch.
+Start to form a diagonal line by placing the Texaco block underneath and to the left of the UPS block.
+Move the Starbucks logo towards south-east and place it at the west side of the Texaco logo that both logos touch each other and get aligned.
+Take the Starbucks logo and put it at the left side of the Texaco logo so both logos are in touch and get aligned.
+place the starbucks box in line with the sri box vertically against the bottom edge of the playing filed now slide it up into line with the texaco box
+Move the Pepsi logo towards south-east and place it at the west side of the Starbucks logo that both logos touch each other and get aligned.
+Continue the bottom horizontal from Pepsi with McDonalds.
+Begin an upwards left diagonal from McDonalds  wth Coca Cola.
+Make Coca Cola horizontally level with UPS as far left as it can go while still touching McDonalds.
+Burger King should be north of Coca Cola and southwest of HP
+BMW should be north of Burger King and west of HP
+Adidas should be north of BMW
+Slide the Adidas logo so that its the fourth block on the top of the left side of the circle.
+Move the Heineken logo so that the bottom left corner is lined up with the top right of the Adidas logo.
+Begin an upwards right diagonal from Adidas with Heineken.
+Esso should be north of Heineken
+Begin an upwards right diagonal from Esso with Mercedes Benz.
+Continue that diagonal with Shell.
+Touch Stella Artois left side completely with Shell's right side.
+Move McDonalds so it is one block length to the right and two block lengths below Twitter
+Position McDonalds so its top left corner faces Twitter's bottom right corner, with one block length between them
+McDonalds should be southeast of Twitter, with the distance of one block in the middle
+place the Mcdonalds box so that its bottom is  in a horizontal line with the top of the Mercedes benz box and its left side is in line vertically withe the right side of the Stella artois box
+The McDonald's block must be positioned beneath the Twitter block in a way that the McDonald's block is more than half way sticking out to the right of the twitter block.
+Slide the McDonald's block so that it is underneath the Twitter block. Then move it to the right so that only a fourth of the McDonald's block is under the Twitter block.
+place the starbucks box so that the Mcdonalds box is flush with it's left side
+place the Starbucks box immediately above the Pepsi box so that only the right half of its bottom is touching the pepsi box now slide it up and in line with the Mcdonalds box
+The Starbucks block must be positioned so that it's top is in a line with the McDonald's block's top line and it must be placed to the right.
+place the target box so it is the right most in the line with the Mcdonalds box
+The Toyota block must be positioned so that its top left corner is at the bottom right corner of the Heineken block with a little space between them diagonally.
+Twitter should be south of Toyota
+place the twitter box so that it's top is flush with the bottom of the toyota box
+The Twitter block must be positioned directly beneath the Toyota block so that they are touching and are evenly lined up.
+Slide the Twitter block so that it is directly beneath the Toyota block. Make sure they are touching and evenly lined up.
+UPS should be south of Twitter
+The UPS block must be positioned so that it is directly beneath the Twitter block in a way that they are touching and evenly lined up.
+Slide the UPS block so that it is directly beneath the Twitter block. Make sure they are evenly lined up and touching.
+place the Texaco box so it is against the twitter and pepsi blocks now slide it down into line with the ups box
+place the stella artois box so that its upper right half is against the pepsi boxes lower left half now slide it down into line with the Texaco box
+Mercedes Benz should be north of Nvidia
+Burger King should be north of Coca Cola
+Put the pepsi block north of the coca cola block
+Move the burger king cube so that its south side touches the north side of the coca cola cube
+Place the Burger King block north of the Coca Cola block.
+BMW should be north of Burger King
+Move the bmw cube so that it touches both the north side of the burger king cube and west side of the mcdonalds cube
+Place the BMW block north of the Burger King block.
+Adidas should be north of BMW
+Move the adidas cube so that its south side touches the north side of the bmw cube
+Place the Adidas block north of the BMW block.
+Move the hp cube so that its south side touches the mcdonalds cube and its west side touches the adidas cube.
+Heineken should be north of HP
+Move the heineken cube to the left until its south side touches the north side of the hp cube.
+Place the Heineken block north of the HP block.
+Esso should be north of Heineken
+Place the Esso block north of the Heineken block.
+Shell should be north of SRI
+Move the shell cube until its south side (green) touches the north face of the SRI cube
+Place the Shell block north of the SRI block.
+Pepsi should be north of Shell
+Move the pepsi cube out of the center, and put it above the shell cube so that its south face touches the shell cubes north face.
+Place the Pepsi block north of the Shell block.
+Put the Target block north of the Texaco block.
+Place the Target block north of the Texaco block.
+Move the "Target" block so that the down edge is against the up edge of the block with the logo with a star inside a circle.
+Put the block with the "Target" logo so that the down side is against the up side of the "Texaco" block.
+Put the Stella Artois block north of the Target block.
+Place the Stella Artois block north of the Target block.
+Put the "Stella Artois" block so that it is in line with the Target block and Texaco block, with it's down edge touching the Target block.
+Put the SRI block in the same column as the Starbucks block, above and with six intervening empty block spaces.
+Move the "SRI" box so that it is both between AND above the "BMW" block and the "Stella Artois" block, but not touching either.
+Put the SRI block so that it is almost touching both the BMW block and the Stella Artois block, but above both.
+Put the Pepsi block in the same column as the Shell block, above and with seven intervening block spaces.
+Move the Pepsi block so that it forms a diagonal line with the SRI block and the Stella Artois block, and touching the corner of the SRI block.
+Slide the Pepsi block so that it is in line with the BMW block, but its lower right corner touches the upper left corner of the SRI block.
+Put the Mercedes block in the same column as the Nvidia block, above and with seven intervening block spaces.
+Put the Mercedes Benz block to the left of the Pepsi block, with their sides touching.
+Put the HP block in the same column as the McDonalds block, above and with six intervening block spaces.
+Slide the HP block so that it is in line with the Burger King and SRI blocks horizontally, but the McDonalds block vertically
+Put the BMW block in the same column as the Esso block, above and with three intervening block spaces.
+Put the BMW block so that it creates a diagonal line with the HP and Mercedes Benz blocks, with its corner touching the HP block.
+Slide the BMW block so that it is in line with the Stella Artois block horizontally and the Esso and Heineken blocks vertically
+Put the Burger King block south of the BMW block.
+Place the Burger King block south of the BMW block.
+Put the Burger King block in the same column as the Esso block, above and with two intervening block spaces.
+Put the Coca Cola block south of the Burger King block.
+Place the Coca Cola block south of the Burger King block.
+Put the Coca Cola block in the same column as the Esso block, above and with one intervening block space.
+Move the Coca Cola block so that is forms a line with the Burger King and BMW blocks, and touches the Burger King block.
+Slide the Coca Cola block so that it is in line with the Texaco block, but touches the closest side of the Burger King block.
+Move the Adidas block so that it's in line with the UPS block,  but only its corners touch the Coca Cola block and the Esso block.
+Shift the Esso block so that it is halfway under the Texaco block and horizontally inline with the Coca-Cola logo
+Move the Esso block up about one space and then over until the left half overlaps with the right half of the Texaco block
+Place the Esso block so that it is a half block higher than the SRI block and then shift it to the left about one full block's worth of space
+Place the Heineken block south of the Esso block.
+Move the Heineken block so that it is directly beneath the Esso block
+Shift the Heieneken block down and to the left so that it forms  a vertical line with the Esso block
+Add the Shell block to the row with the McDonald's and Nvidia blocks. Put it inline vertically with the BMW block
+Move the Starbucks block so that it is vertically inline with the Target logo and then shift it down until it is horizontally aligned with the Shell block
+Put the Twitter block on the same row as the Heineken block, to the right and with four intervening block spaces in between.
+Line the Twitter block up horizontally with the Heineken block and then move it right until it is just outside of the Starbucks block
+Place the Toyota block north of the Twitter block.
+Put the Toyota block on the same row as the Esso block, to the right and with four intervening block spaces in between.
+Horizontally align the Toyota block with the Esso block and then shift if right until it is above the Twitter logo
+Shift the UPS block up just above the Toyota block and then right until it's left edge is inline with the right edge of the Toyota block
+Put the Texaco block in the same column as the Toyota block, above and with one intervening empty block space in between.
+Shift the Texaco block slightly up and then to the right until it's right edge is inline with the left edge of the UPS block
+Vertically aline the Texaco block up above the Toyota block and move it so there is one block length between the two
+Place block 4 in the same row as block 15, to the left and with two intervening empty spaces in between.
+Put block 4 in the same column as block 5, above and with four intervening empty block spaces in between.
+place box 4 in line horizontally with box 15 and vertically with box 5
+Put block 7 in the same column as block 8, above and with four intervening empty block spaces in between.
+Put block 11 in the same column as block 12, above and with four intervening empty block spaces in between.
+Place block 10 north of block 11.
+Put block 14 in the same column as block 15, above and with one intervening empty block space in between.
+Place block 13 north of block 14.
+Put block 9 in the same column as block 10, above and with two intervening empty block spaces in between.
+Put block 6 in the same column as block 7, above and with three intervening empty block spaces in between.
+place box 6 so that its is horizontally in line with box 9 and vertically in line with box 7
+Put block 3 in the same column as block 4, above and with three intervening empty block spaces in between.
+Put block 1 in the same column as block 2, above and with six intervening empty block spaces in between.
+Pick up the 2 box from the right side of the mat, it is toward the middle. Pick it up and place it 2 boxes below the 9 box with the 2 box being split in half by the 9 box above.
+Move block 2 from it's current position next to block 15 to the left and down so that it ends up in a position where it is one-block-width below block 9, but positioned halfway between block 9 and block 20.
+Block 2 must slide down the board and to the left.  The final position of the block should be approximately one and one-half block's width from the bottom of the board, and three and one half block's width from the left side of the board.
+Block 5 must be moved from the top of the board all the way down so that it is only one-half block-width from the bottom of the board.  Block 5 should then be moved to the left one block-width so that is diagonal from block 2.
+Move block 8 to the left and down the board until it is one-half block-width from the bottom of the board.  Block 8 should be immediately next to block 5 so the the right-width of block 5 is next to the left-width of block 8.
+Move block 8 to the left and down so that it ends up to the right of block 5 and lined up with it horizontally.
+Pick up the 12 box from the upper right corner and sit it down lined up with and to the right of the 8 box.
+Move block 12 to the mid-point of the board and then slide it down until it is immediately next to block 8.  The right-width of block 8 and the left-width of block 12 should be immediately next to each other.
+Move block 12 down over and down until it is lined up on the same horizontal line with blocks 5 and 8.  The 3 blocks should form a horizontal line.
+Pick up the 16 box from just to the right of the 12 box. Sit it down with its bottom left corner touching the upper right corner of the 12 box.
+Move  block 16 from its current position to the left approximately the width of one cube and up the board for the width of approximately one cube.  The final position for block 16 should find the lower-left corner of block 16 touching the upper-right corner of block 12.
+Pick up the 19 box from the upper right of the mat. Sit it down lined up with and directly above the 20 box.
+Place block 19 north of block 20.
+Put block 19 in the first open space north of block 20.
+Move block 19 the width of one block to the left, and then down the board until it is touching block 20.  Blocks 19 and 20 should be lines up so that block 19 is immediately above block 20 and they are touching along the full width of both blocks.
+Pick up the 18 box from the left side of the mat and place it so that it is lined up with and touching the 19 box.
+Place block 18 north of block 19.
+Put block 18 in the first open space north of block 20.
+Move block 18 from its current position on the extreme left of the board over to the right and up the board until it is immediately above block 19.  Block 18 and block 19 should line up in a way that block 18 is immediately above block 19 and the two are touching along the full length of the bottom of block 18 and the top of block 19.
+Pick up the 17 box from the upper part of the mat and sit it down so that it touch and lines up with the 18 box.
+Place block 17 north of block 18.
+Put block 17 in the first open space north of block 20.
+Block 17 should be moved from its current position at the top of the board to the right and down the board until it is in position immediately above block 18.  The two blocks should be lined up perfectly, with the bottom width of block 17 touching the top width of block 18.
+Block 15 needs to be moved up the board, to the left and then back down the board until it is immediately to the left of block 17.  The right width of block 15 should be lined up and almost touching the left width of block 17.
+Block 15 should be moved up and around the board until it is position with block 17 on it's immediate right.  The blocks should be lined up left-to-right.
+place the coca cola box so that it aligns vertically with the burger king box and horizontally with the twitter box
+Place the Starbucks south of the SRI block.
+Place the Stella Artois south of the Starbucks block.
+Place the Nvidia south of the Mercedes block.
+Place the Pepsi south of the Nvidia block.
+Move the PEPSI block to on top of the NVIDIA block. Now move the PEPSI block south one block unit and move it down to the same level as all other blocks.
+Move Twitter above shell, then slide it a block-length up and half a block left.
+Move Twitter Above Shell, then move it one and a half block-lengths up, and half a block-length to the left.
+Place Twitter to the right of Toyota, then slide it 3/4 of a block-length to the right, and 3/4 of a block length down.
+place the twitter box so that its right side aligns vertically with the left side of the coca cola box and its bottom aligns horizontally with the top of the adidas box
+Take the Twitter block and position it so the upper left corner touches the lower right corner of the Toyota block with a space inbetween.
+place the target box upper most in the line with the twitter box
+place the esso box so that it is the left most in the line with the shell box
+Place Burger King below Esso, then slide it one block-length to the left.
+Place Adidas below Burger King, then slide it one block length to the left.
+place the bmw box in line with the twitter box horizontally and the adidas box vertically
+Place the Stella Artois block underneath the Starbucks block.
+Place the Pepsi block underneath the Nvidia block.
+Position Twitter so its bottom right corner faces Adidas's top right corner, with one block diagonal between them
+Twitter should be two blocks north and two blocks west of Adidas
+Move the Twitter logo towards south-east and place it directly at the north side of the SRI logo but in between Coca Cola and Adidas logos without touching any of them.
+Take the Twitter logo and put it at the perfectly upper side of the SR logo and upper-left side of the Adidas logo and lower-left side of the Coca Cola logo that it is about equidistant from both logos.
+Bring the Twitter logo on the directly upper side of the SRI logo and upper-left side of the Adidas and lower-left side of Coca Cola logo without touching but aligning halfway to both of them.
+take the bird block and place it even with the SRI block and the HP block of where the two blocks would intersect
+Toyota should be north of Twitter
+Move the Toyota logo towards south-west and place it at the north face of the Twitter logo that both logos touch each other and get aligned.
+Take the Toyota logo and put it at the upper side of the Twitter logo so both logos are in touch and get aligned.
+place the Toyota block north of the twitter block
+Texaco should be north of Toyota
+Move the Texaco logo towards north-east and place it at the north side of the Toyota logo that both logos touch each other and get aligned.
+Take the Texaco logo and put it at the upper side of the  Toyota logo so both logos are in touch and get aligned.
+place the Texaco block north of the Toyota block
+Move the UPS logo towards north-east and place it at the north-east corner of the Texaco logo that both logos touch each other.
+Take the UPS logo and put it at the upper-right corner of the Texaco logo so both logos are in touch.
+place the ups block north of the Texaco block and one block to the east
+place the ups block one block to the right of the Texaco block and one full block length above that
+Move the Target logo towards south-east and place it at the north face of the Texaco logo that both logos touch each other and get aligned.
+Take the Target logo and put it at the upper side of the Texaco logo so both logos are in touch and get aligned.
+place the target block north of the Texaco block
+Move the Shell logo towards east and place it at the west face of the Target logo that both logos touch each other and get aligned.
+Take the Shell logo and put it at the left side of the Target logo so both logos are in touch and get aligned.
+Move the McDonalds logo towards north-east and place it at the west side of the Shell logo that both logos touch each other and get aligned.
+Take the McDonalds logo and put it at the left side of the Shell logo so both logos are in touch and get aligned.
+Move the Burger King logo towards north-east and place it at the west side of the McDonalds logo that both logos touch each other and get aligned.
+Take the Burger King logo and put it at the left side of the McDonalds logo so both logos are in touch and get aligned.
+Coca Cola should be south of Burger King
+Move the Coca Cola logo towards west and place it at the south face of the Burger King logo that both logos touch each other and get aligned.
+Take the  Coca Cola logo and put it at the lower side of the Burger King logo so both logos are in touch and get aligned.
+place the coca cola block south of the burger king block
+Esso should be south of Coca Cola
+Move the Esso logo towards south and place it at the south side of the Coca Cola logo that both logos touch each other and get aligned.
+Take the  Esso logo and put it at the lower side of the Coca Cola logo so both logos are in touch and get aligned.
+place the esso block south of the coca cola block
+place the pepsi box to the immediate left of and flush with the stella artois box now slide it up four places
+Put the Starbucks block in the same column as the Stella Artois block, above and with three intervening empty block spaces in between.
+place the starbucks box on the immediate right of and flush with the pepsi box
+place the starbucks box so that it is in a vertical line with the stella artois box and a horizontal line with the pepsi box
+place the starbucks box to the immediate right of the mcdonalds box slide it over two spaces to the right and then one space up bringing it in line with the pepsi box
+place the twitter box flush with the right side of the texaco box now slide it up one space
+Put the Target block in the same column as the Texaco block, above and with one intervening empty block space in between.
+Put the SRI block in the same column as the Starbucks block, above and with three intervening empty block spaces in between.
+place the sri box flush with the left side of the target box now slide it up one space
+place the nvidia box to the immediate left of and flush with the sri box
+place the nvidia box in line with the pepsi box vertically and the sri box horizontally
+Put the HP block in the same column as the McDonalds block, above and with three intervening empty block spaces in between.
+place the hp box in a horizontal line with the target box and a vertical line with the mcdonalds box
+place the coca cola box immediately to the left of and flush with the hp box
+place the coca cola box in a vertical line with the esso box and a horizontal line with the hp box
+place the adidas box to the immediate left of and flush with the coca cola box
+place the adidas box on the far left end of the line with the coca cola box
+Slide the ups block straight to the right.  Stop when it is completely in line with the Toyota block.
+Place ups in a line below toyota with a space between them.
+Move the UPS block to the same column as the Toyota block, below and with half a block's gap between them.
+Place the UPS block one row below the Heineken block, and vertically aligned with the Toyota block.
+UPS moves so that its left and right sides are even with Toyota, but half a block down from the bottom of Toyota
+UPS moves so that its right side is even with the right side of Toyota, and it top is even with the bottom of Heineken
+UPS moves so that its bottom is even with the top of Esso, and its left side is even with the left side of Toyota
+Shell moves so that its right side is even with the left side of Stella Artois, and its top is even with the bottom of Toyota
+Shell moves so that its left side is even with the middle of Heineken, and its top is even with the bottom of UPS
+Put the Burger King block in the same row as the Stella Artois block, to the left and with three intervening empty block spaces in between.
+Burger King moves so that its bottom is even with the top of Merecedes, and its right is even with the middle of HP
+Burger King moves so that its left side is even with the middle of Adidal, and its top is even with the top of UPS
+Place the BMW block north of the Burger King block.
+BMW moves so that it left and right sides are even with Burger King, and its bottom is even with the top of Toyota
+Esso moves so that its left side is even with the right side of BMW, and its bottom is even with the top of BMW
+Esso moves so that its right side is even with the left side of Mercedes, and its top is even with the bottom of Starbucks
+McDonald's moves so that its right side is even with the right side of Mercedes, and its bottom is even with the bottom of Starbucks
+McDonald's moves so that its left side is even with the right side of Heineken, and its top is even with the middle of HP
+SRI should be south of Shell
+HP should be north of McDonalds
+Adidas should be north of BMW
+Move Burger King between Heineken and SRI, half a block length from SRI and just a little bit higher than SRI.
+Position Burger King so its left edge faces Heineken's right edge with about a block length between them and its right edge faces SRI's left edge with about half a block length between them.
+Place Burger King so that its lower-left corner touches the middle of the right edge of Heineken. Then, slide it one block-length to the right.
+Place the Burger King block three block lengths above the Esso block, then move it a quarter block length to the left.
+Coca Cola should be south of Burger King
+Place the Coca-Cola block two block lengths above the Esso block, then move it a quarter block length to the left.
+Esso should be south of Coca Cola
+Place the Esso block three block lengths to the right of the Twitter block, then move it one block length up.
+Place the Mercedes-Benz block one block length to the left of the Target block.
+Place the Mercedes-Benz block four block lengths to the right of the Twitter block, then move it a quarter block length upwards.
+Place the Starbucks block directly between the Mercedes-Benz block and the Target block, then move it one block length upwards, so the bottom corners are touching the top corners of the two other blocks.
+Place the Starbucks block one block length to the right of the Esso block.
+Place the Starbucks block to the right of the Mercedes-Benz block, then move it one block length upwards.
+Place the Toyota block three block lengths to the left of the UPS block, then move it  a quarter block length downwards.
+Texaco should be north of Toyota
+Place the Texaco block half a block length to the right of the SRI International block.
+Place the Texaco block three block lengths to the left of the UPS block, then move it a quarter block length upwards.
+Move Target so it is above Texaco with three block lengths in between
+Target should be north of Texaco with the distance between them being three block lengths
+Place Target above Texaco, but one block-length higher than Shell.
+Place Target so that its lower-right corner touches the upper-left corner of Shell. Then slide Target to the left until it is horizontally aligned with Texaco.
+Place Target above Texaco, then slide it so that it is one block-length above Shell's position.
+Place the Target block above and to the left of the Shell block, about a block length away.
+Place Pepsi below Target, then move it one block-length to the left.
+Shell should be south of Pepsi
+Place the Shell block one block length above the SRI international block, and slightly to the right.
+Move the McDonald's cube to line up with the Mercedes Benz cube but one row above the Coca-cola cube.
+Move the Shell cube to line up with the SRI cube but two rows above the Coca-cola cube.
+Move the Target cube to line up with the Texaco cube but three rows above the Coca-cola cube.
+Place the Stella Artois block north of the Target block.
+Put the Stella Artois block in the first open space north of the Target block.
+Place the Starbucks block north of the Stella Artois block.
+Put the Starbucks block in the first open space north of the Target block.
+Move the Pepsi cube so that it's right side directly lines up with the left side of the Starbuck's cube.
+Move the Pepsi cube so that it is lined up with the Shell cube but three rows above it.
+Move the HP cube so that it's right side directly lines up with the left side of the Pepsi cube.
+Move the HP cube so that it is lined up with the McDonald's cube but four rows above it.
+Move the Burger King cube so that it's right side directly lines up with the left side of the HP cube.
+Move the Burger King cube so that it is lined up with the Coca-Cola cube but five rows above it.
+Move the BMW cube so that it's right side directly lines up with the left side of the Burger King cube.
+Put the Adidas block in the same row as the Stella Artois block, to the left and with four intervening empty block spaces in between.
+Move the UPS block one column to the right of the HP block, and horizontally aligned with the SRI block.
+move the ups box so that its left edge is vertically aligned with the hp boxes right edge and the bottom edge is aligned horizontally with the Target boxes top edge
+UPS moves so that its top is even with the middle of Shell, and is right side is even with the middle of BMW
+UPS moves to the right of the screen, with its left side even with HP's right side, and its bottom even with the bottom of SRI
+UPS moves so that is left side is even with the right side of Mercedes, and its top is even with the middle of Shell
+move the twitter box to the immediate left and flush with the ups box
+Toyota moves to between HP and Twitter, with its right side even with their lefts
+place the texaco box to the immediate left and flush with the toyota box
+place the texaco box against the bottom of the shell box and then slide it down to inline with the toyota box
+Place the Mercedes block north of the Nvidia block.
+Place the Esso block north of the Heineken block.
+Place the Coca Cola block north of the Esso block.
+Move Adidas so it is below and to the right of Starbucks with half a block length between Starbuck's right side and Adidas's left side
+Position Adidas so its top left corner faces Starbucks bottom right corner, with half a block length between Starbucks's right edge and Adidas's left edge
+Adidas should be half a block length east and one block length south of Starbucks
+Place block Adidas below and right of block Starbucks. Both blocks do not touch.
+BMW should be south of Adidas
+Place the BMW block south of the Adidas block.
+Place block BMW right below block adidas. Both blocks must touch
+Move block BMW down and left until it is under block adidas, both block touching on one side.
+Olace block Burger King right of BMW. Both blocks must touch
+Place block Heineken just right of block Burger King. Both blocks must touch
+Place block Mercedes to the right of block Heineken, both blocks touching.
+Place block SRI to the right of block Mercedes, both blocks touching.
+Shell should be north of SRI
+Place the Shell block north of the SRI block.
+Place block Shell right above block SRI, both block touching
+Pepsi should be north of Shell
+Place the Pepsi block north of the Shell block.
+Place block Pepsi right above block Shell, both block touching.
+Slide block Pepsi up and left until directly above block Shell. Both blocks must touch.
+Place block McDonalds to the left of block Pepsi, both blocks touching
+Take block McDonald and place it left of block Pepsi, both blocks must touch
+Coca Cola should be north of Esso
+Place the Coca Cola block north of the Esso block.
+Move the Heineken block to the 6th space from the left on the bottom row
+Heineken moves so that its right side is even with the left side of HP, and its bottom touches the bottom of the screen
+Move the Pepsi block the the 7th place from the left on the second row
+Pepsi moves so that its left side is even with the right side of Heineken, and its top is even with the bottom of Coca Cola
+Pepsi moves so that its left side is even with the right side of Heineken, and its bottom is even with the top of Heineken
+Stella Artois moves so that its left side is even with the right side of Pepsi, and its bottom is even with the top of Pepsi
+Stella Artois moves so that its right side is even with the left side of Target, and its top is even with the bottom of HP
+Texaco moves so that its left side is even with the right side of Stella Artois, and its bottom is even with the top of Stella Artois
+Texaco moves so that its right side is even with the left side of Nvidia, and its top is even with the top of HP
+Place the Target block north of the Texaco block.
+Target moves so that its left and right sides are even with Texaco, and its bottom is touching Texaco
+Starbucks moves so that its right side is touching Target, with its bottom even with the top of Texaco
+Nvidia moves so that its right side is touching Starbucks, and its top is even with the top of Target
+Put the Esso block in the same column as the Heineken block, above and with four intervening empty block spaces in between.
+Move the Esso block to the sixth space up from the Heineken block
+Esso moves so that its left side is even with the left side of Heineken, and its bottom is even with the top of Nvidia
+Esso moves so that its right side is even with the left side of HP, and its top is even with the top of Shell
+Put the Mercedes block in the same column as the Nvidia block, above and with one intervening empty block space in between.
+Mercedes moves so that its left side is even with the right side of Esso, and its bottom is even with the top of Esso
+Mercedes moves so that its right side is even with the right side of Nvidia, and its bottom is even with the top of Shell
+McDonalds should be to the north of Mercedes-Benz
+Move the block with the McDonald's logo down until it is directly above the Mercedes Benz block
+Move the McDonald's block to the top of the column with the most blocks in it
+Put the block with the "M" just above the Mercedes one.
+Put the SRI block just right of the one with the M.
+Put the SRI block behind Starbucks, aligned with McDonald's.
+Shell should be north of SRI
+Move the Shell block 3 rows away from you, and then right until it's lined up with SRI.
+Move the HP block upwards until it is exactly one space above the McDonald's logo with its bottom right corner touching the upper left corner of the Shell logo
+Move Coca cola away until it's as far as hp, and then right until it collides with another block.
+Move burger king away as far as the farthest blocks, and then right until it collides with another block.
+Move BMW away until it's lined up with the farthest blocks, then right until it hits another block.
+Take the SRI International block and place it to line up with the green face of the Shell block. The yellow face of the SRI International block will be on a continuation of the vertical column formed by the blocks in this order Mercedes, Nvidia, Pepsi, Shell and then SRI.
+Take the SRI International block and line it up so its top edge lines up with the bottom edge of the Shell block.
+Place the SRI block south of the Shell block.
+Place the Starbucks block south of the SRI block.
+Put the Heineken block in the same column as the Esso block, below and with four intervening empty block spaces in between.
+Place the HP block south of the Heineken block.
+Place the McDonalds block south of the HP block.
+Move the Stella Artois cube so that it's left side lines up with the right side of the McDonald's cube.
+Move the Target cube so that it's left side lines up with the right side of the Stella Artois cube.
+Move the Texaco cube so that it's left lower corner lines up with the right upper corner of the Target cube.
+Put the Texaco block in the same row as the HP block, to the right and with two intervening empty block spaces in between.
+Move the Burger King cube so that it is lined up with the BMW cube but one row above the Pepsi cube.
+Put the Burger King block south of the BMW block, with half a block gap between them.
+Move the BMW block up until it's horizontally aligned with the Coca Cola block.
+Place the BMW block vertically aligned with the Burger King block,  and horizontally aligned with the Coca Cola block.
+Slide the BMW block north until it's on the same row as the Coca Cola block.
+Place the Adidas block north of the BMW block.
+Place the Coca Cola block north of the Esso block.
+Place the Nvidia block south of the Mercedes block.
+Place the Pepsi block south of the Nvidia block.
+Place the Shell block south of the Pepsi block.
+Find the 1 box in the lower middle area of the mat. Move it so that it is lined up diagonally below and to the left of box 18 with about the distance of a block between.
+Move box 2 from the left edge in the upper left corner to below and lined up with box 1.
+Place block 2 south of block 1.
+Underneath block 1, place block 2.
+Move box 7 from the left side of the mat to be lined up with and to the right of box 3.
+Continue the diagonal line formed by blocks 10 and 13 with block 17.
+Find box 16 in the bottom left corner and place it directly above and lined up with box 17.
+Box 16 is along the bottom edge in the bottom left corner. Slide it across the bottom underneath all of the other blocks and past box 15. Then slide it up past box 17. Finally slide it left until it lines up directly above box 17.
+Place block 16 north of block 17.
+Place block 4 north of block 5.
+place box 8 so that its left  side is flush with box  4
+slide block 8 so that the left hand edge lines of with the right hand edge of block 4.
+Move block 11 to the right of block 8. Keep it in line with block 8 and the same orientation.
+place box 14 so it's aligned vertically with box 16 and horizontally with box 4
+place box 18 to the immediate right of box 16 then slide it up til it is aligned horizontally with box 4
+Place block 19 south of block 18.
+place box 19 so that it aligns vertically with box 18 and horizontally with box 5
+Place block 20 south of block 19.
+place box 20 immediately below box 5 then slide it right til it aligns vertically with box 18
+carefully position block 20 directly below block 19 to create a line with blocks 18 and 19.
+place box 9 so it's aligned vertically with box 10 and horizontally with box 12
+place box 9 immediately to the left of box 13 then slide it up til it aligns horizontally with box 12
+place box 6 so it's aligned vertically with box 5 and horizontally with box 12
+Move the Coca Cola block under and in line with the Burger King block.  They are close, but don't touch.
+Place the Coca Cola block south of the Burger King block.
+Coca Cola moves to directly beneath Burger King
+Coca Cola moves down until its top is even with the bottom of Burger King, then moves right until its right side is even with the right side of Burger King
+Put the HP block in the same column as the Heineken block, below and with one intervening empty block space in between.
+Move the McDonald's block left and up, in line with and under the hp block.  They are close, but don't touch.
+Place the McDonalds block south of the HP block.
+McDonalds moves to directly beneath HP
+McDonald's moves so that it is between UPS and HP, with its top touching HP
+Move the Shell block left and down, in line with and to the right of the McDonald's block.  They are close, but don't touch.
+Move the Target block down and around, in line with and to the right of the Shell block.  They are close, but don't touch.
+Move the Stella Artois block down and left, in line with and above the Target block.  They are close, but don't touch.
+Place the Stella Artois block north of the Target block.
+Put the Stella Artois block in the same row as the HP block, to the right and with one intervening empty block space in between.
+Move the Texaco block down and left, in line with and to the right of the Stella Artois block.  They are close, but don't touch.
+Move the Toyota block to the right down, in line with and to the right of the Texaco block.  They are close, but don't touch.
+Move the Twitter block down, in line with and to the right of the Toyota block.  They are close, but don't touch.
+Put the UPS block in the same row as the Burger King block, to the right and with six intervening empty block spaces in between.
+UPS moves to the right side of the screen with its left side even with Twitter's right, and its bottom even with Twitter's top
+UPS moves so that its left side is even with the right side of Twitter, and its bottom is even with the top of Toyota
+Place BMW to the left of UPS, then slide it up until it is nearly even with Coca Cola.
+Place the Adidas block north of the BMW block.
+Place the ESSO cube directly in line with the Target cube but in the same row as the Adidas cube.
+Place the Mercedez Benz in the same row as the Esso cube and lined up with the Pepsi cube.
+Place the Nvidia cube in the same row as the BMW cube and lined up with the Pepsi cube.
+Place the Nvidia block south of the Mercedes block.
+Place the Starbucks block south of the SRI block.
+Place Pepsi below Starbucks, then slide it one block-length to the left.
+Put the Pepsi block in the same column as the Nvidia block, below and with one intervening empty block space in between.
+Place the Heineken cube in the same row as the Pepsi cube but lined up with the ESSO cube.
+Put the Pepsi block in the same column as the Esso block, below and with two intervening empty block spaces in between.
+Place Burger King Below Heineken, then slide it one block-length to the left.
+Put the Burger King block in the same column as the BMW block, below and with two intervening empty block spaces in between.
+Move the Burger King block to the same row as the SRI block, with two intervening empty block spaces in between.
+Put the Burger King block in the same column as the Coca Cola block, above and with four intervening empty block spaces in between.
+Moe the Burger King block to the fifth space up from the Coke block
+Burger King moves so that its top is even with the top of SRI, and its right side is even with the right side of Coca Cola
+Burger King moves so that its left side is even with the middle of Esso, and its bottom is even with the bottom of SRI
+Burger King moves so that it top is even with the bottom of BMW, and its right side is even with the left side of HP
+Move the Heineken block to the fifth space above the HP block
+Move the Pepsi block to the fifth space above the Shell block
+Place the Nvidia north of the Pepsi block.
+Place the Mercedes north of the Nvidia block.
+Move the Mercedez block to the sixth space above the shell block
+Place the McDonalds north of the Mercedes block.
+Esso moves so that its right side is even with the left side of Nvidia, and its top is even with the top of McDonald's
+BMW moves so that its left side is even with the left side of Burger King, and its bottom is even with the top of Mercedes
+Adidas moves so that its right side is even with the left side of Burger King, and its bottom is even with the top of Mercedes
+Place the Toyota block half a block width to the left of the McDonalds block, and one row below the Shell block.
+Toyota is placed so that its right side is even with the left side of McDonalds and its top is even with the bottom of Shell
+Toyota is placed so that its bottom is even with the top of Target, sitting three block widths from the right side
+Toyota slides to the right until its right side is even with the left side of McDonalds
+Tiwtter should be south of Toyota
+Place the Twitter block south of the Toyota block.
+Twitter is placed directly beneath Toyota
+Twitter is placed so that its bottom is even with the middle of Target, and its right and left sides are even with Toyota
+Coca Cola is placed so that its left side is even with the middle of Esso, and its bottom is even with the top of Mercedes
+Coca Cola is placed half of a block from the bottom, with its right side even with the right side of Starbucks
+Coca Cola is moved to the bottom of the screen, with its left side even with the middle of Esso and its bottom even with the top of Mercedes
+HP moves so that its right side is even with the middle of Pepsi, and its left side touches Coca Cola
+Target should be north of Texaco and west of Twitter
+Place the Target block north of the Texaco block.
+Stella Artois should be north of Target and west of Toyota
+Place the Stella Artois block north of the Target block.
+Starbucks should be north of Stella Artois
+Place the Starbucks block north of the Stella Artois block.
+SRI should be north of Starbucks
+Place the SRI block north of the Starbucks block.
+Slide Shell so that it is below Target, then move it a tad bit to the right. Next, slide it down until it is almost horizontally even with Mercedes Benz, but push it up a little bit.
+Place Shell to the right of SRI, then slide it up until it is almost horizontally even with Coca Cola. Scoot it down just a tiny bit.
+Place Shell to the right of Adidas, slide it up about half a block-length up. Then slide Shell to the right until it is vertically equal with Target.
+Move Shell so it is below Target with two block lengths between them
+Position Shell so its top edge faces Target's bottom edge with a block space in between
+Shell should be south of  Target with a block length between them
+Place UPS above Texaco, then slide it one block-length to the right.
+Place the Twitter block north of the UPS block.
+Twitter should be north of UPS
+Place the Toyota block north of the Twitter block.
+Toyota should be north of Twitter
+Place Heineken below Pepsi, then slide it one block-length to the left.
+Put the Heineken block in the same row as the Twitter block, to the left and with two intervening empty block spaces in between.
+Place the HP block south of the Heineken block.
+HP should be south of Heineken
+Place the McDonalds block south of the HP block.
+McDonalds should be south of HP
+Begin a left downward diagonal from McDonalds with Coca Cola.
+Place the Starbucks block south of the SRI block.
+Place the Stella Artois block south of the Starbucks block.
+Put the Nvidia block in the same column as the Mercedes block, below and with two intervening empty block spaces in between.
+Begin a downward left diagonal from Stella Artois with Nividia.
+Put the Esso block in the same column as the Coca Cola block, below and with two intervening empty block spaces in between.
+Place the Esso box so that it is lined up vertically with the Coca cola box and horizontally with the nvidia box
+Place the BMW block north of the Burger King block.
+Place the Adidas block north of the BMW block.
+Move the Esso block up and slightly right. The Esso block should be directly below the Coca-Cola block, with the space of one block between them. The upper left corner of the Esso block should touch the lower right corner of the BMW block.
+Move the Esso block so that it aligns vertically with the Coca Cola block, and horizontally with the Burger King block.
+Move the McDonalds block so that it is in line with the HP block vertically and the Esso block horizontally.
+Move the Pepsi block in line with the Heineken and Nvidia blocks so that the upper right corner touches the McDonalds block.
+Shell should be south of Pepsi
+Place the Shell block south of the Pepsi block.
+Move the Shell block in line vertically with the Heineken block, so the top face of the Shell block touches the bottom face of the Pepsi block.
+The Mercedes block must be moved down and right to a spot two blocks length below the McDonalds block. The upper right corner of the Mercedes block should touch the lower left corner of the Shell block.
+The Mercedes block moves in line vertically with the McDonalds block. The upper right corner of the Mercedes block touches the Shell block.
+Move the Heineken block so that it aligns horizontally with the Mercedes block and vertically with the Esso block.
+Move the Burger King block in line vertically with the BMW block and horizontally with the Heineken block.
+Place the Texaco block one row above the Nvidia block, and vertically aligned with the Pepsi block.
+Take the Texaco block and place it to the right of the Adidas block, about half a block away. Then slide it down to be in line with the Shell block.
+Place the Texaco block to the right of the McDonald's block, then slide it up until it is in line with the Shell block.
+Place the Nvidia block under the SRI block, then slide it to the left so that it is no longer directly underneath the SRI block.
+Place the BMW block to the left of the Coca Cola block, then slide it down so that it is no longer in line with the Nvidia, HP and Coca Cola blocks.
+Place the BMW block under the Coca Cola block, then slide it to the left so that it is no longer directly underneath the Coca Cola block.
+6 should be south of 5
+Place block 6 south of block 5.
+Line up block number 6 with the bottom of block number 5.
+Move block 15 to the bottom by block 12 making its right edge in line with the left of 1.
+Move block 18 to the right so it's in vertical alignment with block 1 and horizontal alignment with block 10
+push block 18 way over to tright, but keeping it on the same horizontal line, and line it up vertically with block 1
+take block 16 and put it's top right  corner just barely touching block 18's bottom left corner (make it look they're in a checker pattern) align it vertically with block 15
+move block 16 down so it's lined up vertically 15 and so it's top edge is even with 18's bottom edge
+Take block 13 and continue the "angled checker pattern" with blocks 18 and 16 and situate it's top right corner with block 16's bottom left corner, so that the top of bock 13 is on the same horizontal line as the bottom of bock 16 and the right side is on the same vertical line as the left side of block 16
+move 13 down so it's top edge s even with 16's bottom edge and so it's right side is lined up with 16's left side
+Take block 10 and move it to the left of block 13 so it's horizontally aligned with block 13 and vertically aligned with block 9
+bring 10 down and line it up even with 13 on the left
+Take block 7 and move it to the left of block 10 so it's horizontally aligned with block 10 and vertically aligned with block 6
+Move 7 directly to the left of block 10 it's it's lined up with 10 and 13 in a row
+bring 7 down and put it in the row with 10 and 13, on the left
+take block 4 and move it to the left of block 7 so that it's horizontally aligned with blocks 7, 10 and 13, maintain the same amount of space between blocks 4 and 7 like blocks 10 and 7 and 10 and 13
+move 4 down left to continue the row with 7, 10 and 13
+add 4 to the left side of the row with 7, 10 and 13
+Take block 3 and place it to the left of block 4 making it perfectly horizontally aligned with blocks 4,7,10 and 13. also make sure to maintain the same amount of space between blocks 3 and 4 as between 4 & 7, 7 & 10, and 10 & 13
+put 3 to the left of 4 continuing the line made with 4, 7, 10 and 13
+put 3 next to 4 in the row with the others
+Take block 2 and place it to the left and above block 3 align it horizontally with block 16 and it's right edge should be on the same vertical line as the left edge of block 3
+bring 2 down and stick it "catty-corner' to 3 and so it's right edge lines up with 3's left edge and so it's on the same horizontal line with 16
+bring 2 down so it's catty corner with 3
+1 should be north of 2
+Place block 1 north of block 2.
+take block 1 and place it above block 2 keeping it vertically aligned with block 2 and horizontally aligned with block 18
+take block one and put it directly above 2 making it vertically aligned with 2 and horizontally lined up with 18
+Move Esso up to the right from SRI with a block between them.
+Esso above Coca cola with one empty block space between them.  Now shift Esso half a block left.
+Align Esso's left edge with Texaco's right side.  Now slide it up three spaces.
+Put Esso right of pepsi with one intervening space
+Esso horizontally between Texaco and Shell and with top edge aligned with bottom edge of BMW
+HP moves so that its left side is even with the middle of Coca Cola, and its bottom is even with the middle of BMW
+HP moves so that its left and right sides are even with Shell, and its bottom is even with the top of Esso
+Mercedes moves so that its left side is even with the left side of Burger King, and its top is even with the bottom of McDonald's
+Mercedes moves so that its left side is even with the right side of HP, and its bottom is even with the top of HP
+Pepsi moves so that its right side is even with the right side of Nvidia, and its top is even with the top of McDonald's
+Pepsi moves so that its bottom is even with the top of Mercedes, and its left side is even with the right side of Mercedes
+SRI moves so that its left side is even with the right side of Pepsi, and its bottom is even with the top of Pepsi
+SRI moves so that its left side is even with the right side of Pepsi, and its bottom is even with the top of McDonald's
+Stella Artois moves so that its top is even with the top of McDonald's, and its left side is even with the right side of SRI
+Stella Artois moves so that its left side is even with the right side of SRI, and its bottom is even with the bottom of Pepsi
+Take the Target cube up to underneath McDonalds. Slide it to the left under Stella Artois.
+Target moves to directly beneath Stella Artois
+Target moves so that its left and right sides are even with Stella Artois, and its top is touching Stella Artois
+Texaco moves to directly beneath Target
+Take the Toyota and place it on top of Texaco. Slide it one down until it drops directly beneath Texaco.
+Toyota moves to directly beneath Texaco
+Take Toyota and place it to the left of UPS with a blank space inbetween
+Twitter moves to directly beneath Toyota
+Take Twitter and place it to the left of Adidas with a space inbetween
+Put the Starbucks block underneath and to the left of the UPS block.
+Start to form a diagonal line by placing the Starbucks block to the left and underneath the UPS block.
+Place the Starbucks block underneath the UPS block, then slide it to the left so that it is no longer directly underneath the UPS block.
+Place the Shell block under the Starbucks block, then slide it to the left so that it is no longer directly underneath the Starbucks block.
+Take the Nvidia block and place it under the Shell block, then slide it to the left so that it is no longer directly underneath the Shell block.
+Slide the NVidia block so that it is in line with the Pepsi block.
+Slide the Mercedes block so that it is in line with the NVidia block.
+Slide the McDonalds block so that it is in line with the Mercedes block.
+Slide the Heineken block so that it is in line with the McDonalds block.
+Slide the Burger King block so that it is in line with the Heineken block.
+BMW should be north of Burger King
+Place the BMW block north of the Burger King block.
+Adidas should be north of BMW
+Place the Adidas block north of the BMW block.
+Coca Cola should be north of Esso
+Place the Coca Cola block north of the Esso block.
+Place the Twitter block north of the UPS block.
+Twitter should be north of UPS
+Place the Starbucks block in the same column as the Twitter block, above and with four intervening empty block spaces in between.
+Put the Starbucks block in the same row as the Mercedes block, and vertically aligned with the Twitter block.
+Position Starbucks so it is a horizontal line with Mercedes-Benz and a verticle line with Twitter.
+Starbucks should be north of Twitter and east of Mercedes-Benz
+Place the Stella Artois blocks south of the Starbucks block.
+Stella Artois should be shouth of Starbucks
+Put the Stella Artois block underneath the Starbucks block.
+Place the Target block south of the Stella Artois block.
+Target should be south of Stella Artois
+Put the Target block underneath the Stella Artois block.
+Place the Texaco block south of the Target block.
+Texaco should be south of Target
+Put the Texaco block underneath the Target block.
+Place the Toyota block south of the Texaco block.
+Toyota should be south of Texaco and north of Twitter
+Find the 20 box in the top right corner. Move it to the left of box 13, which is on the right edge toward the bottom. The 20 box should be positioned so that its top edge is halfway down the 13 box with about a half a box between them.
+The 9 box is in the top right corner. Slide it left at least two block widths. Then slide the 20 box between the 9 and 16 boxes. Then slide the 20 box between the 15 and 18 boxes. Line the 20 box so that that top edge of the box is halfway down the 13 box to the right. The 20 box will also be about a half of a box length away from box 13.
+Find the 12 box in the middle of the mat, it is to the right of the 2 box. Position it so that it is lined with and to the left of the 12 box.
+Find the 9 box in the top right corner. Position it so that it is lined up with and to the left of the 12 box.
+Find the 3 box in the middle of the mat. Position it so that it is lined up to the left of box 9 with a space between the two the size of one box.
+The 3 box is in the middle of the mat, just above the 12 box placed earlier. Slide it down and left until it lines up with the 9 box with enough space between the two for another box.
+Find the 6 box at the bottom of the mat. Position it so that it is between and lined up with boxes 3 and 9.
+Place block 5 north of block 6.
+Begin a right upwards diagonal from 11 with 14.
+Put 14 on top of 11 and slide it to the left so its left edge is even with 11's right edge.
+Continue that diagonal with 17.
+Put 17 on top of 14 and do the same thing you did with 14 relative to 11.
+Continue on with 19.
+Slide 16 down til aligned with 4 then left til above 17.
+Begin a left upwards diagonal from 19 with 16.
+Put 16 on top of 19 and slide it to the left until its right edge is even with 19's right edge.
+Slide 13 up til aligned with 1, left til above 14, then down til aligned with 16.
+Slide 10 right til above 11 then down til aligned with 13.
+Slide 7 up til aligned with 14, right til above 8, then up til aligned with 10.
+Slide 4 up til aligned with 7 then right til above 5.
+Slide 2 right til above 3 then up til aligned with 19.
+Begin a downwards left diagonal from 4 with 2.
+Place 2 next to 4 and slide it down so that its top edge is even with 4's bottom edge.
+Slide 1 down til aligned with 2 then right til they touch.
+Take block number fourteen. Move it one block width to the right, toward block ten. Now move it one block length up past block ten.
+Push 14 right until it's lined up with 2, then away 1 block.
+Take block twelve and put it right beside and aligned with , to the left, block 14.
+Take block 13 and put it's upper edge completely flush with block twelve's lower edge.
+Place block 13 south of block 12.
+Make 10's right side completely flush with and touching block 12's left side. Now move block 10 down one block length.
+Put the next highest even number just left of 12, then pull it toward you so it is lined up with 13.
+take block 11 and make it's upper edge completely flush and in line with block 10's lower edge.
+Take block 11 and place it directly blow and flush with block 13's lower edge. Now move block 11 one block space to the left.
+Place block 11 south of block 10.
+Move block eight cadycorner to block 11.  Block 8 should be below and to the left of block 11 with the corners touching.
+Move block 8 so that it's upper edge and block 11's lower edge are completely aligned and touching. Now move block 8 one block length to the left.
+Push 8 away until just before it would be level with 11 horizontally, then push it right until just before it would be level with it vertically.
+Take block nine's upper edge and make it flush and in line with block 8's lower edge
+Place block nine directly on top of block 8. now move block nine one block length down and one block length toward the surface.
+Place block 9 south of block 8.
+Move the 6 block so it's right underneath the 5
+Place block 6 south of block 5.
+Slide the 6 beneath the 5.
+Move the 7 so that it's right underneath the 6
+Place block 7 south of block 6.
+Place the 7 beneath 6.
+Move the 3 block so that it is right underneath the 2
+Place block 3 south of block 2.
+Move the 4 block so that it is right underneath the 3
+Place block 4 south of block 3.
+Take the Esso block and put it directly to the left of the Shell block, then slide the bloc to the left so it is equidistant from both the Target block and the Shell block.
+Take the Esso box from the bottom right corner and place it to the bottom right corner of the Target box a box length away
+remove esso box and put it below and to the right of target box at the corner a length away
+put esso box at south east corner of target box a box length away
+Move HP cube to the right edge of the board. Move HP cube up until its bottom side aligns horizontally with top of Target Cube.
+Take the Mercedes box from above the SRI box and place it to the top right corner of the hp box with corners touching
+Start to form a diagonal line by placing the Stella Artois block underneath and to the right of the SRI block.
+Place the Stella Artois block underneath and to the right of the SRI block.
+Place the Texaco block to the right and underneath the Stella Artois block.
+take the texaco box from bottom left and place to the bottom right of the Stella artois box with corners touching
+Take Texaco cube and align its top left corner with the bottom right corner of Stellois Artois.
+Slide Texaco cube and align its top left corner with the bottom right corner of Stellois Artois.
+Position Texaco cube and align its top left corner with the bottom right corner of Stellois Artois.
+Place the Toyota block underneath the Texaco block.
+take the toyota box from the right center and place directly below texaco box with edges touching
+remove toyota box and put directly underneath texaco box
+put toyota box directly south of texaco box
+Take Toyota cube and align it perfectly with the bottom of Texaco cube
+Slide Toyota cube and align it exactly with the bottom of Texaco cube
+Position Toyota cube and align it perfectly with the bottom of Texaco cube
+Place the Twitter block underneath the Toyota block.
+take the twitter box from the right side and place directly below toyota box with edges touching
+remove twitter box and put directly underneath toyota box
+put twitter box directly south of toyota box
+Place the Target block underneath the Twitter block, then slide it to the left so that it is no longer directly underneath the Twitter block.
+Place the Target block underneath and to the left of the Twitter block.
+take the target box from top left side and place at the bottom left corner of twitter box with corners touching
+Put the Starbucks block in the same column as the SRI block, below and with five intervening block spaces in between.
+Put the Starbucks block so that it forms a diagonal line with the  Target and Twitter blocks, with the edge touching the Target block.
+Slide the Starbucks block into a diagonal line with the Target and Twitter blocks, and let its upper right edge touch the lower left edge of the Target block.
+Move the Starbucks block to where  the Target block is one block length to the right of it and one block length above it.
+Put the Shell block in the same column as the Pepsi block, below and with six intervening block spaces in between.
+Move the Shell block so that it continues the diagonal line formed by the Starbucks, Target, and Twitter blocks, with its edge touching the Starbucks block.
+Slide the Shell block so that it forms a diagonal line with the Starbucks and Target blocks, and let its upper right edge rests against the lower left edge of the Starbucks block.
+Move the Shell block to where the Starbucks block is one block length to the right of it and one block length above it.
+Put the Nvidia block in the same column as the Mercedes block, below and with six intervening block spaces in between.
+Put the McDonalds block in the same column as the HP block, below and with five intervening block spaces in between.
+Slide the McDonald's block down and to the right until it's just to the left of and flush with the Nvidia block.
+Slide the McDonald's block down and to the right to where its right-hand face is flush with the left-hand face of the Nvidia block.
+Put the Heineken block in the same column as the Esso block, below and with four intervening block spaces in between.
+Slide the Heineken block around the McDonald's block until it's just to the left and flush with the McDonald's block.
+Move the Heineken block to the left and up until the left-hand side of the McDonald's block is flush with its right-hand side.
+Put the Coca Cola block in the same row as the Starbucks block, to the left and with four intervening empty block spaces in between.
+Put the Coca Cola block so that it is in line with the Starbucks block, but its lower right corner touches the upper left corner of the Heineken block.
+Slide the Coca-Cola block up the length of one block and to the right until its bottom right-hand corner is touching the top left-hand corner of the Heineken block.
+Place the Burger King block north of the Coca Cola block.
+Place the BMW block north of the Burger King block.
+Place the Adidas block north of the BMW block.
+Put the Adidas block in a line with the BMW, Burger King, and Coca Cola blocks, with its lower side touching the upper side of the BMW block.
+Move box 18 from the middle of the mat so that it lines up with box 14 to the left and box 19 below.
+Box 17 is in the middle of the mat. Slide it down and right until it lines up with and is nearly touching the top of box 18.
+Place block 17 north of block 18.
+Box 16 is in the upper left corner. Slide it down and right until it lines up with and is nearly touching the top of box 17.
+Place block 16 north of block 17.
+Box 12 is in the bottom left area. Slide it straight up and then diagonally up and right. Slide it so that it is lined up with box 13 and their sides nearly touching.
+Place block 12 north of block 13.
+place box 9 so it's aligned vertically with box 11 and horizontally with box 3
+Put block 3 in the same column as block 4, above and with five intervening empty block spaces in between.
+place box 3 so it's aligned horizontally with box 6 and vertically with box 5
+Put block 1 in the same column as block 2, above and with five intervening empty block spaces in between.
+place box one so it's aligned horizontally with box 9 and vertically with box 2
+Move box 20 from the middle of the left edge to the spot about one box below the 10 box and its left edge lined up with the middle of box 10.
+Put 20 so it's on the same level as 8, lined up vertically with 6.
+Find box 15 at the bottom middle of the mat. Position it to the left of box 19 so that it lines up with boxes 19 and 20.
+Box 15 is at the bottom. Slide it up and right until it is just to the left of box 19 and lined up with boxes 19 and 20.
+Find box 8 along the left edge. Position it to the left of box 11 so that it lines up with box 11.
+Box 8 is on the left. Slide it across, then slightly down until it is beside box 11, it should line up with box 11.
+Move box 8 from the left edge to be beside and lined up with box 11.
+Find box 5 in the middle of the mat, kinda to the left. Position it to the left of box 8 so that it lines up with boxes 8 and 11.
+Box 5 is in the middle. Slide it down and slightly right until it is beside box 8 and lined up with boxes 8 and 11.
+Move box 5 to the directly to the left and lined up with boxes 8 and 11.
+Put block 2 in the same row as block 15, to the left and with three intervening empty block spaces in between.
+Move box 4 to be above and to the right of box 2 with their corners nearly touching.
+Find box 7 in the top right area. Position it so that it is to the right and lined up with box 4.
+Box 7 is in the top left. Slide it down between boxes 17 and 18. Continue to slide down until it is to the left of and lined up with box 4.
+Move box 7 to be to the right of and lined up with box 4.
+Find box 10 in the middle of the right side. Position is so that it is to the right of box 7 with it lining up with boxes 4 and 7.
+Box 10 is along the right edge. Slide it down and slightly left until it is to the right of and lined up with box 7.
+Move box 10 to the right of and lined up with box 7.
+UPS should be south of Twitter
+Move the UPS logo towards north-east and place it at the south side of the Twitter logo that both logos touch each other and get aligned.
+Take the UPS logo and put it at the lower side of the Twitter logo that both logos touch and get aligned.
+Move the Stella Artois logo towards south and place it at the south-west corner of the UPS logo that both logos touch each other.
+Take the Stella Artois  logo and put it at the lower-left corner of the UPS logo that both logo touch each other.
+Move the Shell logo towards south-west and place it at the south-west corner of the Stella Artois logo that both logos touch each other.
+Take the Shell logo and put it at the lower-left corner of the Stella Artois logo that both logo touch each other.
+place the Mecedes benz box in line vertically with the Mcdonalds box and horizontally with the Shell box
+Move the Mercedes Benz logo towards south-east and place it at the west side of the Shell logo that both logos touch each other and get aligned.
+Take the Mercedes Benz logo and put it at the left side of the Shell logo that both logos touch and get aligned.
+Move the Heineken logo towards north-east and place it at the north-west corner of the Mercedes Benz logo that both logos touch each other.
+Take the Heineken logo and put it at the upper-left corner of the Mercedes Benz logo that both logos are in touch.
+Esso should be north of Heineken
+place the esso box in line with and four spaces to the left of the ups box
+Move the ESSO logo towards north-west and place it at the north side of the Heineken logo that both logos touch each other and get aligned.
+Take the ESSO logo and put it at the upper side of the Heineken logo that both logos touch and get aligned.
+Bring the ESSO logo on the north of the Heineken logo touching each other.
+Coca Cola should be north of Esso and southwest of McDonalds
+Move the Coca Cola logo towards south-east and place it at the north side of the ESSO logo that both logos touch each other and get aligned.
+Take the Coca Cola logo and put it at the upper side of the ESSO logo that both logos touch and get aligned.
+Burger King should be north of Coca Cola and west of McDonalds
+Move the Burger King logo towards south and place it at the north side of the Coca Cola logo that both logos touch each other and get aligned.
+Take the Burger King logo and put it at the upper side of the Coca Cola logo that both logos touch and get aligned.
+BMW should be north of Burger King
+Move the BMW logo towards north-east and place it at the north side of the Burger King logo that both logos touch each other and get aligned.
+Take the BMW logo and put it at the upper side of the Burger King logo that both logos touch and get aligned.
+Adidas should be north of BMW and southwest of HP
+Move the ADIDAS logo towards south-east and place it at the north side of the BMW logo that both logos touch each other and get aligned.
+Take the ADIDAS logo and put it at the upper side of the BMW logo that both logos touch and get aligned.
+Position Texaco so its right edge faces McDonalds's left edge with a block length between them
+Texaco should be west of McDonalds with a gap the size of a block in the middle
+Move the Texaco logo towards north-east and place it at the west side of the McDonalds logo that both logos get aligned with little space between them.
+Take the Texaco  logo and put it at the left side of the McDonalds logo that both logos get aligned with gap between them.
+Target should be north of Texaco
+Place the Target block north of the Texaco block.
+Move the Target logo towards north-east and place it at the north side of the Texaco logo that both logos touch each other and get aligned.
+Take the  Target logo and put it at the upper side of the Texaco logo that both logos touch and get aligned.
+Move the SRI logo towards north-east and place it at the west side of the Target logo that both logos touch each other and get aligned.
+Take the SRI logo and put it at the left side of the Target logo that both logos touch and get aligned.
+Put the Nvidia block in the same row as the Texaco block, to the left and with one intervening empty block space in between.
+Move the NVIDIA logo towards south-east and place it at the south-west corner of the SRI logo that both logos touch each other.
+Take the  NVIDIA logo and put it at the lower-left corner of the SRI logo that both logo touch each other.
+Move the HP logo towards north-west and place it at the south-west corner of the NVIDIA logo that both logos touch each other.
+Take the  HP logo and put it at the lower-left corner of the NVIDIA logo that both logo touch each other.
+Position McDonalds so its top edge faces HP's bottom edge with two block lengths between them
+McDonalds should be south of HP with a gap the size of two blocks in between
+Move the McDonalds block to the same column as the HP block, below and with two intervening empty block spaces in between.
+Place the McDonalds block south of the HP block, with two intervening empty block spaces in between.
+Put the McDonalds block three rows below the HP block, vertically aligned with the HP block.
+Move the McDonalds logo towards south-west and place it at the east side of the Toyota logo and south side of the HP logo that it get aligned to them with space in between.
+Take the McDonalds logo and put it at the right side of the Toyota logo and bottom side of the  HP logo that it get aligned to both logos with gaps between.
+Move the Pepsi logo towards south-west and place it at the east side of the McDonalds logo that both logos touch each other and get aligned.
+Take the Pepsi logo and put it at the right side of the McDonalds logo that both logos touch and get aligned.
+Move the Starbucks logo towards south-east and place it at the east side of the Pepsi logo that both logos touch each other and get aligned.
+Take the Starbucks logo and put it at the right side of the Pepsi logo that both logos touch and get aligned.
+Move the Toyota logo towards east and place it at the east side of the Starbucks logo that both logos touch each other and get aligned.
+Take the Toyota logo and put it at the right side of the Starbucks logo that both logos touch and get aligned.
+Twitter should be south of Toyora
+Place the Twitter block south of the Toyota block.
+Move the Twitter logo towards north-west and place it at the south side of the Toyota logo that both logos touch each other and get aligned.
+Take the Twitter logo and put it at the lower side of the Toyota logo that both logos touch and get aligned.
+Place 7 under 13 so it's aligned with 12.
+Slide 7 right the width of two blocks, then down until aligned with 12, then left until aligned with 13.
+Put block 7 in the space below block 13 so it is aligned on the left edge with a line drawn from the left edge of  block 15 and horizontally halfway between blocks 11 and 12.
+Slide 10 down until aligned with 4, then right til it touches 4, then down til 10's top left corner touches 7's bottom right corner.
+Place 12 to the right of and aligned with 10.
+Slide 12 down til aligned with 10 then left til they touch.
+Place 14 to the right of and aligned with 12.
+Slide 14 down til aligned with 12 then left til they touch.
+Slide 18 down til aligned with 7 then left til 18's bottom left corner meets 14's top right corner.
+Place 17 above and aligned with 18.
+Slide 17 right til aligned with 18 then down til they touch.
+Place block 17 north of block 18.
+Place 16 above and aligned with 17.
+Slide 16 up til aligned with 1, right til aligned with 17, then down til 16 and 17 touch.
+Place block 16 north of block 17.
+Place 15 above and aligned with 16.
+Slide 15 right til aligned with 16 then down til they touch.
+Place block 15 north of block 16.
+move block 11 till it's at the top of a diagonal line with 13 and 15
+Put block 11 in the same column as block 12, above and with five intervening empty block spaces in between.
+Put block 9 in the same column as block 10, above and with five intervening empty block spaces in between.
+place box 9 so its aligned vertically with box 10 and horizontally with box 11
+Put block 6 in the same column as block 7, above and with five intervening empty block spaces in between.
+Place block 8 in the same column as block 9, above and with one intervening empty block space in between.
+Place block 5 in the same column as block 6, above and with one intervening empty block space in between.
+place box 4 immediately to the left of box 6 then slide it up into line with box 5
+place box 4 so its right side is aligned with box 6's left side and it is aligned horizontally with box 5
+move block two so it's in numerical order with three through five
+Move Burger King so that it is above and to the left of Coca Cola. It should be two rows above Coca Cola and the bottom right corner should line up with the top left of Coca Cola
+Move Burger King to two rows above Coca Cola and to the left, should be in same vertical line with Adidas
+Take a plunger. Plunge the top of the BurgerKing block, and lift up. Place down on mat so it is on the right edge of the BurgerKing block is on the same axis as the left edge of the CocaCola block, with one block space between them. Remove the plunger.
+Slide the Adidas block upwards, until it is directly beneath the Burger King block. Slide it to the left, so it's right edge is lined up with the BurgerKing blocks left edge. Slide it up so the bottom and top edges of the BurgerKing block and the Adidas block are parallel, and the two blocks are directly next to each other.
+Place the BMW block south of the Adidas block.
+Take the BMW block. Place it directly beneath the Adidas block, making sure the top edge of the BMW block, and the bottom edge of the Adidas block, are touching.
+Take a plunger. Plunge the top of the BMW block. Lift into the air, and place directly beneath the Adidas block, making sure the top edge of the BMW block and the bottom edge of the Adidas block are touching. Remove the plunger.
+Take the CocaCola block. Place it directly beneath the Burger King block, and directly to the right of the BMW Block, creating a perfect quadrant. Make sure the left edge of the CocaCola block and the right edge of the BMW block are touching. Also be sure to have the top of the CocaCola block and the bottom of the Burger King block touch.
+Take the CocaCola block, and slide it in an upwards diagonal direction, until it makes a perfect quadrant with the Adidas, BurgerKing, and BMW blocks.
+Take a plunger. Plunge the top of the CocaCola block. Place it directly beneath the BurgerKing block, and directly to the right of the BMW block, so that it's left edge is touching the right edge of the BMW block, and it's top edge is touching the bottom edge of the BurgerKing block. Remove the plunger.
+Move Esso to beneath Coca Cola, make sure their sides are touching
+Place the Esso block south of the Coca Cola block.
+Take the Esso block. Place it directly beneath the CocaCola block, making sure the top edge of the Esso block, and the bottom edge of the CocaCola block are touching.
+Take the Esso block, and slide it to the left until it's right and left edges are parallel with the right and left edges of the CocaCola and BurgerKing blocks. Slide directly upwards until it touches the bottom edge of the CocaCola block.
+Take a plunger. Plunge the top of the Esso block. Lift into the air, and place directly beneath the CocaCola block, making sure top edge of the Esso block and the bottom edge of the CocaCola block are touching. Remove the plunger.
+Move Heineken beneath Esso, make sure their sides are touching
+Place the Heineken blocks outh of the Esso block.
+Take the Heineken block. Place it directly beneath the Esso block, making sure the top edge of the Heineken block, and the bottom edge of the Esso block, are touching.
+Take a plunger. Plunge the top of the Heineken block. Lift into the air, and place directly beneath the Esso block. Make sure the top edge of the Heineken block and the bottom edge of the Esso block are touching. Remove the plunger.
+Move the fourth block from the right to under the bottom-most block of the longest row
+Move the block with arches to under the block with a filled in circle
+Move the three-prong block to under the block with arches
+Move the block with a spiral to under the three-pronged block
+5 should be south of 4
+Move block 5 south of block 4.
+Put block 5 underneath block 5.
+Continue the diagonal line formed by blocks 11 and 14 with block 18.
+Place block 18 right of block 14, then slide it up until it is in line with block 4.
+17 should be north of 18
+Move block 17 north of block 18.
+16 should be north of 17
+Move block 16 north of block 17.
+Start a zigzag line with blocks 16 and 13 by placing block 10 below and to the left of block 13.
+Place block 10 left of block 13, then slide it down until it is in line with block 2.
+Move block 15 so that it sits left of block 12 with a small space between the two.
+Place block 15 so that it's right edge is adjacent to the left edge of block 12, with just a little space between the two.
+Position 15 at the top of the table with its right face three blocks away from the right edge of the table.
+15 should be at the table's north end and three blocks west of the right edge
+Move block 12 down, then left so that it touches its top right corner with block 15.
+Move block 9 up, then left, then up and slightly to the right so that it touches corners with block 12.
+Move block 6 up then right so that it touches corners with block 9.
+Place block 7 south of block 6.
+7 should be south of 6
+Move block 1 down, then left, then up so that it touches corners with block 7.
+Place block 2 directly beneath block 1.
+Place block 2 south of block 1.
+2 should be south of 1
+Place block 3 directly beneath block 2.
+Place block 3 south of block 2.
+3 should be south of 2
+Place block 4 directly beneath block 3.
+Place block 4 south of block 3.
+4 should be south of 3
+Place block 19 north of block 20.
+Take block number 19 and place it above block number 20 even with it.
+Take block number 8 and put it in line with block number 10 and with block number 11.
+Place block 9 south of block 8.
+Put block 9 underneath block 8.
+Take block number 5 and place it in line with block number 20, to the left of 9.
+Take bock number 2 and place it in line with blocks number 5 and 9, to the left of them to form a straight line.
+Place block 3 south of block 2.
+Put block 3 underneath block 2.
+Take block number 3 and line it up with block number 2 so that block number 2 is evenly above block number 3.
+Take block number 1 and line it up with block number 3 on the left so that they are evenly against each other.
+Place block 4 to the right of block 11, then slide it over until it is in line with block 3 and slide it a small amount down.
+Place block 4 to the left of block 15 in line with block 10, then slide block 4 to the left until it is in line with block 3.
+Place block 4 under block 3 then slide it down until it is in line with block 10.
+Place block 6 north of block 7.
+Continue the diagonal line formed by blocks 4, 6 and 10 with block 13.
+Place block 12 north of block 13.
+Continue the diagonal line formed by blocks 12 and 15 with block 18.
+Place block 17 north of block 18.

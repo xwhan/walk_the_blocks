@@ -25,7 +25,7 @@ class Agent(object):
 		self.unity_ip = "128.111.68.195"	
 
 		# self.PORT = 11000
-		self.PORT = 33277
+		self.PORT = 40593
 		# Size of image
 		config = Config.parse("../../simulator2/Assets/config.txt")
 		self.config = config
