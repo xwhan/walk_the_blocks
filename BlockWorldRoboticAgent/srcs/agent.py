@@ -25,12 +25,7 @@ class Agent(object):
 		self.unity_ip = "128.111.68.194"	
 
 		# self.PORT = 11000
-<<<<<<< HEAD
-		self.PORT = 40865
-=======
-		self.PORT = 33075
-
->>>>>>> master
+		self.PORT = 33447
 		# Size of image
 		config = Config.parse("../../simulator2/Assets/config.txt")
 		self.config = config
@@ -245,7 +240,6 @@ class Agent(object):
 
 				new_img = np.transpose(new_img, (2,0,1))
 				img_state.append(new_img)
-				# previous_action = self.decode_action(action_id)
 				previous_direction = direction_id
 				previous_block = block_id_pred
 				state = (img_state, instruction_ids, previous_direction, previous_block)
@@ -257,6 +251,7 @@ class Agent(object):
 
 			episode_lens.append(len(action_paths))
 
+			print 'instruction:', instruction
 			print 'action path:', action_paths
 			print 'bisk metric until now:', np.mean(bisk_metrics)
 			print 'last bisk:', bisk_metrics[-1]

@@ -1,11 +1,6 @@
 Num of datapoints:-1
-<<<<<<< HEAD
-Shuffle before select:false
-File name:testset.json
-=======
 Shuffle before select:true
 File name:trainset.json
->>>>>>> master
 Simplified:false
 horizon:40
 Reward function type:4
