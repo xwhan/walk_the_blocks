@@ -25,7 +25,7 @@ class Agent(object):
 		self.unity_ip = "128.111.68.195"	
 
 		# self.PORT = 11000
-		self.PORT = 40593
+		self.PORT = 43218
 		# Size of image
 		config = Config.parse("../../simulator2/Assets/config.txt")
 		self.config = config
@@ -197,11 +197,16 @@ class Agent(object):
 		first_right = 0
 
 		for sample_id in tqdm(range(test_size)):
+
+
+
 			img_state = collections.deque([], 5)
 			init_imgs = self.policy_model.image_encoder.build_init_images()
 			for img in init_imgs:
 				img_state.append(img)
 			(status_code, bisk_metric, img, instruction, trajectory) = self.receive_instruction_image()
+
+			print 'Instruction: ', instruction
 
 			gold_block_id = trajectory[0] / 4
 			blocks_moved = []
@@ -251,14 +256,17 @@ class Agent(object):
 
 			episode_lens.append(len(action_paths))
 
+			print 'Sample_ID: ', sample_id
 			print 'instruction:', instruction
 			print 'action path:', action_paths
 			print 'bisk metric until now:', np.mean(bisk_metrics)
-			print 'last bisk:', bisk_metrics[-1]
+			print 'last metric:', bisk_metrics[-1]
 			# print 'expert path:', expert_path
 
 		avg_bisk_metric = sum_bisk_metric / float(test_size)
 		median_bisk_metric = np.median(bisk_metrics)
+		p = np.std(bisk_metrics) / np.sqrt(len(bisk_metrics))
+		print 'p ' + str(p)
 		print "Avg. Bisk Metric " + str(avg_bisk_metric)
 		print "Med. Bisk Metric " + str(median_bisk_metric)
 		print "First Block accuracy  " + str(first_right/float(test_size))
@@ -271,12 +279,15 @@ if __name__ == '__main__':
 	parser.add_argument('-sample_method', default='greedy')
 	args = parser.parse_args()
 
-	model_path = '../models/' + args.model_path
-	print model_path
+	args.mode = 'test'
+	print args
 
-	agent = Agent()
-	agent.policy_model.cuda()
-	agent.test(model_path, mode=args.mode)
+	# model_path = '../models/' + args.model_path
+	# print model_path
+
+	# agent = Agent()
+	# agent.policy_model.cuda()
+	# agent.test(model_path, mode=args.mode)
 
 
 

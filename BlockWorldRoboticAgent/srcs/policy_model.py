@@ -217,5 +217,3 @@ if __name__ == '__main__':
 	direction_prob = model(image, instruction, action)
 	end = time.time()
 	print end - start
-
-

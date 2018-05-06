@@ -71,7 +71,11 @@ def learning_from_demonstrations(agent):
 	parser.add_argument('-batch_size', type=int, default=64, help='batch size for demonstrations')
 	parser.add_argument('-max_epochs', type=int, default=2, help='training epochs')
 	parser.add_argument('-lr', type=float, default=0.001, help='learning rate')
+<<<<<<< HEAD
 	parser.add_argument('-entropy_weight', type=float, default=0.1, help='weight for entropy loss')
+=======
+	parser.add_argument('-entropy_weight', type=float, default=0.0, help='weight for entropy loss')
+>>>>>>> master
 	parser.add_argument('-replay_memory_size', type=int, default=6400, help='random shuffle')
 	parser.add_argument('-id', default='imitation')
 	args = parser.parse_args()
@@ -88,6 +92,10 @@ def learning_from_demonstrations(agent):
 
 	entropies = collections.deque([], 100)
 	plot_data = []
+<<<<<<< HEAD
+=======
+	plot_time = []
+>>>>>>> master
 
 	step = 0
 	for epoch in range(max_epochs):
@@ -133,6 +141,11 @@ def learning_from_demonstrations(agent):
 				step += 1
 				entropies.append(avg_entropy.data.cpu().numpy())
 				log_value('Avg. Entropy', np.mean(entropies), step)
+<<<<<<< HEAD
+=======
+				plot_data.append(np.mean(entropies))
+				plot_time.append(step)
+>>>>>>> master
 
 			replay_memory = [] # reset the replay memory after use
 			exp_used += replay_memory_size
@@ -142,7 +155,13 @@ def learning_from_demonstrations(agent):
 	torch.save(agent.policy_model.state_dict(), savepath)
 	print 'Model saved'
 	np.save('../plot_data/' + args.id, np.array(plot_data))
+<<<<<<< HEAD
 	print 'Plot data saved'
+=======
+	np.save('../plot_data/' + args.id + 'step', np.array(plot_time))
+	print 'Plot data saved'
+
+>>>>>>> master
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 Num of datapoints:-1
-Shuffle before select:false
+Shuffle before select:true
 File name:trainset.json
 Simplified:false
 horizon:40
