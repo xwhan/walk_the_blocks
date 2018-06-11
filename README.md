@@ -18,4 +18,8 @@ See files under `walk_the_blocks/BlockWorldRoboticAgent/srcs/`
    * Advantage Actor-Critic Loss
 
 ## Instructions
-coming soon
+For the usage of the Block-world environment, please refer to [https://github.com/clic-lab/blocks](https://github.com/clic-lab/blocks)
+
+### Train the RL agents
+* S-REIN
+   * 
