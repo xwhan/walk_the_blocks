@@ -25,11 +25,11 @@ For the usage of the Block-world environment, please refer to [https://github.co
    * 
    
 ## If you use our code in your own research, please cite the following paper
-'
+`
 @article{xiong2018scheduled,
   title={Scheduled Policy Optimization for Natural Language Communication with Intelligent Agents},
   author={Xiong, Wenhan and Guo, Xiaoxiao and Yu, Mo and Chang, Shiyu and Zhou, Bowen and Wang, William Yang},
   journal={arXiv preprint arXiv:1806.06187},
   year={2018}
 }
-'
+`
